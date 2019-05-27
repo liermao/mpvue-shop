@@ -4,14 +4,19 @@
       <span class="iconfont icon-search"></span>
       <input type="text" placeholder="搜索更多家居好物">
     </div>
-    <swiper class="swiper" indicator-dots="true" autoplay="true" interval="3000" duration="500">
-      <block v-for="(item, index) in movies" :index="index" :key="key">
+    <swiper class="swiper"
+            indicator-dots="true"
+            autoplay="true" i
+            nterval="3000"
+            duration="500"
+            indicator-color="#FBFBFB"
+            indicator-active-color="#FF9710">
+      <block v-for="(item, index) in movies" :index="index" :key="item">
         <swiper-item>
           <image :src="item.url" class="slide-image" mode="aspectFill"/>
         </swiper-item>
       </block>
     </swiper>
-
   </div>
 </template>
 
