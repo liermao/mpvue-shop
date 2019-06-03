@@ -8,29 +8,29 @@
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "你好软装",
+    "navigationBarTitleText": "你好，软装",
     "navigationBarTextStyle": "black"
   },
   "tabBar": {
-    "color": "#7F8389",
+    "color": "#222222",
     "backgroundColor": "#fafafa",
-    "selectedColor": "#FF9710",
+    "selectedColor": "#222222",
     "borderStyle": "black",
 
     "list": [{
-      "text": "首页",
+      "text": "商城",
       "pagePath": "pages/index/main",
       "iconPath": "static/tabs/index.png",
       "selectedIconPath": "static/tabs/index-active.png"
     },
       {
-        "text": "分类",
+        "text": "案例",
         "pagePath": "pages/classify/main",
         "iconPath": "static/tabs/classify.png",
         "selectedIconPath": "static/tabs/classify-active.png"
       },
       {
-        "text": "收藏",
+        "text": "合作",
         "pagePath": "pages/collect/main",
         "iconPath": "static/tabs/collect.png",
         "selectedIconPath": "static/tabs/collect-active.png"
