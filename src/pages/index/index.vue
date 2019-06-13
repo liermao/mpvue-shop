@@ -74,13 +74,19 @@
           <div class="name">宜家家居床</div>
           <div class="money">¥<span>2442</span></div>
         </li>
+        <li>
+          <div class="img-box">
+            <img src="../../../static/images/sofa.png" alt="">
+          </div>
+          <div class="name">宜家家居床</div>
+          <div class="money">¥<span>2442</span></div>
+        </li>
       </ul>
     </div>
   </div>
 </template>
 
 <script>
-
   export default {
     data() {
       return {
