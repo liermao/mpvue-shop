@@ -18,68 +18,25 @@
       </ul>
     </div>
     <div class="content">
-        <div class="content-box">
-          <img src="../../../static/images/1.png" alt="">
+        <div class="content-box" v-for="(item,index) in imgList" :key="index" >
+          <img :src=item.img alt="">
           <div class="box">
-            <h2>彩色元素,轻松打造艺术感的家。</h2>
-            <h5>彩色元素合集</h5>
+            <h2>{{item.title}}</h2>
+            <h5>{{item.smallTitle}}</h5>
             <div class=""><span class="iconfont icon-Shopping"></span>5</div>
           </div>
         </div>
-       <div class="content-box">
-        <img src="../../../static/images/1.png" alt="">
-        <div class="box">
-          <h2>彩色元素,轻松打造艺术感的家。</h2>
-          <h5>彩色元素合集</h5>
-          <div class=""><span class="iconfont icon-Shopping"></span>5</div>
-        </div>
-      </div>
     </div>
     <div class="list">
        <div class="title">
          <img src="../../../static/images/left.png" class="left"> 新品上架<img src="../../../static/images/right.png" alt="" class="right"></div>
       <ul>
-        <li>
+        <li v-for="(item,index) in list" :key="index" @click="detial(item.id)">
           <div class="img-box">
-            <img src="../../../static/images/sofa.png" alt="">
+            <img :src=item.img alt="">
           </div>
-          <div class="name">宜家家居床</div>
-          <div class="money">¥<span>2442</span></div>
-        </li>
-        <li>
-          <div class="img-box">
-            <img src="../../../static/images/sofa.png" alt="">
-          </div>
-          <div class="name">宜家家居床</div>
-          <div class="money">¥<span>2442</span></div>
-        </li>
-        <li>
-          <div class="img-box">
-            <img src="../../../static/images/sofa.png" alt="">
-          </div>
-          <div class="name">宜家家居床</div>
-          <div class="money">¥<span>2442</span></div>
-        </li>
-        <li>
-          <div class="img-box">
-            <img src="../../../static/images/sofa.png" alt="">
-          </div>
-          <div class="name">宜家家居床</div>
-          <div class="money">¥<span>2442</span></div>
-        </li>
-        <li>
-          <div class="img-box">
-            <img src="../../../static/images/sofa.png" alt="">
-          </div>
-          <div class="name">宜家家居床</div>
-          <div class="money">¥<span>2442</span></div>
-        </li>
-        <li>
-          <div class="img-box">
-            <img src="../../../static/images/sofa.png" alt="">
-          </div>
-          <div class="name">宜家家居床</div>
-          <div class="money">¥<span>2442</span></div>
+          <div class="name">{{item.name}}</div>
+          <div class="money">¥<span>{{item.sell}}</span></div>
         </li>
       </ul>
     </div>
@@ -97,12 +54,27 @@
           {icon: require("../../../static/images/icon/painting.png"), title: "挂画"},
           {icon: require("../../../static/images/icon/Ornaments.png"), title: "饰品"},
           {icon: require("../../../static/images/icon/style.png"), title: "其他"},
+        ],
+        list:[
+          {id:1,img:require("../../../static/images/sofa.png"),name:"宜家家居床",sell:"2442"},
+          {id:2,img:require("../../../static/images/sofa.png"),name:"宜家家居床",sell:"2442"},
+          {id:3,img:require("../../../static/images/sofa.png"),name:"宜家家居床",sell:"2442"},
+          {id:4,img:require("../../../static/images/sofa.png"),name:"宜家家居床",sell:"2442"},
+          {id:5,img:require("../../../static/images/sofa.png"),name:"宜家家居床",sell:"2442"},
+          {id:6,img:require("../../../static/images/sofa.png"),name:"宜家家居床",sell:"2442"},
+        ],
+        imgList:[
+          {id:1,img:require("../../../static/images/1.png"),title:"彩色元素,轻松打造艺术感的家。",smallTitle:"彩色元素合集",number:5},
+          {id:2,img:require("../../../static/images/1.png"),title:"彩色元素,轻松打造艺术感的家。",smallTitle:"彩色元素合集",number:5},
         ]
       }
     },
     components: {},
-
-    methods: {},
+    methods: {
+      detial(id){
+        mpvue.navigateTo({ url: '/pages/detial/main?id='+id})
+      }
+    },
     created() {
     }
   }

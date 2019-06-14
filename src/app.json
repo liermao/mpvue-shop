@@ -3,7 +3,8 @@
     "pages/index/main",
     "pages/classify/main",
     "pages/collect/main",
-    "pages/me/main"
+    "pages/me/main",
+    "pages/detial/main"
   ],
   "window": {
     "backgroundTextStyle": "light",
