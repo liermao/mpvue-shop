@@ -29,7 +29,20 @@
     </div>
     <div class="list">
        <div class="title">
-         <img src="../../../static/images/left.png" class="left"> 新品上架<img src="../../../static/images/right.png" alt="" class="right"></div>
+         <img src="../../../static/images/left.png" class="left">新品上架<img src="../../../static/images/right.png" alt="" class="right"></div>
+      <ul>
+        <li v-for="(item,index) in list" :key="index" @click="detial(item.id)">
+          <div class="img-box">
+            <img :src=item.img alt="">
+          </div>
+          <div class="name">{{item.name}}</div>
+          <div class="money">¥<span>{{item.sell}}</span></div>
+        </li>
+      </ul>
+    </div>
+    <div class="list">
+      <div class="title">
+        <img src="../../../static/images/left.png" class="left">猜你喜欢<img src="../../../static/images/right.png" alt="" class="right"></div>
       <ul>
         <li v-for="(item,index) in list" :key="index" @click="detial(item.id)">
           <div class="img-box">
@@ -52,7 +65,7 @@
           {icon: require("../../../static/images/icon/furniture.png"), title: "家具"},
           {icon: require("../../../static/images/icon/Luminaire.png"), title: "灯灯"},
           {icon: require("../../../static/images/icon/painting.png"), title: "画廊"},
-          {icon: require("../../../static/images/icon/Ornaments.png"), title: "床垫"},
+          {icon: require("../../../static/images/icon/bed.png"), title: "床垫"},
           {icon: require("../../../static/images/icon/style.png"), title: "其他"},
         ],
         list:[
@@ -213,13 +226,13 @@
             margin-right: unit(10,rpx);
           }
         }
-
       }
     }
   }
    .list{
       width: unit(750,rpx);
       margin: unit(16,rpx) auto 0;
+     padding-bottom:  unit(16,rpx);
      background: #fff;
      .title{
        text-align: center;
@@ -231,7 +244,7 @@
          height: unit(24,rpx);
        }
        .left{
-         margin-right: unit(5,rpx);
+         margin-right: unit(20,rpx);
        }
        .right{
          margin-left: unit(20,rpx);
