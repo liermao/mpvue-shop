@@ -50,9 +50,9 @@
         indexTitle: "文案",
         nav: [
           {icon: require("../../../static/images/icon/furniture.png"), title: "家具"},
-          {icon: require("../../../static/images/icon/Luminaire.png"), title: "灯具"},
-          {icon: require("../../../static/images/icon/painting.png"), title: "挂画"},
-          {icon: require("../../../static/images/icon/Ornaments.png"), title: "饰品"},
+          {icon: require("../../../static/images/icon/Luminaire.png"), title: "灯灯"},
+          {icon: require("../../../static/images/icon/painting.png"), title: "画廊"},
+          {icon: require("../../../static/images/icon/Ornaments.png"), title: "床垫"},
           {icon: require("../../../static/images/icon/style.png"), title: "其他"},
         ],
         list:[

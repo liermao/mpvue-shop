@@ -49,6 +49,44 @@
         </div>
       </div>
     </div>
+    <div class="safeguard">
+      <div class="safeguard-title">省心服务保障</div>
+      <ul class="safeguard-list">
+          <li>
+            <img src="../../../static/images/icon/bz1.png" alt="">
+            <p class="title1">正品保证</p>
+            <p class="title2">厂家正品直供</p>
+          </li>
+        <li>
+          <img src="../../../static/images/icon/bz2.png" alt="">
+          <p class="title1">破损保障</p>
+          <p class="title2">破损免费补发</p>
+        </li>
+        <li>
+          <img src="../../../static/images/icon/bz3.png" alt="">
+          <p class="title1">退换无忧</p>
+          <p class="title2">赠送运费险</p>
+        </li>
+        <li>
+          <img src="../../../static/images/icon/bz4.png" alt="">
+          <p class="title1">三年质保</p>
+          <p class="title2">官方质保 售后无忧</p>
+        </li>
+      </ul>
+    </div>
+    <div class="bottom">
+      <ul>
+        <li>
+            <span class="iconfont icon-home"></span>
+        </li>
+        <li>
+          <span class="iconfont icon-share"></span>
+        </li>
+        <li>
+          <span class="iconfont icon-share"></span>
+        </li>
+      </ul>
+    </div>
   </div>
 </template>
 
@@ -264,4 +302,51 @@
       }
     }
   }
+  .safeguard{
+    width: unit(750,rpx);
+    background: #fff;
+    padding-top: unit(32,rpx);
+    .safeguard-title{
+      width:unit(260,rpx);
+      height:unit(50,rpx);
+      background:rgba(234,195,78,1);
+      border-radius:unit(25,rpx);
+      font-size:unit(28,rpx);
+      font-weight:400;
+      color:rgba(255,255,255,1);
+      line-height:unit(50,rpx);
+      text-align: center;
+      margin: 0 auto unit(40,rpx);
+    }
+    .safeguard-list{
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: unit(600,rpx);
+      margin: 0 auto;
+      padding-bottom: unit(130,rpx);
+      li{
+        text-align: center;
+        width: unit(150,rpx);
+        img{
+          width: unit(50,rpx);
+          height:unit(50,rpx);
+          padding: unit(16,rpx);
+          border-radius:5px;
+          border:2px solid rgba(131,69,13,1);
+        }
+        .title1{
+          font-size:unit(24,rpx);
+          font-weight:400;
+          color:rgba(44,44,44,1);
+        }
+        .title2{
+          font-size:unit(18,rpx);
+          font-weight:400;
+          color:rgba(44,44,44,1);
+        }
+      }
+    }
+  }
+
 </style>
