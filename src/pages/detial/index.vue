@@ -74,19 +74,6 @@
         </li>
       </ul>
     </div>
-    <!--<div class="bottom">-->
-      <!--<ul>-->
-        <!--<li>-->
-            <!--<span class="iconfont icon-home"></span>-->
-        <!--</li>-->
-        <!--<li>-->
-          <!--<span class="iconfont icon-share"></span>-->
-        <!--</li>-->
-        <!--<li>-->
-          <!--<span class="iconfont icon-share"></span>-->
-        <!--</li>-->
-      <!--</ul>-->
-    <!--</div>-->
   </div>
 </template>
 
