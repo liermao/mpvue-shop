@@ -11,7 +11,7 @@
       <div class="menber">￥<span>3452</span><span v-show="true" class="meber-icon">会员价</span></div>
       <div class="price">价格<span>￥3298</span></div>
       <h1>宜家家居粉色双人沙发</h1>
-      <div class="share"><img src="../../../static/images/icon/sharebag.png" alt="">分享有礼</div>
+      <div class="share"><img src="http://47.98.180.219:10085/static/images/icon/sharebag.png" alt="">分享有礼</div>
     </div>
     <div class="information">
         <h2>商品信息</h2>
@@ -25,25 +25,25 @@
     </div>
     <div class="address">
         <div class="address-icon">
-          <img src="../../../static/images/icon/address.png" >
+          <img src="http://47.98.180.219:10085/static/images/icon/address.png" >
         </div>
          <div class="address-text">
            <h3>宜家家居(漕溪路店)</h3>
            <p>漕溪路126号（距地铁3号线漕溪路站3号口步行960m）</p>
          </div>
         <div class="phone">
-          <img src="../../../static/images/icon/phone.png" >
+          <img src="http://47.98.180.219:10085/static/images/icon/phone.png" >
         </div>
     </div>
     <div class="img-detial">
       <h3>商品详情</h3>
       <div class="img-box">
-        <img src="../../../static/images/big.png">
+        <img src="http://47.98.180.219:10085/static/images/big.png">
         <div class="particulars">
             <h3>推荐搭配</h3>
             <ul>
               <li>
-                <img src="../../../static/images/small.png" alt="">
+                <img src="http://47.98.180.219:10085/static/images/small.png" alt="">
               </li>
             </ul>
         </div>
@@ -53,26 +53,40 @@
       <div class="safeguard-title">省心服务保障</div>
       <ul class="safeguard-list">
           <li>
-            <img src="../../../static/images/icon/bz1.png" alt="">
+            <img src="http://47.98.180.219:10085/static/images/icon/bz1.png" alt="">
             <p class="title1">正品保证</p>
             <p class="title2">厂家正品直供</p>
           </li>
         <li>
-          <img src="../../../static/images/icon/bz2.png" alt="">
+          <img src="http://47.98.180.219:10085/static/images/icon/bz2.png" alt="">
           <p class="title1">破损保障</p>
           <p class="title2">破损免费补发</p>
         </li>
         <li>
-          <img src="../../../static/images/icon/bz3.png" alt="">
+          <img src="http://47.98.180.219:10085/static/images/icon/bz3.png" alt="">
           <p class="title1">退换无忧</p>
           <p class="title2">赠送运费险</p>
         </li>
         <li>
-          <img src="../../../static/images/icon/bz4.png" alt="">
+          <img src="http://47.98.180.219:10085/static/images/icon/bz4.png" alt="">
           <p class="title1">三年质保</p>
           <p class="title2">官方质保 售后无忧</p>
         </li>
       </ul>
+    </div>
+    <div class="detial-nav">
+      <div @click="backIndex">
+        <img src="http://47.98.180.219:10085/static/images/icon/home.png">
+        <span>首页</span>
+      </div>
+      <div>
+        <img src="http://47.98.180.219:10085/static/images/icon/kefu.png" >
+        <span>咨询</span>
+      </div>
+      <div>
+        <img src="http://47.98.180.219:10085/static/images/icon/share.png">
+        <span>分享</span>
+      </div>
     </div>
   </div>
 </template>
@@ -83,16 +97,22 @@
     data() {
       return {
         movies: [
-          {id: 1, img: require("../../../static/images/sofa.png"), name: "宜家家居床", sell: "2442"},
-          {id: 2, img: require("../../../static/images/sofa.png"), name: "宜家家居床", sell: "2442"},
-          {id: 3, img: require("../../../static/images/sofa.png"), name: "宜家家居床", sell: "2442"},
-          {id: 4, img: require("../../../static/images/sofa.png"), name: "宜家家居床", sell: "2442"},
-          {id: 5, img: require("../../../static/images/sofa.png"), name: "宜家家居床", sell: "2442"},
-          {id: 6, img: require("../../../static/images/sofa.png"), name: "宜家家居床", sell: "2442"},
+          {id: 1, img:"http://47.98.180.219:10085/static/images/sofa.png", name: "宜家家居床", sell: "2442"},
+          {id: 2, img:"http://47.98.180.219:10085/static/images/sofa.png", name: "宜家家居床", sell: "2442"},
+          {id: 3, img:"http://47.98.180.219:10085/static/images/sofa.png", name: "宜家家居床", sell: "2442"},
+          {id: 4, img:"http://47.98.180.219:10085/static/images/sofa.png", name: "宜家家居床", sell: "2442"},
+          {id: 5, img:"http://47.98.180.219:10085/static/images/sofa.png", name: "宜家家居床", sell: "2442"},
+          {id: 6, img:"http://47.98.180.219:10085static/images/sofa.png", name: "宜家家居床", sell: "2442"},
         ]
       }
     },
     props: {},
+    methods:{
+        backIndex(){
+          const url = '/pages/index/main';
+          wx.switchTab({ url })
+        }
+    },
     components: {}
   }
 </script>
@@ -335,5 +355,34 @@
       }
     }
   }
-
+  .detial-nav{
+    width: 100%;
+    border-top:1px solid #F5F5F7;
+    height: unit(98,rpx);
+    display: flex;
+    justify-content: space-between;
+    font-size: 0;
+    div{
+      width: unit(50,rpx);
+      text-align: center;
+      img{
+        width: unit(43,rpx);
+        height:unit(43,rpx);
+        display: block;
+        margin: unit(15,rpx) auto unit(5,rpx);
+      }
+      span{
+        margin: 0 auto;
+        font-size:unit(20,rpx);
+        font-weight:400;
+        color:rgba(127,131,137,1);
+      }
+    }
+    div:nth-child(1){
+      margin-left: unit(74,rpx);
+    }
+    div:nth-child(3){
+      margin-right: unit(74,rpx);
+    }
+  }
 </style>

@@ -3,6 +3,7 @@
     "pages/index/main",
     "pages/classify/main",
     "pages/collect/main",
+    "pages/outletStore/main",
     "pages/me/main",
     "pages/detial/main"
   ],
@@ -17,7 +18,6 @@
     "backgroundColor": "#fafafa",
     "selectedColor": "#222222",
     "borderStyle": "black",
-
     "list": [{
       "text": "商城",
       "pagePath": "pages/index/main",
@@ -35,6 +35,12 @@
         "pagePath": "pages/collect/main",
         "iconPath": "static/tabs/collect.png",
         "selectedIconPath": "static/tabs/collect-active.png"
+      },
+      {
+        "text": "工厂店",
+        "pagePath": "pages/outletStore/main",
+        "iconPath": "static/tabs/shop.png",
+        "selectedIconPath": "static/tabs/shop-active.png"
       },
       {
         "text": "我的",

@@ -2,42 +2,28 @@
   <div>
      <ul class="collect">
        <li>
-           <img src="../../../static/images/col1.png" alt="">
+           <img src="http://47.98.180.219:10085/static/images/col1.png" alt="">
           <div class="box">
                  <h1>IKEA</h1>
                  <h5>宜家家居</h5>
           </div>
        </li>
        <li>
-         <img src="../../../static/images/col2.png" alt="">
+         <img src="http://47.98.180.219:10085/static/images/col2.png" alt="">
          <div class="box">
              <h1>索菲亚</h1>
              <h5>— 全屋定制 —</h5>
          </div>
        </li>
        <li>
-         <img src="../../../static/images/col3.png" alt="">
+         <img src="http://47.98.180.219:10085/static/images/col3.png" alt="">
          <div class="box">
            <h1>0PPEIN</h1>
            <h5>欧派</h5>
          </div>
        </li>
        <li>
-         <img src="../../../static/images/col3.png" alt="">
-         <div class="box">
-           <h1>0PPEIN</h1>
-           <h5>欧派</h5>
-         </div>
-       </li>
-       <li>
-         <img src="../../../static/images/col3.png" alt="">
-         <div class="box">
-           <h1>0PPEIN</h1>
-           <h5>欧派</h5>
-         </div>
-       </li>
-       <li>
-         <img src="../../../static/images/col3.png" alt="">
+         <img src="http://47.98.180.219:10085/static/images/col3.png" alt="">
          <div class="box">
            <h1>0PPEIN</h1>
            <h5>欧派</h5>

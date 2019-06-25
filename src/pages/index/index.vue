@@ -1,9 +1,9 @@
 <template>
   <div>
     <div class="search-box">
-      <img src="../../../static/images/yizi.png">
+      <img src="http://47.98.180.219:10085/static/images/yizi.png">
       <div class="search">
-        <span class="iconfont icon-search"></span>
+        <img src="http://47.98.180.219:10085/static/images/icon/search.png" alt="">
         <input type="text" placeholder="搜索更多家居好物">
       </div>
       <h2 class="index-title">{{indexTitle}}</h2>
@@ -29,7 +29,7 @@
     </div>
     <div class="list">
        <div class="title">
-         <img src="../../../static/images/left.png" class="left">新品上架<img src="../../../static/images/right.png" alt="" class="right"></div>
+         <img src="http://47.98.180.219:10085/static/images/left.png" class="left">新品上架<img src="http://47.98.180.219:10085/static/images/right.png" alt="" class="right"></div>
       <ul>
         <li v-for="(item,index) in list" :key="index" @click="detial(item.id)">
           <div class="img-box">
@@ -42,7 +42,7 @@
     </div>
     <div class="list">
       <div class="title">
-        <img src="../../../static/images/left.png" class="left">猜你喜欢<img src="../../../static/images/right.png" alt="" class="right"></div>
+        <img src="http://47.98.180.219:10085/static/images/left.png" class="left">猜你喜欢<img src="http://47.98.180.219:10085/static/images/right.png" alt="" class="right"></div>
       <ul>
         <li v-for="(item,index) in list" :key="index" @click="detial(item.id)">
           <div class="img-box">
@@ -62,23 +62,23 @@
       return {
         indexTitle: "文案",
         nav: [
-          {icon: require("../../../static/images/icon/furniture.png"), title: "家具"},
-          {icon: require("../../../static/images/icon/Luminaire.png"), title: "灯灯"},
-          {icon: require("../../../static/images/icon/painting.png"), title: "画廊"},
-          {icon: require("../../../static/images/icon/bed.png"), title: "床垫"},
-          {icon: require("../../../static/images/icon/style.png"), title: "其他"},
+          {icon: "http://47.98.180.219:10085/static/images/icon/furniture.png", title: "家具"},
+          {icon: "http://47.98.180.219:10085/static/images/icon/Luminaire.png", title: "灯灯"},
+          {icon:"http://47.98.180.219:10085/static/images/icon/painting.png", title: "画廊"},
+          {icon: "http://47.98.180.219:10085/static/images/icon/bed.png", title: "床垫"},
+          {icon: "http://47.98.180.219:10085/static/images/icon/style.png", title: "其他"},
         ],
         list:[
-          {id:1,img:require("../../../static/images/sofa.png"),name:"宜家家居床",sell:"2442"},
-          {id:2,img:require("../../../static/images/sofa.png"),name:"宜家家居床",sell:"2442"},
-          {id:3,img:require("../../../static/images/sofa.png"),name:"宜家家居床",sell:"2442"},
-          {id:4,img:require("../../../static/images/sofa.png"),name:"宜家家居床",sell:"2442"},
-          {id:5,img:require("../../../static/images/sofa.png"),name:"宜家家居床",sell:"2442"},
-          {id:6,img:require("../../../static/images/sofa.png"),name:"宜家家居床",sell:"2442"},
+          {id:1,img:"http://47.98.180.219:10085/static/images/sofa.png",name:"宜家家居床",sell:"2442"},
+          {id:2,img:"http://47.98.180.219:10085/static/images/sofa.png",name:"宜家家居床",sell:"2442"},
+          {id:3,img:"http://47.98.180.219:10085/static/images/sofa.png",name:"宜家家居床",sell:"2442"},
+          {id:4,img:"http://47.98.180.219:10085/static/images/sofa.png",name:"宜家家居床",sell:"2442"},
+          {id:5,img:"http://47.98.180.219:10085/static/images/sofa.png",name:"宜家家居床",sell:"2442"},
+          {id:6,img:"http://47.98.180.219:10085/static/images/sofa.png",name:"宜家家居床",sell:"2442"},
         ],
         imgList:[
-          {id:1,img:require("../../../static/images/1.png"),title:"彩色元素,轻松打造艺术感的家。",smallTitle:"彩色元素合集",number:5},
-          {id:2,img:require("../../../static/images/1.png"),title:"彩色元素,轻松打造艺术感的家。",smallTitle:"彩色元素合集",number:5},
+          {id:1,img:"http://47.98.180.219:10085/static/images/1.png",title:"彩色元素,轻松打造艺术感的家。",smallTitle:"彩色元素合集",number:5},
+          {id:2,img:"http://47.98.180.219:10085/static/images/1.png",title:"彩色元素,轻松打造艺术感的家。",smallTitle:"彩色元素合集",number:5},
         ]
       }
     },
@@ -94,7 +94,6 @@
 </script>
 
 <style scoped lang="less">
-  @import "../../../static/fonts/iconfont.css";
   @import "../../../static/bass/css/bass";
 
   .search-box {
@@ -118,9 +117,11 @@
       border-radius: 5px;
       display: flex;
       align-items: center;
-      .icon-search {
-        margin: 0 10px;
-        color: #2C2C2C;
+      img{
+        width:unit(26,rpx);
+        height:unit(26,rpx);
+        margin-left: unit(22,rpx);
+        margin-right: unit(16,rpx);
       }
       input {
         font-size: @theme-font-size-1;

@@ -10,3 +10,34 @@
 @theme-font-size-6: unit(36, rpx);
 @theme-font-size-7: unit(38, rpx);
 @theme-font-size-8: unit(40, rpx);
+
+
+.search-box{
+  width: unit(750,rpx);
+  background: #fff;
+  height: unit(85,rpx);
+  display: flex;
+  align-items: center;
+  justify-content:center;
+  .search {
+    width: unit(690, rpx);
+    height: unit(60, rpx);
+    background: rgba(245, 245, 247, 1);
+    border-radius: unit(30,rpx);
+    display: flex;
+    align-items: center;
+    .icon-search {
+      margin: 0 10px;
+      color: #2C2C2C;
+    }
+    input {
+      font-size: @theme-font-size-1;
+      display: block;
+      width: unit(610, rpx);
+    }
+  }
+}
+// 清除小程序的默认边框
+button::after{
+  border: none;
+}
