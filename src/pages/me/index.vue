@@ -25,7 +25,7 @@
         <img src="http://47.98.180.219:10085/static/images/arrow.png" alt="">
       </div>
     </div>
-    <div class="list-box">
+    <div class="list-box"  @click="aboutfun">
       <div class="left">
         <img src="http://47.98.180.219:10085/static/images/about.png" alt="">
         <span>关于我们</span>
@@ -54,6 +54,11 @@
       this.getSetting()
     },
     methods: {
+      // 关于我们
+      aboutfun(){
+        wx.navigateTo({url: '/pages/aboutUs/main'})
+      },
+
       getSetting() {
         let _this=this;
         mpvue.getSetting({

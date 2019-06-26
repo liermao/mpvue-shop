@@ -5,7 +5,9 @@
     "pages/collect/main",
     "pages/outletStore/main",
     "pages/me/main",
-    "pages/detial/main"
+    "pages/detial/main",
+    "pages/allClassify/main",
+    "pages/aboutUs/main"
   ],
   "window": {
     "backgroundTextStyle": "light",

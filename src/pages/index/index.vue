@@ -11,7 +11,7 @@
     </div>
     <div class="nav">
       <ul>
-        <li v-for="(item,index) in nav" :key="index">
+        <li v-for="(item,index) in nav" :key="index" @click="allClassify(item.url,item.id)">
           <img :src=item.icon alt="">
           <span>{{item.title}}</span>
         </li>
@@ -62,11 +62,11 @@
       return {
         indexTitle: "文案",
         nav: [
-          {icon: "http://47.98.180.219:10085/static/images/icon/furniture.png", title: "家具"},
-          {icon: "http://47.98.180.219:10085/static/images/icon/Luminaire.png", title: "灯灯"},
-          {icon:"http://47.98.180.219:10085/static/images/icon/painting.png", title: "画廊"},
-          {icon: "http://47.98.180.219:10085/static/images/icon/bed.png", title: "床垫"},
-          {icon: "http://47.98.180.219:10085/static/images/icon/style.png", title: "其他"},
+          {id:1,icon: "http://47.98.180.219:10085/static/images/icon/furniture.png", title: "家具",url:""},
+          {id:2,icon: "http://47.98.180.219:10085/static/images/icon/Luminaire.png", title: "灯灯"},
+          {id:3,icon:"http://47.98.180.219:10085/static/images/icon/painting.png", title: "画廊"},
+          {id:4,icon: "http://47.98.180.219:10085/static/images/icon/bed.png", title: "床垫"},
+          {id:5,icon: "http://47.98.180.219:10085/static/images/icon/style.png", title: "其它",url:"allClassify"},
         ],
         list:[
           {id:1,img:"http://47.98.180.219:10085/static/images/sofa.png",name:"宜家家居床",sell:"2442"},
@@ -86,6 +86,9 @@
     methods: {
       detial(id){
         mpvue.navigateTo({ url: '/pages/detial/main?id='+id})
+      },
+      allClassify(url,id){
+        mpvue.navigateTo({ url: '/pages/'+url+'/main?id='+id})
       }
     },
     created() {
