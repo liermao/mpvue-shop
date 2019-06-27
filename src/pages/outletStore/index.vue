@@ -7,7 +7,7 @@
         </div>
       </div>
       <ul class="collect">
-        <li v-for="(item,index) in arr" :key="index" >
+        <li v-for="(item,index) in arr" :key="index" @click="detialCollent(item.id)">
           <img :src=item.img alt="">
           <div class="box">
             <h1>{{item.title}}</h1>
@@ -23,16 +23,21 @@
         data() {
             return {
               arr: [
-                {id: "1", img: "http://47.98.180.219:10085/static/images/col1.png", title: "上海工厂"},
-                {id: "2", img: "http://47.98.180.219:10085/static/images/col1.png", title: "广州工厂"},
-                {id: "3", img: "http://47.98.180.219:10085/static/images/col1.png", title: "浙江工厂"},
-                {id: "4", img: "http://47.98.180.219:10085/static/images/col1.png", title: "江苏工厂"},
-                {id: "5", img: "http://47.98.180.219:10085/static/images/col1.png", title: "本土合作门店"},
+                {id: 1, img: "http://47.98.180.219:10085/static/images/col1.png", title: "上海工厂"},
+                {id: 2, img: "http://47.98.180.219:10085/static/images/col1.png", title: "广州工厂"},
+                {id: 3, img: "http://47.98.180.219:10085/static/images/col1.png", title: "浙江工厂"},
+                {id: 4, img: "http://47.98.180.219:10085/static/images/col1.png", title: "江苏工厂"},
+                {id: 5, img: "http://47.98.180.219:10085/static/images/col1.png", title: "本土合作门店"},
               ]
             }
         },
         props: {},
-        components: {}
+        components: {},
+        methods: {
+          detialCollent(id){
+            mpvue.navigateTo({ url: '/pages/collectDetial/main?id='+id})
+          }
+        },
     }
 </script>
 

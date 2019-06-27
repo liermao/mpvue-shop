@@ -1,33 +1,12 @@
 <template>
   <div>
      <ul class="collect">
-       <li>
-           <img src="http://47.98.180.219:10085/static/images/col1.png" alt="">
+       <li v-for="(item,index) in arr" :key="index" @click="detialCollent(item.id)">
+           <img :src="item.img">
           <div class="box">
-                 <h1>IKEA</h1>
-                 <h5>宜家家居</h5>
+                 <h1>{{item.eg}}</h1>
+                 <h5>{{item.cha}}</h5>
           </div>
-       </li>
-       <li>
-         <img src="http://47.98.180.219:10085/static/images/col2.png" alt="">
-         <div class="box">
-             <h1>索菲亚</h1>
-             <h5>— 全屋定制 —</h5>
-         </div>
-       </li>
-       <li>
-         <img src="http://47.98.180.219:10085/static/images/col3.png" alt="">
-         <div class="box">
-           <h1>0PPEIN</h1>
-           <h5>欧派</h5>
-         </div>
-       </li>
-       <li>
-         <img src="http://47.98.180.219:10085/static/images/col3.png" alt="">
-         <div class="box">
-           <h1>0PPEIN</h1>
-           <h5>欧派</h5>
-         </div>
        </li>
      </ul>
   </div>
@@ -38,15 +17,23 @@
 export default {
   data () {
     return {
-
+        arr:[
+          {id:1,eg:"IKEA",cha:"宜家家居",img:"http://47.98.180.219:10085/static/images/col1.png"},
+          {id:2,eg:"IKEA1",cha:"宜家家居1",img:"http://47.98.180.219:10085/static/images/col1.png"},
+          {id:3,eg:"IKEA2",cha:"宜家家居2",img:"http://47.98.180.219:10085/static/images/col1.png"},
+          {id:4,eg:"IKEA3",cha:"宜家家居3",img:"http://47.98.180.219:10085/static/images/col1.png"},
+          {id:5,eg:"IKEA4",cha:"宜家家居4",img:"http://47.98.180.219:10085/static/images/col1.png"},
+        ]
     }
   },
   components: {
   },
   methods: {
+      detialCollent(id){
+        mpvue.navigateTo({ url: '/pages/collectDetial/main?id='+id})
+      }
   },
-  created () {
-  }
+  created () {}
 }
 </script>
 

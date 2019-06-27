@@ -29,7 +29,8 @@
     </div>
     <div class="list">
        <div class="title">
-         <img src="http://47.98.180.219:10085/static/images/left.png" class="left">新品上架<img src="http://47.98.180.219:10085/static/images/right.png" alt="" class="right"></div>
+         <img src="http://47.98.180.219:10085/static/images/left.png" class="left">新品上架<img src="http://47.98.180.219:10085/static/images/right.png" alt="" class="right">
+       </div>
       <ul>
         <li v-for="(item,index) in list" :key="index" @click="detial(item.id)">
           <div class="img-box">
@@ -254,7 +255,6 @@
          margin-left: unit(20,rpx);
        }
      }
-
 
       ul{
         width: unit(720,rpx);
