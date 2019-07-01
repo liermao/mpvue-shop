@@ -33,7 +33,7 @@
       <div v-for="(itemContent,indexContent) in list" :key="indexContent" :id="'con_'+indexContent" class="scroll-item">
         <h2>{{itemContent.title}}</h2>
         <ul>
-          <li v-for="(item1,index1) in itemContent.detial" :key="index1">
+          <li v-for="(item1,index1) in itemContent.detial" :key="index1" @click="turnDetial(item1.id)">
             <div class="img-box">
               <img :src=item1.imgSrc alt="">
             </div>
@@ -126,13 +126,14 @@
     },
     methods: {
       toContent(index) {
-        console.log(index);
         this.contentId = `con_${index}`;
         this.navId = `nav_${index}`;
         this.currentIndex = index;
+        console.log(index);
       },
-
-
+      turnDetial(id){
+        mpvue.navigateTo({ url: '/pages/detial/main?id='+id})
+      }
     },
     onPageScroll: function (e) {
       let that = this;

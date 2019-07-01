@@ -8,7 +8,8 @@
     "pages/detial/main",
     "pages/allClassify/main",
     "pages/aboutUs/main",
-    "pages/collectDetial/main"
+    "pages/collectDetial/main",
+    "pages/classifyDetails/main"
   ],
   "window": {
     "backgroundTextStyle": "light",
