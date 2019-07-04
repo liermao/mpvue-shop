@@ -19,14 +19,14 @@
            :key="index"
            :id="'nav_'+index"
            :class="index===currentIndex ? 'active' : ''"
-           @click="toContent(index)">{{item.title}}
+           @tap="toContent(index)">{{item.title}}
       </div>
     </scroll-view>
     <scroll-view
       class="scroll-content"
-      :scroll-y="scrollContent"
       scroll-with-animation="true"
       :scroll-into-view="contentId"
+      scroll-y="scrollContent"
       style="height: 800px"
       :style="{marginTop: mgTop + 'rpx'}"
     >
@@ -126,10 +126,10 @@
     },
     methods: {
       toContent(index) {
+        console.log(index);
+        this.currentIndex = index;
         this.contentId = `con_${index}`;
         this.navId = `nav_${index}`;
-        this.currentIndex = index;
-        console.log(index);
       },
       turnDetial(id){
         mpvue.navigateTo({ url: '/pages/detial/main?id='+id})
@@ -137,14 +137,13 @@
     },
     onPageScroll: function (e) {
       let that = this;
-      console.log(e.scrollTop);
       if (e.scrollTop >= that.top) {
         that.fixtop = true;
         that.scrollContent = true;
         that.mgTop = 85;
       } else {
         that.fixtop = false;
-        that.scrollContent = false;
+        that.scrollContent = true;
         that.mgTop = 0;
       }
     },

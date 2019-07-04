@@ -9,7 +9,9 @@
     "pages/allClassify/main",
     "pages/aboutUs/main",
     "pages/collectDetial/main",
-    "pages/classifyDetails/main"
+    "pages/classifyDetails/main",
+    "pages/classifyList/main",
+    "pages/furniture/main"
   ],
   "window": {
     "backgroundTextStyle": "light",

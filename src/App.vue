@@ -9,24 +9,32 @@ export default {
      * 百度：mpvue === swan, mpvuePlatform === 'swan'
      * 支付宝(蚂蚁)：mpvue === my, mpvuePlatform === 'my'
      */
-
-    let logs
+    let _this=this;
+    let url = 'index.php?method52=b.goods.getallclasses';
+    let logs;
     if (mpvuePlatform === 'my') {
-      logs = mpvue.getStorageSync({key: 'logs'}).data || []
-      logs.unshift(Date.now())
+      logs = mpvue.getStorageSync({key: 'logs'}).data || [];
+      logs.unshift(Date.now());
       mpvue.setStorageSync({
         key: 'logs',
         data: logs
       })
     } else {
-      logs = mpvue.getStorageSync('logs') || []
-      logs.unshift(Date.now())
-      mpvue.setStorageSync('logs', logs)
+      logs = mpvue.getStorageSync('logs') || [];
+      logs.unshift(Date.now());
+      mpvue.setStorageSync('logs', logs);
     }
+      _this.$http.get(url).then((res)=>{
+        mpvue.setStorageSync('data', res.data.data);
+      }).catch(err=>{
+        console.log("错误代码",err)
+      })
   },
   log () {
     console.log(`log at:${Date.now()}`)
-  }
+  },
+
+
 }
 </script>
 

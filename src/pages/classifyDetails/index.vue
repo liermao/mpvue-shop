@@ -17,7 +17,7 @@
           <img :src="item.imgSrc" alt="">
           <div class="title">
             <h3>{{item.name}}</h3>
-            <span>商品清单 ></span>
+            <span @click="turnList(item.id)">商品清单 ></span>
           </div>
         </div>
       </div>
@@ -39,11 +39,11 @@
           WholeHouseSrc:"http://47.98.180.219:10085/static/images/zhutu.png",
           WholeHouseName:"全屋场景图",
           houseList:[
-            {id:"1",name:"客餐厅",imgSrc:"http://47.98.180.219:10085/static/images/other.png"},
-            {id:"2",name:"客餐厅",imgSrc:"http://47.98.180.219:10085/static/images/other.png"},
-            {id:"3",name:"客餐厅",imgSrc:"http://47.98.180.219:10085/static/images/other.png"},
-            {id:"4",name:"客餐厅",imgSrc:"http://47.98.180.219:10085/static/images/other.png"},
-            {id:"5",name:"客餐厅",imgSrc:"http://47.98.180.219:10085/static/images/other.png"},
+            {id:1,name:"客餐厅",imgSrc:"http://47.98.180.219:10085/static/images/other.png"},
+            {id:2,name:"客餐厅",imgSrc:"http://47.98.180.219:10085/static/images/other.png"},
+            {id:3,name:"客餐厅",imgSrc:"http://47.98.180.219:10085/static/images/other.png"},
+            {id:4,name:"客餐厅",imgSrc:"http://47.98.180.219:10085/static/images/other.png"},
+            {id:5,name:"客餐厅",imgSrc:"http://47.98.180.219:10085/static/images/other.png"},
           ]
         },
       }
@@ -52,6 +52,9 @@
     methods: {
       caseDetails(id) {
         mpvue.navigateTo({url: '/pages/classifyDetails/main?id=' + id})
+      },
+      turnList(id){
+        mpvue.navigateTo({url: '/pages/classifyList/main?id=' + id})
       }
     },
     created() {

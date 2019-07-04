@@ -11,9 +11,9 @@
       <div v-for="(item,index) in arr" :key="index" :class="{active:activeCla==index}">
         <h3 class="title">{{item.name}}</h3>
         <ul>
-          <li v-for="(detial,indexd) in item.list" :key="indexd">
+          <li v-for="(detial,indexd) in item.children" :key="indexd" @click="turnFurniture(detial.parent_id)">
             <div class="img-box">
-              <img :src="detial.img">
+              <img :src="detial.img_url">
             </div>
             <span>{{detial.name}}</span>
           </li>
@@ -29,124 +29,22 @@
       return {
         activeCla: 0,
         title: "",
-        arr: [
-          {
-            name: "家具",
-            id: 0,
-            list: [
-              {id: 1, img: "http://47.98.180.219:10085/static/images/sofa.png", name: "沙发"},
-              {id: 2, img: "http://47.98.180.219:10085/static/images/sofa.png", name: "茶几"},
-              {id: 3, img: "http://47.98.180.219:10085/static/images/sofa.png", name: "床床"},
-              {id: 4, img: "http://47.98.180.219:10085/static/images/sofa.png", name: "餐桌"},
-              {id: 5, img: "http://47.98.180.219:10085/static/images/sofa.png", name: "椅类"},
-              {id: 6, img: "http://47.98.180.219:10085/static/images/sofa.png", name: "柜类"},
-              {id: 7, img: "http://47.98.180.219:10085/static/images/sofa.png", name: "架类"},
-              {id: 8, img: "http://47.98.180.219:10085/static/images/sofa.png", name: "凳类"},
-              {id: 9, img: "http://47.98.180.219:10085/static/images/sofa.png", name: "儿童"},
-              {id: 10, img: "http://47.98.180.219:10085/static/images/sofa.png", name: "其它"},
-            ]
-          },
-          {
-            name: "灯灯",
-            id: 1,
-            list: [
-              {id: "1", img: "http://47.98.180.219:10085/static/images/sofa.png", name: "沙发"},
-            ]
-          },
-          {
-            name: "画廊",
-            id: 0,
-            list: [
-              {id: "1", img: "http://47.98.180.219:10085/static/images/sofa.png", name: "沙发"},
-            ]
-          },
-          {
-            name: "床垫",
-            id: 2,
-            list: [
-              {id: "1", img: "http://47.98.180.219:10085/static/images/sofa.png", name: "沙发"},
-            ]
-          },
-          {
-            name: "床品",
-            id: 3,
-            list: [
-              {id: "1", img: "http://47.98.180.219:10085/static/images/sofa.png", name: "沙发"},
-
-            ]
-          },
-          {
-            name: "抱枕",
-            id: 4,
-            list: [
-              {id: "1", img: "http://47.98.180.219:10085/static/images/sofa.png", name: "沙发"},
-            ]
-          },
-          {
-            name: "窗帘",
-            id: 5,
-            list: [
-              {id: "1", img: "http://47.98.180.219:10085/static/images/sofa.png", name: "沙发"},
-
-            ]
-          },
-          {
-            name: "地毯",
-            id: 6,
-            list: [
-              {id: "1", img: "http://47.98.180.219:10085/static/images/sofa.png", name: "沙发"},
-
-            ]
-          },
-          {
-            name: "摆件",
-            id: 7,
-            list: [
-              {id: "1", img: "http://47.98.180.219:10085/static/images/sofa.png", name: "沙发"},
-            ]
-          },
-          {
-            name: "风水",
-            id: 8,
-            list: [
-              {id: "1", img: "http://47.98.180.219:10085/static/images/sofa.png", name: "沙发"},
-
-            ]
-          },
-          {
-            name: "百货",
-            id: 9,
-            list: [
-              {id: "1", img: "http://47.98.180.219:10085/static/images/sofa.png", name: "沙发"},
-
-            ]
-          },
-          {
-            name: "家电",
-            id: 10,
-            list: [
-              {id: "1", img: "http://47.98.180.219:10085/static/images/sofa.png", name: "沙发"},
-
-            ]
-          },
-          {
-            name: "其他",
-            id: 11,
-            list: [
-              {id: "1", img: "http://47.98.180.219:10085/static/images/sofa.png", name: "沙发"},
-
-            ]
-          },
-        ]
+        arr: []
       }
     },
     components: {},
     mounted() {
+      let _this=this;
+      _this.arr=mpvue.getStorageSync('data');
     },
     methods: {
       selectFun(index, title) {
         this.activeCla = index;
         this.title = title;
+      },
+      // 跳到分类详情页面
+      turnFurniture(id){
+        mpvue.navigateTo({url: '/pages/furniture/main?id=' + id});
       }
     },
     created() {

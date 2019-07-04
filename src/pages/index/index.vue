@@ -63,10 +63,10 @@
       return {
         indexTitle: "文案",
         nav: [
-          {id:1,icon: "http://47.98.180.219:10085/static/images/icon/furniture.png", title: "家具",url:""},
-          {id:2,icon: "http://47.98.180.219:10085/static/images/icon/Luminaire.png", title: "灯灯"},
-          {id:3,icon:"http://47.98.180.219:10085/static/images/icon/painting.png", title: "画廊"},
-          {id:4,icon: "http://47.98.180.219:10085/static/images/icon/bed.png", title: "床垫"},
+          {id:1,icon: "http://47.98.180.219:10085/static/images/icon/furniture.png", title: "家具",url:"furniture"},
+          {id:2,icon: "http://47.98.180.219:10085/static/images/icon/Luminaire.png", title: "灯灯",url:"furniture"},
+          {id:3,icon:"http://47.98.180.219:10085/static/images/icon/painting.png", title: "画廊",url:"furniture"},
+          {id:4,icon: "http://47.98.180.219:10085/static/images/icon/bed.png", title: "床垫",url:"furniture"},
           {id:5,icon: "http://47.98.180.219:10085/static/images/icon/style.png", title: "其它",url:"allClassify"},
         ],
         list:[
@@ -93,18 +93,16 @@
       }
     },
     created() {
-    }
+    },
   }
 </script>
 
 <style scoped lang="less">
   @import "../../../static/bass/css/bass";
-
   .search-box {
     width: unit(750, rpx);
     height: unit(750, rpx);
     position: relative;
-
     img {
       display: block;
       width: 100%;
