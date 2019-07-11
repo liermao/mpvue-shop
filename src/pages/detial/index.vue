@@ -10,53 +10,53 @@
     <div class="title">
       <div class="menber">￥<span>3452</span><span v-show="true" class="meber-icon">会员价</span></div>
       <div class="price">价格<span>￥3298</span></div>
-      <h1>宜家家居粉色双人沙发</h1>
+      <h1>{{title}}</h1>
       <div class="share"><img src="http://47.98.180.219:10085/static/images/icon/sharebag.png" alt="">分享有礼</div>
     </div>
     <div class="information">
-        <h2>商品信息</h2>
-        <div>品牌:<span>宜家家居</span></div>
-        <div>规格:<span>123x87x145cm</span></div>
-        <div>颜色:<span>粉色+黑色</span></div>
-        <div>风格:<span>简约现代</span></div>
-        <div>材质:<span>棉、纤维</span></div>
-        <div>产地:<span>西班牙</span></div>
-        <div>物流:<span>顺丰货运</span></div>
+      <h2>商品信息</h2>
+      <div>品牌:<span>宜家家居</span></div>
+      <div>规格:<span>123x87x145cm</span></div>
+      <div>颜色:<span>粉色+黑色</span></div>
+      <div>风格:<span>简约现代</span></div>
+      <div>材质:<span>棉、纤维</span></div>
+      <div>产地:<span>西班牙</span></div>
+      <div>物流:<span>顺丰货运</span></div>
     </div>
     <div class="address">
-        <div class="address-icon">
-          <img src="http://47.98.180.219:10085/static/images/icon/address.png" >
-        </div>
-         <div class="address-text">
-           <h3>宜家家居(漕溪路店)</h3>
-           <p>漕溪路126号（距地铁3号线漕溪路站3号口步行960m）</p>
-         </div>
-        <div class="phone">
-          <img src="http://47.98.180.219:10085/static/images/icon/phone.png" >
-        </div>
+      <div class="address-icon">
+        <img src="http://47.98.180.219:10085/static/images/icon/address.png">
+      </div>
+      <div class="address-text">
+        <h3>宜家家居(漕溪路店)</h3>
+        <p>漕溪路126号（距地铁3号线漕溪路站3号口步行960m）</p>
+      </div>
+      <div class="phone">
+        <img src="http://47.98.180.219:10085/static/images/icon/phone.png">
+      </div>
     </div>
     <div class="img-detial">
       <h3>商品详情</h3>
       <div class="img-box">
         <img src="http://47.98.180.219:10085/static/images/big.png">
         <div class="particulars">
-            <h3>推荐搭配</h3>
-            <ul>
-              <li>
-                <img src="http://47.98.180.219:10085/static/images/small.png" alt="">
-              </li>
-            </ul>
+          <h3>推荐搭配</h3>
+          <ul>
+            <li>
+              <img src="http://47.98.180.219:10085/static/images/small.png" alt="">
+            </li>
+          </ul>
         </div>
       </div>
     </div>
     <div class="safeguard">
       <div class="safeguard-title">省心服务保障</div>
       <ul class="safeguard-list">
-          <li>
-            <img src="http://47.98.180.219:10085/static/images/icon/bz1.png" alt="">
-            <p class="title1">正品保证</p>
-            <p class="title2">厂家正品直供</p>
-          </li>
+        <li>
+          <img src="http://47.98.180.219:10085/static/images/icon/bz1.png" alt="">
+          <p class="title1">正品保证</p>
+          <p class="title2">厂家正品直供</p>
+        </li>
         <li>
           <img src="http://47.98.180.219:10085/static/images/icon/bz2.png" alt="">
           <p class="title1">破损保障</p>
@@ -79,45 +79,81 @@
         <img src="http://47.98.180.219:10085/static/images/icon/home.png">
         <span>首页</span>
       </div>
-      <div>
-        <img src="http://47.98.180.219:10085/static/images/icon/kefu.png" >
+      <button open-type="contact" class="kefu">
+        <img src="http://47.98.180.219:10085/static/images/icon/kefu.png">
         <span>咨询</span>
-      </div>
-      <div>
+      </button>
+      <button open-type="share">
         <img src="http://47.98.180.219:10085/static/images/icon/share.png">
         <span>分享</span>
-      </div>
+      </button>
     </div>
   </div>
 </template>
-
 <script>
   export default {
     name: "index",
     data() {
       return {
+        title: "宜家家居粉色双人沙发",
         movies: [
-          {id: 1, img:"http://47.98.180.219:10085/static/images/sofa.png", name: "宜家家居床", sell: "2442"},
-          {id: 2, img:"http://47.98.180.219:10085/static/images/sofa.png", name: "宜家家居床", sell: "2442"},
-          {id: 3, img:"http://47.98.180.219:10085/static/images/sofa.png", name: "宜家家居床", sell: "2442"},
-          {id: 4, img:"http://47.98.180.219:10085/static/images/sofa.png", name: "宜家家居床", sell: "2442"},
-          {id: 5, img:"http://47.98.180.219:10085/static/images/sofa.png", name: "宜家家居床", sell: "2442"},
-          {id: 6, img:"http://47.98.180.219:10085static/images/sofa.png", name: "宜家家居床", sell: "2442"},
+          {id: 1, img: "http://47.98.180.219:10085/static/images/sofa.png", name: "宜家家居床", sell: "2442"},
+          {id: 2, img: "http://47.98.180.219:10085/static/images/sofa.png", name: "宜家家居床", sell: "2442"},
+          {id: 3, img: "http://47.98.180.219:10085/static/images/sofa.png", name: "宜家家居床", sell: "2442"},
+          {id: 4, img: "http://47.98.180.219:10085/static/images/sofa.png", name: "宜家家居床", sell: "2442"},
+          {id: 5, img: "http://47.98.180.219:10085/static/images/sofa.png", name: "宜家家居床", sell: "2442"},
+          {id: 6, img: "http://47.98.180.219:10085/static/images/sofa.png", name: "宜家家居床", sell: "2442"},
         ]
       }
     },
     props: {},
-    methods:{
-        backIndex(){
-          const url = '/pages/index/main';
-          wx.switchTab({ url })
+    methods: {
+      backIndex() {
+        const url = '/pages/index/main';
+        wx.switchTab({url})
+      },
+
+      // onShareAppMessage: function () {
+      //   let users = wx.getStorageSync('user');
+      //   if (res.from === 'button') {
+      //   }
+      //   return {
+      //     title: '转发',
+      //     path: '/pages/index/index',
+      //     success: function (res) {
+      //     }
+      //   }
+      // }
+    }
+    ,
+    onShareAppMessage: function (e) {
+      if (e.from === 'button') {
+        // 来自页面内转发按钮
+        console.log(e.target)
+      }
+      if (e.from === 'menu') {
+        console.log(e.target)
+      }
+      return {
+        title: '刘子源是臭傻逼',
+        path: '/page/detial/index',
+        imageUrl: "http://47.98.180.219:10085/static/images/sofa.png",
+        success: function (res) {
+          // 转发成功
+          console.log("转发成功:" + JSON.stringify(res));
+        },
+        fail: function (res) {
+          // 转发失败
+          console.log("转发失败:" + JSON.stringify(res));
         }
+      }
     },
     components: {}
   }
 </script>
 
 <style scoped lang="less">
+  @import "../../../static/bass/css/bass";
   .swiper {
     width: unit(750, rpx);
     height: unit(600, rpx);
@@ -129,11 +165,12 @@
       justify-content: center;
     }
   }
+
   .title {
     width: unit(690, rpx);
     height: unit(163, rpx);
     background: #fff;
-    padding:unit(30,rpx);
+    padding: unit(30, rpx);
     margin: unit(16, rpx) auto;
     position: relative;
     .menber {
@@ -152,7 +189,7 @@
         font-weight: 400;
         color: rgba(220, 169, 17, 1);
         margin-left: unit(16, rpx);
-        padding: unit(4,rpx) unit(14,rpx);
+        padding: unit(4, rpx) unit(14, rpx);
       }
 
     }
@@ -172,8 +209,8 @@
     }
     .share {
       position: absolute;
-      bottom: unit(32,rpx);
-      right:0;
+      bottom: unit(32, rpx);
+      right: 0;
       width: unit(190, rpx);
       height: unit(50, rpx);
       background: rgba(245, 245, 247, 1);
@@ -193,6 +230,7 @@
     }
 
   }
+
   .information {
     background: #fff;
     padding: unit(24, rpx) unit(30, rpx);
@@ -200,7 +238,7 @@
       font-size: unit(30, rpx);
       font-weight: 400;
       color: rgba(44, 44, 44, 1);
-      margin-bottom: unit(24,rpx);
+      margin-bottom: unit(24, rpx);
 
     }
 
@@ -209,180 +247,194 @@
       font-size: unit(26, rpx);
       font-weight: 400;
       color: rgba(127, 131, 137, 1);
-      margin-bottom: unit(16,rpx);
-      span{
-        color:rgba(44,44,44,1);
-        margin-left: unit(14,rpx);
+      margin-bottom: unit(16, rpx);
+      span {
+        color: rgba(44, 44, 44, 1);
+        margin-left: unit(14, rpx);
       }
     }
   }
-  .address{
-    margin: unit(16,rpx) 0;
-    width: unit(690,rpx);
+
+  .address {
+    margin: unit(16, rpx) 0;
+    width: unit(690, rpx);
     display: flex;
     align-items: center;
     background: #fff;
-    padding: unit(24,rpx) unit(30,rpx);
-    .address-icon{
-      img{
-        width: unit(32,rpx);
-        height:unit(32,rpx)
+    padding: unit(24, rpx) unit(30, rpx);
+    .address-icon {
+      img {
+        width: unit(32, rpx);
+        height: unit(32, rpx)
       }
     }
-    .address-text{
-      width: unit(540,rpx);
-      margin-left: unit(24,rpx);
-      margin-right: unit(54,rpx);
+    .address-text {
+      width: unit(540, rpx);
+      margin-left: unit(24, rpx);
+      margin-right: unit(54, rpx);
       position: relative;
-      h3{
-        font-size:unit(26,rpx);
-        font-weight:400;
-        color:rgba(44,44,44,1);
-        margin-bottom: unit(14,rpx);
+      h3 {
+        font-size: unit(26, rpx);
+        font-weight: 400;
+        color: rgba(44, 44, 44, 1);
+        margin-bottom: unit(14, rpx);
       }
-      p{
-        font-size:unit(22,rpx);
-        font-weight:400;
-        color:rgba(127,131,137,1);
+      p {
+        font-size: unit(22, rpx);
+        font-weight: 400;
+        color: rgba(127, 131, 137, 1);
       }
     }
-    .address-text:after{
-      content:"";
+    .address-text:after {
+      content: "";
       position: absolute;
-      width:unit(1,rpx);
-      height:unit(42,rpx);
-      top:unit(25,rpx);
-      right: unit(0,rpx);
+      width: unit(1, rpx);
+      height: unit(42, rpx);
+      top: unit(25, rpx);
+      right: unit(0, rpx);
       background: #D8D8D8;
     }
-    .phone{
-      img{
-        width: unit(42,rpx);
-        height: unit(42,rpx);
+    .phone {
+      img {
+        width: unit(42, rpx);
+        height: unit(42, rpx);
       }
     }
   }
-  .img-detial{
-    width: unit(690,rpx);
+
+  .img-detial {
+    width: unit(690, rpx);
     position: relative;
-    padding: unit(24,rpx) unit(30,rpx);
-    background:#fff;
-    h3{
-      font-size:unit(30,rpx);
-      margin-bottom: unit(24,rpx);
-      font-weight:400;
-      color:rgba(44,44,44,1);
+    padding: unit(24, rpx) unit(30, rpx);
+    background: #fff;
+    h3 {
+      font-size: unit(30, rpx);
+      margin-bottom: unit(24, rpx);
+      font-weight: 400;
+      color: rgba(44, 44, 44, 1);
     }
-    .img-box{
-      position:relative;
-      img{
+    .img-box {
+      position: relative;
+      img {
         display: block;
-        width: unit(690,rpx);
-        height:unit(690,rpx);
+        width: unit(690, rpx);
+        height: unit(690, rpx);
       }
-      .particulars{
+      .particulars {
         position: absolute;
-        width: unit(188,rpx);
-        background:rgba(0,0,0,0.2);
-        border:1px solid rgba(255,255,255,1);
-        padding: unit(18,rpx);
+        width: unit(188, rpx);
+        background: rgba(0, 0, 0, 0.2);
+        border: 1px solid rgba(255, 255, 255, 1);
+        padding: unit(18, rpx);
         right: 0;
-        top: unit(40,rpx);
-        h3{
+        top: unit(40, rpx);
+        h3 {
           text-align: center;
-          font-size:unit(18,rpx);
-          font-weight:400;
-          color:rgba(255,255,255,1);
-          margin-bottom: unit(16,rpx);
+          font-size: unit(18, rpx);
+          font-weight: 400;
+          color: rgba(255, 255, 255, 1);
+          margin-bottom: unit(16, rpx);
         }
-        ul{
-          li{
-            margin-bottom: unit(18,rpx);
-            img{
+        ul {
+          li {
+            margin-bottom: unit(18, rpx);
+            img {
               margin: 0 auto;
               display: block;
-              width: unit(120,rpx);
-              height: unit(120,rpx);
+              width: unit(120, rpx);
+              height: unit(120, rpx);
             }
           }
         }
       }
     }
   }
-  .safeguard{
-    width: unit(750,rpx);
+
+  .safeguard {
+    width: unit(750, rpx);
     background: #fff;
-    padding-top: unit(32,rpx);
-    .safeguard-title{
-      width:unit(260,rpx);
-      height:unit(50,rpx);
-      background:rgba(234,195,78,1);
-      border-radius:unit(25,rpx);
-      font-size:unit(28,rpx);
-      font-weight:400;
-      color:rgba(255,255,255,1);
-      line-height:unit(50,rpx);
+    padding-top: unit(32, rpx);
+    .safeguard-title {
+      width: unit(260, rpx);
+      height: unit(50, rpx);
+      background: rgba(234, 195, 78, 1);
+      border-radius: unit(25, rpx);
+      font-size: unit(28, rpx);
+      font-weight: 400;
+      color: rgba(255, 255, 255, 1);
+      line-height: unit(50, rpx);
       text-align: center;
-      margin: 0 auto unit(40,rpx);
+      margin: 0 auto unit(40, rpx);
     }
-    .safeguard-list{
+    .safeguard-list {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      width: unit(600,rpx);
+      width: unit(600, rpx);
       margin: 0 auto;
-      padding-bottom: unit(130,rpx);
-      li{
+      padding-bottom: unit(130, rpx);
+      li {
         text-align: center;
-        width: unit(150,rpx);
-        img{
-          width: unit(50,rpx);
-          height:unit(50,rpx);
-          padding: unit(16,rpx);
-          border-radius:5px;
-          border:2px solid rgba(131,69,13,1);
+        width: unit(150, rpx);
+        img {
+          width: unit(50, rpx);
+          height: unit(50, rpx);
+          padding: unit(16, rpx);
+          border-radius: 5px;
+          border: 2px solid rgba(131, 69, 13, 1);
         }
-        .title1{
-          font-size:unit(24,rpx);
-          font-weight:400;
-          color:rgba(44,44,44,1);
+        .title1 {
+          font-size: unit(24, rpx);
+          font-weight: 400;
+          color: rgba(44, 44, 44, 1);
         }
-        .title2{
-          font-size:unit(18,rpx);
-          font-weight:400;
-          color:rgba(44,44,44,1);
+        .title2 {
+          font-size: unit(18, rpx);
+          font-weight: 400;
+          color: rgba(44, 44, 44, 1);
         }
       }
     }
   }
-  .detial-nav{
+
+  .detial-nav {
     width: 100%;
-    border-top:1px solid #F5F5F7;
-    height: unit(98,rpx);
+    border-top: 1px solid #F5F5F7;
+    height: unit(98, rpx);
     display: flex;
     justify-content: space-between;
     font-size: 0;
-    div{
-      width: unit(50,rpx);
+
+    div, button {
+      width: unit(50, rpx);
       text-align: center;
-      img{
-        width: unit(43,rpx);
-        height:unit(43,rpx);
+      img {
+        width: unit(43, rpx);
+        height: unit(43, rpx);
         display: block;
-        margin: unit(15,rpx) auto unit(5,rpx);
+        margin: unit(15, rpx) auto unit(5, rpx);
       }
-      span{
+      span {
         margin: 0 auto;
-        font-size:unit(20,rpx);
-        font-weight:400;
-        color:rgba(127,131,137,1);
+        font-size: unit(20, rpx);
+        font-weight: 400;
+        color: rgba(127, 131, 137, 1);
       }
     }
-    div:nth-child(1){
-      margin-left: unit(74,rpx);
+    div:nth-child(1) {
+      margin-left: unit(74, rpx);
     }
-    div:nth-child(3){
-      margin-right: unit(74,rpx);
+    button {
+      margin: 0 unit(74, rpx) 0 0;
+      padding: 0;
+      color: rgba(127, 131, 137, 1);
+      font-size: unit(20, rpx);
+      border: none;
+      background: none;
+      line-height: 1.5;
+    }
+    .kefu{
+      margin: 0;
     }
   }
 </style>

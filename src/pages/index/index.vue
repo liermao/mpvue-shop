@@ -11,7 +11,7 @@
     </div>
     <div class="nav">
       <ul>
-        <li v-for="(item,index) in nav" :key="index" @click="allClassify(item.url,item.id)">
+        <li v-for="(item,index) in nav" :key="index" @click="allClassify(item.url,item.id,item.parentId)">
           <img :src=item.icon alt="">
           <span>{{item.title}}</span>
         </li>
@@ -63,7 +63,7 @@
       return {
         indexTitle: "文案",
         nav: [
-          {id:1,icon: "http://47.98.180.219:10085/static/images/icon/furniture.png", title: "家具",url:"furniture"},
+          {id:3,parentId:1,icon: "http://47.98.180.219:10085/static/images/icon/furniture.png", title: "家具",url:"furniture"},
           {id:2,icon: "http://47.98.180.219:10085/static/images/icon/Luminaire.png", title: "灯灯",url:"furniture"},
           {id:3,icon:"http://47.98.180.219:10085/static/images/icon/painting.png", title: "画廊",url:"furniture"},
           {id:4,icon: "http://47.98.180.219:10085/static/images/icon/bed.png", title: "床垫",url:"furniture"},
@@ -88,8 +88,8 @@
       detial(id){
         mpvue.navigateTo({ url: '/pages/detial/main?id='+id})
       },
-      allClassify(url,id){
-        mpvue.navigateTo({ url: '/pages/'+url+'/main?id='+id})
+      allClassify(url,id,parentId){
+        mpvue.navigateTo({ url: '/pages/'+url+'/main?id='+id+'&parent_id='+parentId})
       }
     },
     created() {
