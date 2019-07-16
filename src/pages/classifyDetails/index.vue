@@ -1,23 +1,17 @@
 <template>
   <div class="classifyDetails">
     <div class="top-header">
-      <img :src=list.avatar class="uesrImg">
-      <div>{{list.name}}</div>
+      <img :src=list.writer_avator class="uesrImg">
+      <div>{{list.writer_name}}</div>
     </div>
       <div class="content">
-        <h1>{{list.addressName}} | {{list.addressType}}</h1>
-        <p><span>{{list.city}}</span><span>{{list.VillageName}}</span><span>{{list.houseType}}</span></p>
-        <div class="box">
-          <img :src="list.WholeHouseSrc" alt="">
-          <div>
-            <h3>{{list.WholeHouseName}}</h3>
-          </div>
-        </div>
-        <div class="box" v-for="(item,index) in list.houseList" :key="index">
+        <h1>{{list.name}} | {{list.title}}</h1>
+        <p><span>{{list.city}}</span><span>{{list.address}}</span><span>{{list.door}}</span></p>
+        <div class="box" v-for="(item,index) in list.parts" :key="index">
           <img :src="item.imgSrc" alt="">
           <div class="title">
             <h3>{{item.name}}</h3>
-            <span @click="turnList(item.id)">商品清单 ></span>
+            <span @click="turnList(item.id)" v-if="item.goods_ids">商品清单 ></span>
           </div>
         </div>
       </div>
@@ -50,14 +44,26 @@
     },
     components: {},
     methods: {
-      caseDetails(id) {
-        mpvue.navigateTo({url: '/pages/classifyDetails/main?id=' + id})
-      },
       turnList(id){
         mpvue.navigateTo({url: '/pages/classifyList/main?id=' + id})
+      },
+      getQuery() {
+        /* 获取当前路由栈数组 */
+        const pages = getCurrentPages();
+        const currentPage = pages[pages.length - 1];
+        const options = currentPage.options;
+        return options;
       }
     },
-    created() {
+
+    mounted() {
+      let _this=this;
+      _this.$http.get('index.php?method52=b.hanmo.designcase&id='+_this.getQuery().id).then((res) => {
+        console.log(res.data.data);
+        _this.list=res.data.data;
+      }).catch(err => {
+        console.log("错误代码", err)
+      })
     }
   }
 </script>

@@ -8,9 +8,9 @@
     </div>
     <ul class="collect">
       <li v-for="(item,index) in list" :key="index" @click="detialCollent(item.id)">
-        <img :src=item.img alt="">
+        <img :src=item.imgSrc alt="">
         <div class="box">
-          <h1>{{item.title}}</h1>
+          <h1>{{item.name}}</h1>
         </div>
       </li>
     </ul>
@@ -23,13 +23,7 @@
     data() {
       return {
         searchTxt: "",
-        arr: [
-          {id: 1, img: "http://47.98.180.219:10085/static/images/col1.png", title: "上海工厂",spell:"shanghai"},
-          {id: 2, img: "http://47.98.180.219:10085/static/images/col1.png", title: "广州工厂",spell:"guangzhou"},
-          {id: 3, img: "http://47.98.180.219:10085/static/images/col1.png", title: "浙江工厂",spell:"zhejiang"},
-          {id: 4, img: "http://47.98.180.219:10085/static/images/col1.png", title: "江苏工厂",spell:"jiangsu"},
-          {id: 5, img: "http://47.98.180.219:10085/static/images/col1.png", title: "本土合作门店",spell:"bentu"},
-        ]
+        arr: []
       }
     },
     props: {},
@@ -38,17 +32,26 @@
         let _this=this;
         let arrByZM = [];
         for (let i = 0; i < _this.arr.length; i++) {
-          if (_this.arr[i].title.search(_this.searchTxt) != -1 ||_this.arr[i].spell.search(_this.searchTxt) != -1) {
+          if (_this.arr[i].name.search(_this.searchTxt) != -1) {
             arrByZM.push(_this.arr[i]);
           }
         }
         return arrByZM;
       }
     },
+    mounted(){
+      let _this = this;
+      // 工厂店
+      _this.$http.get('index.php?method52=b.hanmo.listfactories&name=&min_id=&iDisplayLength=10').then((res) => {
+        _this.arr=res.data.data.aaData;
+      }).catch(err => {
+        console.log("错误代码", err)
+      })
+    },
     components: {},
     methods: {
       detialCollent(id) {
-        mpvue.navigateTo({url: '/pages/collectDetial/main?id=' + id})
+        mpvue.navigateTo({url: '/pages/collectDetial/main?type=factory&id=' + id})
       }
     },
   }

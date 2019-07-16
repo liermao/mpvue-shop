@@ -1,27 +1,27 @@
 <template>
   <div>
     <swiper class="swiper" indicator-dots="true" autoplay="true" interval="5000" duration="500">
-      <block v-for="(item, index) in movies" :index="index" :key="key">
+      <block v-for="(item, index) in data.banners" :index="index" :key="key">
         <swiper-item>
           <image :src="item.img" class="slide-image" mode="aspectFill"/>
         </swiper-item>
       </block>
     </swiper>
     <div class="title">
-      <div class="menber">￥<span>3452</span><span v-show="true" class="meber-icon">会员价</span></div>
-      <div class="price">价格<span>￥3298</span></div>
-      <h1>{{title}}</h1>
+      <div class="menber">￥<span>{{data.price}}</span><span v-show="true" class="meber-icon">会员价</span></div>
+      <!--<div class="price">价格<span>￥&#45;&#45;&#45;&#45;</span></div>-->
+      <h1>{{data.name}}</h1>
       <div class="share"><img src="http://47.98.180.219:10085/static/images/icon/sharebag.png" alt="">分享有礼</div>
     </div>
     <div class="information">
       <h2>商品信息</h2>
-      <div>品牌:<span>宜家家居</span></div>
-      <div>规格:<span>123x87x145cm</span></div>
-      <div>颜色:<span>粉色+黑色</span></div>
-      <div>风格:<span>简约现代</span></div>
-      <div>材质:<span>棉、纤维</span></div>
-      <div>产地:<span>西班牙</span></div>
-      <div>物流:<span>顺丰货运</span></div>
+      <div>品牌:<span>{{data.patter_name}}</span></div>
+      <div>规格:<span>{{data.spec}}</span></div>
+      <div>颜色:<span>{{data.color}}</span></div>
+      <div>风格:<span>{{data.style}}</span></div>
+      <div>材质:<span>{{data.material}}</span></div>
+      <div>产地:<span>{{data.region_name}}</span></div>
+      <div>物流:<span>{{data.ship_name}}</span></div>
     </div>
     <div class="address">
       <div class="address-icon">
@@ -38,15 +38,15 @@
     <div class="img-detial">
       <h3>商品详情</h3>
       <div class="img-box">
-        <img src="http://47.98.180.219:10085/static/images/big.png">
-        <div class="particulars">
-          <h3>推荐搭配</h3>
-          <ul>
-            <li>
-              <img src="http://47.98.180.219:10085/static/images/small.png" alt="">
-            </li>
-          </ul>
-        </div>
+        <img :src="data.imgSrc">
+        <!--<div class="particulars">-->
+          <!--<h3>推荐搭配</h3>-->
+          <!--<ul>-->
+            <!--<li>-->
+              <!--<img src="http://47.98.180.219:10085/static/images/small.png" alt="">-->
+            <!--</li>-->
+          <!--</ul>-->
+        <!--</div>-->
       </div>
     </div>
     <div class="safeguard">
@@ -95,15 +95,9 @@
     name: "index",
     data() {
       return {
-        title: "宜家家居粉色双人沙发",
-        movies: [
-          {id: 1, img: "http://47.98.180.219:10085/static/images/sofa.png", name: "宜家家居床", sell: "2442"},
-          {id: 2, img: "http://47.98.180.219:10085/static/images/sofa.png", name: "宜家家居床", sell: "2442"},
-          {id: 3, img: "http://47.98.180.219:10085/static/images/sofa.png", name: "宜家家居床", sell: "2442"},
-          {id: 4, img: "http://47.98.180.219:10085/static/images/sofa.png", name: "宜家家居床", sell: "2442"},
-          {id: 5, img: "http://47.98.180.219:10085/static/images/sofa.png", name: "宜家家居床", sell: "2442"},
-          {id: 6, img: "http://47.98.180.219:10085/static/images/sofa.png", name: "宜家家居床", sell: "2442"},
-        ]
+        data:"",
+        title: "",
+        imgSrc:"",
       }
     },
     props: {},
@@ -112,21 +106,17 @@
         const url = '/pages/index/main';
         wx.switchTab({url})
       },
-
-      // onShareAppMessage: function () {
-      //   let users = wx.getStorageSync('user');
-      //   if (res.from === 'button') {
-      //   }
-      //   return {
-      //     title: '转发',
-      //     path: '/pages/index/index',
-      //     success: function (res) {
-      //     }
-      //   }
-      // }
+      getQuery() {
+        /* 获取当前路由栈数组 */
+        const pages = getCurrentPages();
+        const currentPage = pages[pages.length - 1];
+        const options = currentPage.options;
+        return options;
+      }
     }
     ,
     onShareAppMessage: function (e) {
+      let _this=this;
       if (e.from === 'button') {
         // 来自页面内转发按钮
         console.log(e.target)
@@ -135,9 +125,8 @@
         console.log(e.target)
       }
       return {
-        title: '刘子源是臭傻逼',
-        path: '/page/detial/index',
-        imageUrl: "http://47.98.180.219:10085/static/images/sofa.png",
+        title: _this.title,
+        imageUrl: _this.imgSrc,
         success: function (res) {
           // 转发成功
           console.log("转发成功:" + JSON.stringify(res));
@@ -148,12 +137,25 @@
         }
       }
     },
-    components: {}
+    components: {},
+    mounted() {
+      let _this = this;
+      // 商品详情
+      _this.$http.get('index.php?method52=b.hanmo.goods&id='+_this.getQuery().id).then((res) => {
+        console.log(res.data.data);
+        _this.data=res.data.data;
+        _this.title=res.data.data.name;
+        _this.imgSrc=res.data.data.imgSrc;
+      }).catch(err => {
+        console.log("错误代码", err)
+      })
+    }
   }
 </script>
 
 <style scoped lang="less">
   @import "../../../static/bass/css/bass";
+
   .swiper {
     width: unit(750, rpx);
     height: unit(600, rpx);
@@ -433,7 +435,7 @@
       background: none;
       line-height: 1.5;
     }
-    .kefu{
+    .kefu {
       margin: 0;
     }
   }

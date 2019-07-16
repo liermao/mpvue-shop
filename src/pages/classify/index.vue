@@ -3,19 +3,19 @@
     <ul class="classify">
       <li v-for="(item,index) in list" :key="index" @click="caseDetails(item.id)">
         <div class="top-header">
-          <img :src="item.avatar"  class="uesrImg">
+          <img :src="item.writer_avator"  class="uesrImg">
           <div class="top-content">
-            <div class="name">{{item.name}}</div>
+            <div class="name">{{item.writer_name}}</div>
             <div class="lebal">
-              {{item.site}} |<span>{{item.siteType}}</span><span>{{item.sever}}</span>
+              {{item.writer_region}} |<span>{{item.serv_names}}</span>
             </div>
           </div>
-          <div class="sell">￥{{item.sell}}/㎡起</div>
+          <div class="sell">￥{{item.price}}/㎡起</div>
         </div>
         <img :src="item.imgSrc" alt="">
-        <div class="tag">{{item.style}}</div>
-        <h3>{{item.addressName}} | {{item.addressType}}</h3>
-        <p>{{item.synopsis}}</p>
+        <div class="tag">{{item.type_name}}</div>
+        <h3>{{item.name}} | {{item.title}}</h3>
+        <p>{{item.desc}}</p>
       </li>
     </ul>
   </div>
@@ -24,48 +24,7 @@
   export default {
     data() {
       return {
-        list: [
-          {
-            id: 1,
-            name: "李青羽",
-            site: "宁波",
-            avatar:"http://47.98.180.219:10085/static/images/avatar.png",
-            siteType: "本地服务",
-            sever: "在线设计",
-            sell: "15",
-            style: "现代简约",
-            imgSrc: "http://47.98.180.219:10085/static/images/al1.png",
-            addressName:"宝华源墅",
-            addressType:"年轮",
-            synopsis:"以“年轮”为主题，有形式有寓意，以圆为元素，层层蜕变… "
-          },
-          {
-            id: 2,
-            name: "李青羽",
-            site: "宁波",
-            siteType: "本地服务",
-            sever: "在线设计",
-            sell: "15",
-            style: "现代简约",
-            imgSrc: "http://47.98.180.219:10085/static/images/al1.png",
-            addressName:"宝华源墅",
-            addressType:"年轮",
-            synopsis:"以“年轮”为主题，有形式有寓意，以圆为元素，层层蜕变… "
-          },
-          {
-            id: 3,
-            name: "李青羽",
-            site: "宁波",
-            siteType: "本地服务",
-            sever: "在线设计",
-            sell: "15",
-            style: "现代简约",
-            imgSrc: "http://47.98.180.219:10085/static/images/al1.png",
-            addressName:"宝华源墅",
-            addressType:"年轮",
-            synopsis:"以“年轮”为主题，有形式有寓意，以圆为元素，层层蜕变… "
-          }
-        ]
+        list: []
       }
     },
     components: {},
@@ -74,7 +33,15 @@
         mpvue.navigateTo({ url: '/pages/classifyDetails/main?id='+id})
       }
     },
-    created() {
+    created() {},
+    mounted(){
+      // 获取案例列表
+      let _this=this;
+        _this.$http.get('index.php?method52=b.hanmo.listcases').then((res) => {
+         _this.list=res.data.data.aaData;
+        }).catch(err => {
+          console.log("错误代码", err)
+        })
     }
   }
 </script>

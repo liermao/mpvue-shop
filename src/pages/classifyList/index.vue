@@ -2,21 +2,21 @@
   <div>
     <div class="navbar">
       <block v-for="(item,index) in tabs" :key="index">
-        <div :id="index" :class="{'navbar_item_on':activeIndex == index}" class="navbar_item" @click="tabClick">
-          <div class="navbar_title">{{item.name}}({{item.list.length}})</div>
+        <div  :class="{'navbar_item_on':activeIndex == index}" class="navbar_item" @click="tabClick(index,item.id)">
+          <div class="navbar_title">{{item.name}}({{item.count}})</div>
         </div>
       </block>
-      <div class="navbar_slider" :class="navbarSliderClass"></div>
+      <!--<div class="navbar_slider" :class="navbarSliderClass"></div>-->
     </div>
     <div class="content">
-      <div :hidden="activeIndex != index" v-for="(item,index) in tabs" :key="index">
+      <div>
         <ul>
-          <li v-for="(item1,index1) in item.list" :key="index1" @click="turnDetail(id)">
+          <li v-for="(item1,index1) in list" :key="index1" @click="turnDetail(item1.id)" v-if="item1.class_id == activeID">
             <div class="img-box">
-              <img :src="item1.img">
+              <img :src="item1.imgSrc">
             </div>
             <h3>{{item1.name}}</h3>
-            <div class="sell">￥{{item1.sell}}</div>
+            <div class="sell">￥{{item1.price}}</div>
           </li>
         </ul>
       </div>
@@ -27,68 +27,40 @@
   export default {
     data() {
       return {
-        tabs: [
-          {
-            id:1,
-            name: "家具",
-            list:[
-              {id:1,img:"http://47.98.180.219:10085/static/images/shafa12.png",name:"宜家家居床",sell:"2442"},
-              {id:2,img:"http://47.98.180.219:10085/static/images/shafa12.png",name:"宜家家居床",sell:"2442"},
-              {id:3,img:"http://47.98.180.219:10085/static/images/shafa12.png",name:"宜家家居床",sell:"2442"},
-              {id:4,img:"http://47.98.180.219:10085/static/images/shafa12.png",name:"宜家家居床",sell:"2442"},
-              {id:5,img:"http://47.98.180.219:10085/static/images/shafa12.png",name:"宜家家居床",sell:"2442"},
-              {id:6,img:"http://47.98.180.219:10085/static/images/shafa12.png",name:"宜家家居床",sell:"2442"},
-            ],
-          },
-          {
-            id:2,
-            name: "饰品",
-            list:[
-              {id:1,img:"http://47.98.180.219:10085/static/images/shafa12.png",name:"宜家家居床",sell:"2442"},
-              {id:2,img:"http://47.98.180.219:10085/static/images/shafa12.png",name:"宜家家居床",sell:"2442"},
-              {id:3,img:"http://47.98.180.219:10085/static/images/shafa12.png",name:"宜家家居床",sell:"2442"}
-            ],
-          },
-          {
-            id:3,
-            name: "硬装",
-            list:[
-              {id:1,img:"http://47.98.180.219:10085/static/images/shafa12.png",name:"宜家家居床",sell:"2442"}
-            ],
-          }
-        ],
-        list:[
-
-        ],
+        tabs: [],
+        list:[],
         activeIndex: 0,
+        activeID:0,
       }
     },
     components: {},
-    computed: {
-      navbarSliderClass() {
-        if (this.activeIndex == 0) {
-          return "navbar_slider_0";
-        }
-        if (this.activeIndex == 1) {
-          return "navbar_slider_1";
-        }
-        if (this.activeIndex == 2) {
-          return "navbar_slider_2";
-        }
-      },
-    },
+    computed: {},
     methods: {
-      tabClick(e) {
-        this.activeIndex = e.currentTarget.id;
-      },
-      caseDetails(id) {
-        mpvue.navigateTo({url: '/pages/classifyDetails/main?id=' + id})
+      tabClick(index,id) {
+        this.activeIndex = index;
+        this.activeID=id;
       },
       turnDetail(id){
         mpvue.navigateTo({ url: '/pages/detial/main?id='+id})
+      },
+      getQuery() {
+        /* 获取当前路由栈数组 */
+        const pages = getCurrentPages();
+        const currentPage = pages[pages.length - 1];
+        const options = currentPage.options;
+        return options;
       }
     },
-    created() {
+    mounted() {
+      let _this=this;
+      _this.$http.get('index.php?method52=b.hanmo.getcasegoods&id='+_this.getQuery().id).then((res) => {
+        console.log(res.data.data);
+        _this.tabs=res.data.data.classes;
+        _this.list=res.data.data.goods;
+        _this.activeID=res.data.data.classes[0].id;
+      }).catch(err => {
+        console.log("错误代码", err)
+      })
     }
   }
 </script>
@@ -138,31 +110,31 @@
     white-space: nowrap;
     word-wrap: normal;
   }
-  .navbar_slider {
-    position: absolute;
-    content: " ";
-    left: 0;
-    bottom:unit(10,rpx);
-    width: unit(120,rpx);
-    height: unit(6,rpx);
-    background-color: #EAC34E;
-    -webkit-transition: -webkit-transform 0.1s;
-    transition: -webkit-transform 0.1s;
-    transition: transform 0.1s;
-    transition: transform 0.1s, -webkit-transform 0.1s;
-  }
-  .navbar_slider_0 {
-    left: unit(65,rpx);
-    transform: translateX(0);
-  }
-  .navbar_slider_1 {
-    left: unit(65,rpx);
-    transform: translateX(250rpx);
-  }
-  .navbar_slider_2 {
-    left: unit(65,rpx);
-    transform: translateX(500rpx);
-  }
+  /*.navbar_slider {*/
+    /*position: absolute;*/
+    /*content: " ";*/
+    /*left: 0;*/
+    /*bottom:unit(10,rpx);*/
+    /*width: unit(120,rpx);*/
+    /*height: unit(6,rpx);*/
+    /*background-color: #EAC34E;*/
+    /*-webkit-transition: -webkit-transform 0.1s;*/
+    /*transition: -webkit-transform 0.1s;*/
+    /*transition: transform 0.1s;*/
+    /*transition: transform 0.1s, -webkit-transform 0.1s;*/
+  /*}*/
+  /*.navbar_slider_0 {*/
+    /*left: unit(65,rpx);*/
+    /*transform: translateX(0);*/
+  /*}*/
+  /*.navbar_slider_1 {*/
+    /*left: unit(65,rpx);*/
+    /*transform: translateX(250rpx);*/
+  /*}*/
+  /*.navbar_slider_2 {*/
+    /*left: unit(65,rpx);*/
+    /*transform: translateX(500rpx);*/
+  /*}*/
   .content {
     padding-top:  unit(85,rpx);
     background: #fff;

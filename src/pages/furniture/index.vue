@@ -133,7 +133,7 @@
         _this.type = type;
         _this.navId = `nav_${index}`;
         //这儿不知道传什么值合适
-        _this.$http.get('index.php?method52=b.goods.gettypesbyid&id=' +type).then((res) => {
+        _this.$http.get('index.php?method52=b.hanmo.gettypesbyid&id=' +type).then((res) => {
           _this.space = res.data.data.space;
           _this.material = res.data.data.material;
           _this.style = res.data.data.style;
@@ -143,7 +143,7 @@
           console.log("错误代码", err)
         });
 
-        _this.$http.get('index.php?method52=b.goods.query&class_id=' + type).then((res) => {
+        _this.$http.get('index.php?method52=b.hanmo.listgoods&class_id=' + type).then((res) => {
           _this.list = res.data.data.aaData;
         }).catch(err => {
           console.log("错误代码", err)
@@ -245,7 +245,7 @@
       },
       search(spaceTxt, styleTxt, priceTxt, colorTxt, materialTxt) {
         let _this=this;
-          _this.$http.get('index.php?method52=b.goods.query&style='+styleTxt+'&space='+spaceTxt+'&price='+priceTxt+'&color='+colorTxt+'&material='+materialTxt+'&class_id='+_this.$root.$mp.query.id+'&min_id=9&iDisplayLength=10').then((res)=>{
+          _this.$http.get('index.php?method52=b.hanmo.listgoods&style='+styleTxt+'&space='+spaceTxt+'&price='+priceTxt+'&color='+colorTxt+'&material='+materialTxt+'&class_id='+_this.$root.$mp.query.id+'&min_id=9&iDisplayLength=10').then((res)=>{
            console.log(res);
             _this.list=res.data.data.aaData;
         }).catch(err=>{
@@ -262,16 +262,21 @@
           _this.navList = arr[i].children;
         }
       }
-      _this.$http.get('index.php?method52=b.goods.gettypesbyid&id=' + _this.$root.$mp.query.id).then((res) => {
+      _this.$http.get('index.php?method52=b.hanmo.gettypesbyid&id=' + _this.$root.$mp.query.id).then((res) => {
         _this.space = res.data.data.space;
         _this.material = res.data.data.material;
         _this.style = res.data.data.style;
         _this.price = res.data.data.price;
         _this.color = res.data.data.color;
+        this.colorShow = false;
+        this.spaceShow = false;
+        this.styleShow = false;
+        this.priceShow = false;
+        console.log(res)
       }).catch(err => {
         console.log("错误代码", err)
       });
-      _this.$http.get('index.php?method52=b.goods.query&class_id=' + _this.$root.$mp.query.id).then((res) => {
+      _this.$http.get('index.php?method52=b.hanmo.listgoods&class_id=' + _this.$root.$mp.query.id).then((res) => {
         _this.list = res.data.data.aaData;
       }).catch(err => {
         console.log("错误代码", err)

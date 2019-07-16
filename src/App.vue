@@ -10,7 +10,7 @@ export default {
      * 支付宝(蚂蚁)：mpvue === my, mpvuePlatform === 'my'
      */
     let _this=this;
-    let url = 'index.php?method52=b.goods.getallclasses';
+    let url = 'index.php?method52=b.hanmo.getallclasses';
     let logs;
     if (mpvuePlatform === 'my') {
       logs = mpvue.getStorageSync({key: 'logs'}).data || [];

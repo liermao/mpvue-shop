@@ -2,10 +2,10 @@
   <div>
      <ul class="collect">
        <li v-for="(item,index) in arr" :key="index" @click="detialCollent(item.id)">
-           <img :src="item.img">
+           <img :src="item.imgSrc">
           <div class="box">
-                 <h1>{{item.eg}}</h1>
-                 <h5>{{item.cha}}</h5>
+                 <h1>{{item.name}}</h1>
+                 <h5></h5>
           </div>
        </li>
      </ul>
@@ -30,8 +30,18 @@ export default {
   },
   methods: {
       detialCollent(id){
-        mpvue.navigateTo({ url: '/pages/collectDetial/main?id='+id})
+        mpvue.navigateTo({ url: '/pages/collectDetial/main?type=parter&id='+id})
       }
+  },
+  mounted(){
+    let _this=this;
+    // 合作
+    _this.$http.get('index.php?method52=b.hanmo.listparters&region_id=2&name=&min_id=&iDisplayLength=10').then((res) => {
+      console.log(res.data.data.aaData);
+      _this.arr=res.data.data.aaData;
+    }).catch(err => {
+      console.log("错误代码", err);
+    })
   },
   created () {}
 }

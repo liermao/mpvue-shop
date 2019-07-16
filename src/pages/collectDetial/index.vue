@@ -4,9 +4,9 @@
       <img src="http://47.98.180.219:10085/static/images/col1.png">
     </div>
     <div class="top-detial">
-      <div class="img-box"><img src="http://47.98.180.219:10085/static/images/detial-logo.png"></div>
-      <h2>IKEA/宜家家居</h2>
-      <p>品牌介绍：宜家家居是来自瑞典的全球知名家具和家居嗯嗯</p>
+      <div class="img-box"><img :src="data.imgSrc"></div>
+      <h2>{{data.name}}</h2>
+      <p>{{data.desc}}</p>
     </div>
     <scroll-view scroll-x="true"
                  :class="fixtop? 'fix':''"
@@ -15,34 +15,30 @@
                  :scroll-into-view="navId"
                  scroll-with-animation="true">
       <div class="name"
-           v-for="(item,index) in list"
+           v-for="(item,index) in nav"
            :key="index"
            :id="'nav_'+index"
            :class="index===currentIndex ? 'active' : ''"
-           @tap="toContent(index)">{{item.title}}
+           @tap="toContent(index,item.id)">{{item.name}}
       </div>
     </scroll-view>
-    <scroll-view
+    <div
       class="scroll-content"
-      scroll-with-animation="true"
-      :scroll-into-view="contentId"
-      scroll-y="scrollContent"
       style="height: 800px"
       :style="{marginTop: mgTop + 'rpx'}"
     >
-      <div v-for="(itemContent,indexContent) in list" :key="indexContent" :id="'con_'+indexContent" class="scroll-item">
-        <h2>{{itemContent.title}}</h2>
+      <div  class="scroll-item">
         <ul>
-          <li v-for="(item1,index1) in itemContent.detial" :key="index1" @click="turnDetial(item1.id)">
+          <li v-for="(item1,index1) in list" :key="index1" @click="turnDetial(item1.id)" v-if="item1.class_id == activeID">
             <div class="img-box">
               <img :src=item1.imgSrc alt="">
             </div>
             <div class="name">{{item1.name}}</div>
-            <div class="money">¥<span>{{item1.sell}}</span></div>
+            <div class="money">¥<span>{{item1.price}}</span></div>
           </li>
         </ul>
       </div>
-    </scroll-view>
+    </div>
   </div>
 </template>
 
@@ -55,84 +51,42 @@
         currentIndex: 0,
         navId: "nav_0",
         scrollContent: true,
-        list: [
-          {
-            id: 1,
-            title: "爆款推荐",
-            detial: [
-              {id: 1, imgSrc: "http://47.98.180.219:10085/static/images/sofa.png", name: "爆款推荐", sell: "4582"},
-              {id: 2, imgSrc: "http://47.98.180.219:10085/static/images/sofa.png", name: "爆款推荐", sell: "4582"},
-              {id: 3, imgSrc: "http://47.98.180.219:10085/static/images/sofa.png", name: "爆款推荐", sell: "4582"},
-              {id: 4, imgSrc: "http://47.98.180.219:10085/static/images/sofa.png", name: "爆款推荐", sell: "4582"},
-            ],
-          },
-          {
-            id: 2,
-            title: "热销推荐",
-            detial: [
-              {id: 1, imgSrc: "http://47.98.180.219:10085/static/images/sofa.png", name: "热销推荐", sell: "4582"},
-              {id: 2, imgSrc: "http://47.98.180.219:10085/static/images/sofa.png", name: "热销推荐", sell: "4582"},
-              {id: 3, imgSrc: "http://47.98.180.219:10085/static/images/sofa.png", name: "热销推荐", sell: "4582"},
-              {id: 4, imgSrc: "http://47.98.180.219:10085/static/images/sofa.png", name: "热销推荐", sell: "4582"},
-            ],
-          },
-          {
-            id: 3,
-            title: "家具",
-            detial: [
-              {id: 1, imgSrc: "http://47.98.180.219:10085/static/images/sofa.png", name: "家具", sell: "4582"},
-              {id: 2, imgSrc: "http://47.98.180.219:10085/static/images/sofa.png", name: "家具", sell: "4582"},
-              {id: 3, imgSrc: "http://47.98.180.219:10085/static/images/sofa.png", name: "家具", sell: "4582"},
-              {id: 4, imgSrc: "http://47.98.180.219:10085/static/images/sofa.png", name: "家具", sell: "4582"},
-            ],
-          },
-          {
-            id: 4,
-            title: "灯具",
-            detial: [
-              {id: 1, imgSrc: "http://47.98.180.219:10085/static/images/sofa.png", name: "灯具", sell: "4582"},
-              {id: 2, imgSrc: "http://47.98.180.219:10085/static/images/sofa.png", name: "灯具", sell: "4582"},
-              {id: 3, imgSrc: "http://47.98.180.219:10085/static/images/sofa.png", name: "灯具", sell: "4582"},
-              {id: 4, imgSrc: "http://47.98.180.219:10085/static/images/sofa.png", name: "灯具", sell: "4582"},
-            ],
-          },
-          {
-            id: 5,
-            title: "饰品",
-            detial: [
-              {id: 1, imgSrc: "http://47.98.180.219:10085/static/images/sofa.png", name: "饰品", sell: "4582"},
-              {id: 2, imgSrc: "http://47.98.180.219:10085/static/images/sofa.png", name: "饰品", sell: "4582"},
-              {id: 3, imgSrc: "http://47.98.180.219:10085/static/images/sofa.png", name: "饰品", sell: "4582"},
-              {id: 4, imgSrc: "http://47.98.180.219:10085/static/images/sofa.png", name: "饰品", sell: "4582"},
-            ],
-          },
-          {
-            id: 6,
-            title: "其他",
-            detial: [
-              {id: 1, imgSrc: "http://47.98.180.219:10085/static/images/sofa.png", name: "其他", sell: "4582"},
-              {id: 2, imgSrc: "http://47.98.180.219:10085/static/images/sofa.png", name: "其他", sell: "4582"},
-              {id: 3, imgSrc: "http://47.98.180.219:10085/static/images/sofa.png", name: "其他", sell: "4582"},
-              {id: 4, imgSrc: "http://47.98.180.219:10085/static/images/sofa.png", name: "其他", sell: "4582"},
-            ],
-          },
-        ],
+        nav:[],
+        list: [],
+        data:"",
         top: 215,
         mgTop: 0,
+        activeID:0,
       }
     },
     components: {},
-    mounted() {
+    onLoad(option){
+      let _this=this;
+      _this.$http.get('index.php?method52=b.hanmo.'+option.type+'&id='+option.id).then((res) => {
+        console.log(res.data.data);
+        _this.data=res.data.data;
+        _this.nav=res.data.data.classes;
+        _this.list=res.data.data.goods;
+      }).catch(err => {
+        console.log("错误代码", err)
+      })
     },
     methods: {
-      toContent(index) {
-        console.log(index);
+      toContent(index,id) {
         this.currentIndex = index;
         this.contentId = `con_${index}`;
         this.navId = `nav_${index}`;
+        this.activeID=id;
       },
       turnDetial(id){
         mpvue.navigateTo({ url: '/pages/detial/main?id='+id})
+      },
+      getQuery() {
+        /* 获取当前路由栈数组 */
+        const pages = getCurrentPages();
+        const currentPage = pages[pages.length - 1];
+        const options = currentPage.options;
+        return options;
       }
     },
     onPageScroll: function (e) {
@@ -148,7 +102,16 @@
       }
     },
     watch: {},
-    created() {
+    mounted() {
+      let _this=this;
+      _this.$http.get('index.php?method52=b.hanmo.'+_this.getQuery().type+'&id='+_this.getQuery().id).then((res) => {
+        _this.data=res.data.data;
+        _this.nav=res.data.data.classes;
+        _this.list=res.data.data.goods;
+        _this.activeID=res.data.data.classes[0].id;
+      }).catch(err => {
+        console.log("错误代码", err)
+      })
     }
   }
 </script>
