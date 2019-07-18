@@ -74,7 +74,7 @@
     </div>
     <div class="list">
       <ul>
-        <li v-for="(item,index) in list" :key="index" @click="detial(item.id)">
+        <li v-for="(item,index) in listFun" :key="index" @click="detial(item.id)">
           <div class="img-box">
             <img :src=item.imgSrc alt="">
           </div>
@@ -95,6 +95,8 @@
         searchTxt: "",
         currentIndex: 0,
         type: 2,
+        list: [],
+
         space: [],
         spaceShow: false,
         spaceID: "",
@@ -123,7 +125,19 @@
         colorID: "",
         colorTxt: "",
         colorIndex: 0,
-        list: [],
+
+      }
+    },
+    computed: {
+      listFun: function () {
+        let _this = this;
+        let arrByZM = [];
+        for (let i = 0; i < _this.list.length; i++) {
+          if (this.list[i].name.search(_this.searchTxt) !== -1) {
+            arrByZM.push(_this.list[i]);
+          }
+        }
+        return arrByZM;
       }
     },
     methods: {
@@ -263,21 +277,56 @@
         }
       }
       _this.$http.get('index.php?method52=b.hanmo.gettypesbyid&id=' + _this.$root.$mp.query.id).then((res) => {
+        console.log(res.data.data);
         _this.space = res.data.data.space;
+        _this.space.unshift({
+          id: "",
+          name: "不限",
+          value: "",
+        });
         _this.material = res.data.data.material;
+        if(res.data.data.material){
+          _this.material.unshift({
+            id: "",
+            name: "不限",
+            value: "",
+          });
+        }
+
         _this.style = res.data.data.style;
+        if(res.data.data.style){
+          _this.style.unshift({
+            id: "",
+            name: "不限",
+            value: "",
+          });
+        }
         _this.price = res.data.data.price;
+        if(res.data.data.price){
+          _this.price.unshift({
+            id: "",
+            name: "不限",
+            value: "",
+          });
+        }
         _this.color = res.data.data.color;
+        if(res.data.data.color){
+          _this.color.unshift({
+            id: "",
+            name: "不限",
+            value: "",
+          });
+        }
         this.colorShow = false;
         this.spaceShow = false;
         this.styleShow = false;
         this.priceShow = false;
-        console.log(res)
       }).catch(err => {
         console.log("错误代码", err)
       });
       _this.$http.get('index.php?method52=b.hanmo.listgoods&class_id=' + _this.$root.$mp.query.id).then((res) => {
         _this.list = res.data.data.aaData;
+        console.log(res)
       }).catch(err => {
         console.log("错误代码", err)
       })
@@ -394,7 +443,6 @@
     margin: unit(16, rpx) auto 0;
     padding-bottom: unit(16, rpx);
     background: #fff;
-
     ul {
       width: unit(720, rpx);
       margin: 0 auto;
