@@ -56,7 +56,7 @@
           </div>
           <div class="sell">￥{{item.price}}/㎡起</div>
         </div>
-        <img :src="item.imgSrc" alt="">
+        <img :src="'http://www.shmiaosuan.com'+item.imgSrc" alt="">
         <div class="tag">{{item.type_name}}</div>
         <h3>{{item.name}} | {{item.title}}</h3>
         <p>{{item.desc}}</p>
@@ -160,8 +160,8 @@
         this.search(this.spaceID, this.styleID, this.priceID, this.colorTxt);
       },
       /*搜索案例*/
-      search(type_id,writer_id,region_id,price) {
-        this.$http.get('index.php?method52=b.hanmo.listcases&type_id='+type_id+'&writer_id='+writer_id+'&region_id='+region_id+'&price='+price+'&min_id=&iDisplayLength=10').then((res) => {
+      search(type_id, writer_id, region_id, price) {
+        this.$http.get('index.php?method52=b.hanmo.listcases&type_id=' + type_id + '&writer_id=' + writer_id + '&region_id=' + region_id + '&price=' + price + '&min_id=&iDisplayLength=10').then((res) => {
           this.list = res.data.data.aaData;
           this.colorShow = false;
           this.spaceShow = false;
@@ -172,10 +172,26 @@
         });
       }
     },
-    created() {
-    },
-    mounted() {
-      // 获取案例列表
+    onShow() {
+      this.space = [];
+      this.spaceShow = false;
+      this.spaceID = "";
+      this.spaceIndex = 0;
+
+      this.style = [];
+      this.styleShow = false;
+      this.styleID = "";
+      this.styleIndex = 0;
+
+      this.price = [];
+      this.priceShow = false;
+      this.priceID = "";
+      this.priceIndex = 0;
+
+      this.color = [];
+      this.colorShow = false;
+      this.colorTxt = "";
+      this.colorIndex = 0;
       let _this = this;
       _this.$http.get('index.php?method52=b.hanmo.listcases').then((res) => {
         _this.list = res.data.data.aaData;
@@ -204,7 +220,7 @@
         for (let i = 0; i < res.data.data.prices.length; i++) {
           _this.color.push({
             name: res.data.data.prices[i] + "/㎡起",
-            val:'['+res.data.data.prices[i]+',)'
+            val: '[' + res.data.data.prices[i] + ',)'
           })
         }
         _this.color.unshift({
@@ -214,7 +230,7 @@
       }).catch(err => {
         console.log("错误代码", err)
       })
-    }
+    },
   }
 </script>
 

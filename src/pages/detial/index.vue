@@ -3,7 +3,7 @@
     <swiper class="swiper" indicator-dots="true" autoplay="true" interval="5000" duration="500">
       <block v-for="(item, index) in data.banners" :index="index" :key="key">
         <swiper-item>
-          <image :src="item.img" class="slide-image" mode="aspectFill"/>
+          <image :src="'http://www.shmiaosuan.com'+item.img_url" class="slide-image" mode="aspectFill"/>
         </swiper-item>
       </block>
     </swiper>
@@ -38,7 +38,7 @@
     <div class="img-detial">
       <h3>商品详情</h3>
       <div class="img-box">
-        <img :src="data.imgSrc">
+        <img :src="'http://www.shmiaosuan.com'+data.imgSrc">
         <!--<div class="particulars">-->
           <!--<h3>推荐搭配</h3>-->
           <!--<ul>-->

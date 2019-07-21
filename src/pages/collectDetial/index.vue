@@ -31,7 +31,7 @@
         <ul>
           <li v-for="(item1,index1) in list" :key="index1" @click="turnDetial(item1.id)" v-if="item1.class_id == activeID">
             <div class="img-box">
-              <img :src=item1.imgSrc alt="">
+              <img :src="'http://www.shmiaosuan.com'+item1.imgSrc" alt="">
             </div>
             <div class="name">{{item1.name}}</div>
             <div class="money">¥<span>{{item1.price}}</span></div>

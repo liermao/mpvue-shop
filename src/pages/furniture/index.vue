@@ -76,7 +76,7 @@
       <ul>
         <li v-for="(item,index) in listFun" :key="index" @click="detial(item.id)">
           <div class="img-box">
-            <img :src=item.imgSrc alt="">
+            <img :src="'http://www.shmiaosuan.com'+item.imgSrc">
           </div>
           <div class="name">{{item.name}}</div>
           <div class="money">¥<span>{{item.price}}</span></div>
@@ -272,12 +272,11 @@
       //获取本地数据
       let arr = mpvue.getStorageSync('data');
       for (let i = 0; i < arr.length; i++) {
-        if (_this.$root.$mp.query.parent_id== arr[i].id) {
+        if (_this.$root.$mp.query.id== arr[i].id) {
           _this.navList = arr[i].children;
         }
       }
-      _this.$http.get('index.php?method52=b.hanmo.gettypesbyid&id=' + _this.$root.$mp.query.id).then((res) => {
-        console.log(res.data.data);
+      _this.$http.get('index.php?method52=b.hanmo.gettypesbyid&id=' + _this.$root.$mp.query.childId).then((res) => {
         _this.space = res.data.data.space;
         _this.space.unshift({
           id: "",
@@ -324,9 +323,9 @@
       }).catch(err => {
         console.log("错误代码", err)
       });
-      _this.$http.get('index.php?method52=b.hanmo.listgoods&class_id=' + _this.$root.$mp.query.id).then((res) => {
+      _this.$http.get('index.php?method52=b.hanmo.listgoods&class_id=' + _this.$root.$mp.query.childId).then((res) => {
         _this.list = res.data.data.aaData;
-        console.log(res)
+        console.log(_this.list)
       }).catch(err => {
         console.log("错误代码", err)
       })

@@ -8,7 +8,7 @@
         <h1>{{list.name}} | {{list.title}}</h1>
         <p><span>{{list.city}}</span><span>{{list.address}}</span><span>{{list.door}}</span></p>
         <div class="box" v-for="(item,index) in list.parts" :key="index">
-          <img :src="item.imgSrc" alt="">
+          <img :src="'http://www.shmiaosuan.com'+item.imgSrc" alt="">
           <div class="title">
             <h3>{{item.name}}</h3>
             <span @click="turnList(item.id)" v-if="item.goods_ids">商品清单 ></span>

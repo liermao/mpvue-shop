@@ -32,7 +32,7 @@
     </div>
     <ul class="collect">
       <li v-for="(item,index) in list" :key="index" @click="detialCollent(item.id)">
-        <img :src="item.imgSrc">
+        <img :src="url+item.imgSrc">
         <div class="box">
           <h1>{{item.name}}</h1>
           <h5></h5>
@@ -47,6 +47,7 @@
   export default {
     data() {
       return {
+        url: "https://www.shmiaosuan.com",
         searchTxt: "",
         state: [],
         stateShow: false,
@@ -121,8 +122,16 @@
         });
       }
     },
-    mounted() {
+    onShow() {
       let _this = this;
+      _this.state = [];
+      _this.stateShow = false;
+      _this.stateIndex = 0;
+      _this.place = [];
+      _this.placeShow = false;
+      _this.placeId = 0;
+      _this.placeIndex = "";
+      _this.arr = [];
       // 合作
       _this.$http.get('index.php?method52=b.hanmo.listparters').then((res) => {
         _this.arr = res.data.data.aaData;

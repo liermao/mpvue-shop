@@ -8,7 +8,7 @@
     </div>
     <ul class="collect">
       <li v-for="(item,index) in list" :key="index" @click="detialCollent(item.id)">
-        <img :src=item.imgSrc alt="">
+        <img :src=url+item.imgSrc alt="">
         <div class="box">
           <h1>{{item.name}}</h1>
         </div>
@@ -22,6 +22,7 @@
     name: "index",
     data() {
       return {
+        url:"https://www.shmiaosuan.com",
         searchTxt: "",
         arr: []
       }

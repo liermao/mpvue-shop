@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="search-box">
+    <div class="search-box" @click="turnSearch">
       <img src="http://47.98.180.219:10085/static/images/yizi.png">
       <div class="search">
         <img src="http://47.98.180.219:10085/static/images/icon/search.png" alt="">
@@ -11,7 +11,7 @@
     </div>
     <div class="nav">
       <ul>
-        <li v-for="(item,index) in nav" :key="index" @click="allClassify(item.url,item.id,item.parentId)">
+        <li v-for="(item,index) in nav" :key="index" @click="allClassify(item.url,item.id,item.childId)">
           <img :src=item.icon alt="">
           <span>{{item.title}}</span>
         </li>
@@ -66,15 +66,33 @@
         indexTitle: "文案",
         nav: [
           {
-            id: 3,
-            parentId: 1,
+            id: 1,
+            childId: 3,
             icon: "http://47.98.180.219:10085/static/images/icon/furniture.png",
             title: "家具",
             url: "furniture"
           },
-          {id: 2, icon: "http://47.98.180.219:10085/static/images/icon/Luminaire.png", title: "灯灯", url: "furniture"},
-          {id: 3, icon: "http://47.98.180.219:10085/static/images/icon/painting.png", title: "画廊", url: "furniture"},
-          {id: 4, icon: "http://47.98.180.219:10085/static/images/icon/bed.png", title: "床垫", url: "furniture"},
+          {
+            id: 2,
+            childId: 4,
+            icon: "http://47.98.180.219:10085/static/images/icon/Luminaire.png",
+            title: "灯灯",
+            url: "furniture"
+          },
+          {
+            id: 5,
+            childId:6,
+            icon: "http://47.98.180.219:10085/static/images/icon/painting.png",
+            title: "画廊",
+            url: "furniture"
+          },
+          {
+            id: 9,
+            childId: 10,
+            icon: "http://47.98.180.219:10085/static/images/icon/bed.png",
+            title: "床垫",
+            url: "furniture"
+          },
           {id: 5, icon: "http://47.98.180.219:10085/static/images/icon/style.png", title: "其它", url: "allClassify"},
         ],
         list: [],
@@ -102,8 +120,11 @@
       detial(id) {
         mpvue.navigateTo({url: '/pages/detial/main?id=' + id})
       },
-      allClassify(url, id, parentId) {
-        mpvue.navigateTo({url: '/pages/' + url + '/main?id=' + id + '&parent_id=' + parentId})
+      turnSearch() {
+        mpvue.navigateTo({url: '/pages/search/main'})
+      },
+      allClassify(url, id, childId) {
+        mpvue.navigateTo({url: '/pages/' + url + '/main?id=' + id + '&childId=' + childId})
       }
     },
     mounted() {

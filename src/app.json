@@ -11,6 +11,7 @@
     "pages/collectDetial/main",
     "pages/classifyDetails/main",
     "pages/classifyList/main",
+    "pages/search/main",
     "pages/furniture/main"
   ],
   "window": {
