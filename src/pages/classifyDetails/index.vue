@@ -8,7 +8,7 @@
         <h1>{{list.name}} | {{list.title}}</h1>
         <p><span>{{list.city}}</span><span>{{list.address}}</span><span>{{list.door}}</span></p>
         <div class="box" v-for="(item,index) in list.parts" :key="index">
-          <img :src="'http://www.shmiaosuan.com'+item.imgSrc" alt="">
+          <img :src="item.imgSrc" alt="">
           <div class="title">
             <h3>{{item.name}}</h3>
             <span @click="turnList(item.id)" v-if="item.goods_ids">商品清单 ></span>
@@ -24,20 +24,20 @@
         list: {
           id: 1,
           name: "李青羽",
-          avatar: "http://47.98.180.219:10085/static/images/avatar.png",
+          avatar: "http://www.shmiaosuan.com/upload/hanmo/images/avatar.png",
           addressName: "宝华源墅",
           addressType: "年轮",
           city:"杭州",
           VillageName:"未知小区",
           houseType:"2室2厅2卫1厨",
-          WholeHouseSrc:"http://47.98.180.219:10085/static/images/zhutu.png",
+          WholeHouseSrc:"http://www.shmiaosuan.com/upload/hanmo/images/zhutu.png",
           WholeHouseName:"全屋场景图",
           houseList:[
-            {id:1,name:"客餐厅",imgSrc:"http://47.98.180.219:10085/static/images/other.png"},
-            {id:2,name:"客餐厅",imgSrc:"http://47.98.180.219:10085/static/images/other.png"},
-            {id:3,name:"客餐厅",imgSrc:"http://47.98.180.219:10085/static/images/other.png"},
-            {id:4,name:"客餐厅",imgSrc:"http://47.98.180.219:10085/static/images/other.png"},
-            {id:5,name:"客餐厅",imgSrc:"http://47.98.180.219:10085/static/images/other.png"},
+            {id:1,name:"客餐厅",imgSrc:"http://www.shmiaosuan.com/upload/hanmo/images/other.png"},
+            {id:2,name:"客餐厅",imgSrc:"http://www.shmiaosuan.com/upload/hanmo/images/other.png"},
+            {id:3,name:"客餐厅",imgSrc:"http://www.shmiaosuan.com/upload/hanmo/images/other.png"},
+            {id:4,name:"客餐厅",imgSrc:"http://www.shmiaosuan.com/upload/hanmo/images/other.png"},
+            {id:5,name:"客餐厅",imgSrc:"http://www.shmiaosuan.com/upload/hanmo/images/other.png"},
           ]
         },
       }

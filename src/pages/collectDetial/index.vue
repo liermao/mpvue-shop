@@ -1,7 +1,7 @@
 <template>
   <div class="collectDetial">
     <div class="topimg">
-      <img src="http://47.98.180.219:10085/static/images/col1.png">
+      <img src="http://www.shmiaosuan.com/upload/hanmo/images/col1.png">
     </div>
     <div class="top-detial">
       <div class="img-box"><img :src="data.imgSrc"></div>
@@ -31,7 +31,7 @@
         <ul>
           <li v-for="(item1,index1) in list" :key="index1" @click="turnDetial(item1.id)" v-if="item1.class_id == activeID">
             <div class="img-box">
-              <img :src="'http://www.shmiaosuan.com'+item1.imgSrc" alt="">
+              <img :src="item1.imgSrc" alt="">
             </div>
             <div class="name">{{item1.name}}</div>
             <div class="money">¥<span>{{item1.price}}</span></div>

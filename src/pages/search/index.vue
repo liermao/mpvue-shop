@@ -2,7 +2,7 @@
   <div>
     <div class="search-box">
       <div class="search">
-        <img src="http://47.98.180.219:10085/static/images/icon/search.png" alt="">
+        <img src="http://www.shmiaosuan.com/upload/hanmo/images/icon/search.png" alt="">
         <input type="text" placeholder="搜索更多家居好物" v-model="searchText">
       </div>
       <div class="search-text" @click="search(searchText)">搜索</div>
@@ -11,7 +11,7 @@
       <ul>
         <li v-for="(item,index) in list" :key="index" @click="detial(item.id)">
           <div class="img-box">
-            <img :src="'http://www.shmiaosuan.com'+item.imgSrc" alt="">
+            <img :src="item.imgSrc" alt="">
           </div>
           <div class="name">{{item.name}}</div>
           <div class="money">¥<span>{{item.price}}</span></div>

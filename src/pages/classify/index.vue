@@ -3,7 +3,7 @@
     <div class="screen">
       <div class="screen-box">
         <h3 @click="spaceFun"><span>风格</span><img
-          src="http://47.98.180.219:10085/static/images/icon/down.png"></h3>
+          src="http://www.shmiaosuan.com/upload/hanmo/images/icon/down.png"></h3>
         <div class="space" v-show="spaceShow">
           <ul>
             <li v-for="(item,index) in space" :class="index===spaceIndex ? 'active' : ''" :key="index"
@@ -14,7 +14,7 @@
       </div>
       <div class="screen-box">
         <h3 @click="styleFun"><span>地区</span><img
-          src="http://47.98.180.219:10085/static/images/icon/down.png"></h3>
+          src="http://www.shmiaosuan.com/upload/hanmo/images/icon/down.png"></h3>
         <div class="style" v-show="styleShow">
           <ul>
             <li v-for="(item,index) in style" :class="index===styleIndex ? 'active' : ''" :key="index"
@@ -24,7 +24,7 @@
         </div>
       </div>
       <div class="screen-box">
-        <h3 @click="priceFun"><span>设计师</span><img src="http://47.98.180.219:10085/static/images/icon/down.png"></h3>
+        <h3 @click="priceFun"><span>设计师</span><img src="http://www.shmiaosuan.com/upload/hanmo/images/icon/down.png"></h3>
         <div class="price" v-show="priceShow">
           <ul>
             <li v-for="(item,index) in price" :class="index===priceIndex ? 'active' : ''" :key="index"
@@ -34,7 +34,7 @@
         </div>
       </div>
       <div class="screen-box">
-        <h3 @click="colorFun"><span>设计费</span><img src="http://47.98.180.219:10085/static/images/icon/down.png"></h3>
+        <h3 @click="colorFun"><span>设计费</span><img src="http://www.shmiaosuan.com/upload/hanmo/images/icon/down.png"></h3>
         <div class="color" v-show="colorShow">
           <ul>
             <li v-for="(item,index) in color" :class="index===colorIndex ? 'active' : ''" :key="index"
@@ -44,6 +44,7 @@
         </div>
       </div>
     </div>
+    <div class="nodata" v-if="list.length === 0"><img src="http://www.shmiaosuan.com/upload/hanmo/images/nodata.png" alt=""></div>
     <ul class="classify">
       <li v-for="(item,index) in list" :key="index" @click="caseDetails(item.id)">
         <div class="top-header">
@@ -56,7 +57,7 @@
           </div>
           <div class="sell">￥{{item.price}}/㎡起</div>
         </div>
-        <img :src="'http://www.shmiaosuan.com'+item.imgSrc" alt="">
+        <img :src="item.imgSrc" alt="">
         <div class="tag">{{item.type_name}}</div>
         <h3>{{item.name}} | {{item.title}}</h3>
         <p>{{item.desc}}</p>
@@ -160,7 +161,7 @@
         this.search(this.spaceID, this.styleID, this.priceID, this.colorTxt);
       },
       /*搜索案例*/
-      search(type_id, writer_id, region_id, price) {
+      search(type_id,region_id, writer_id,  price) {
         this.$http.get('index.php?method52=b.hanmo.listcases&type_id=' + type_id + '&writer_id=' + writer_id + '&region_id=' + region_id + '&price=' + price + '&min_id=&iDisplayLength=10').then((res) => {
           this.list = res.data.data.aaData;
           this.colorShow = false;
@@ -211,6 +212,7 @@
           name: "不限"
         });
         _this.price = res.data.data.writers.data;
+        console.log(_this.price,"price");
         _this.price.unshift({
           id: "",
           name: "不限"

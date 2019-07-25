@@ -2,25 +2,25 @@
   <div>
     <div class="search-box">
       <div class="search">
-        <img src="http://47.98.180.219:10085/static/images/icon/search.png">
+        <img src="http://www.shmiaosuan.com/upload/hanmo/images/icon/search.png">
         <input type="text" placeholder="请输入工厂店名称" v-model="searchTxt">
       </div>
     </div>
     <div class="screen">
       <div class="screen-box">
         <h3 @click="stateFun"><span>国家</span><img
-          src="http://47.98.180.219:10085/static/images/icon/down.png"></h3>
+          src="http://www.shmiaosuan.com/upload/hanmo/images/icon/down.png"></h3>
         <div class="space" v-show="stateShow">
           <ul>
             <li v-for="(item,index) in state" :class="index===stateIndex ? 'active' : ''" :key="index"
-                @click="stateSelect(index,item.children)">{{item.name}}
+                @click="stateSelect(index,item.id,item.children)">{{item.name}}
             </li>
           </ul>
         </div>
       </div>
       <div class="screen-box">
         <h3 @click="placeFun"><span>产地</span><img
-          src="http://47.98.180.219:10085/static/images/icon/down.png"></h3>
+          src="http://www.shmiaosuan.com/upload/hanmo/images/icon/down.png"></h3>
         <div class="style" v-show="placeShow">
           <ul>
             <li v-for="(item,index) in place" :class="index===placeIndex ? 'active' : ''" :key="index"
@@ -30,9 +30,10 @@
         </div>
       </div>
     </div>
+    <div class="nodata" v-if="list.length === 0"><img src="http://www.shmiaosuan.com/upload/hanmo/images/nodata.png" alt=""></div>
     <ul class="collect">
       <li v-for="(item,index) in list" :key="index" @click="detialCollent(item.id)">
-        <img :src="url+item.imgSrc">
+        <img :src="item.imgSrc">
         <div class="box">
           <h1>{{item.name}}</h1>
           <h5></h5>
@@ -47,11 +48,11 @@
   export default {
     data() {
       return {
-        url: "https://www.shmiaosuan.com",
         searchTxt: "",
         state: [],
         stateShow: false,
         stateIndex: 0,
+        stateId:"",
         place: [],
         placeShow: false,
         placeId: 0,
@@ -79,20 +80,18 @@
         this.placeShow = false;
         this.stateShow === true ? this.stateShow = false : this.stateShow = true;
       },
-      stateSelect(index, childern) {
+      stateSelect(index,id, childern) {
         this.stateIndex = index;
         this.stateShow = false;
         this.placeIndex = "";
+        this.stateId=id;
         if (this.stateIndex > 0) {
           this.place = childern;
-          wx.showToast({
-            title: '请选择产地',
-            icon: 'none',
-            duration: 2000
-          })
+          this.search(this.stateId,this.placeId, this.searchTxt)
         } else {
           this.placeId = "";
-          this.search(this.placeId, this.searchTxt)
+          this.place=[];
+          this.search(this.stateId,this.placeId, this.searchTxt)
         }
       },
       placeFun() {
@@ -111,11 +110,11 @@
         this.placeIndex = index;
         this.placeId = id;
         this.placeShow = false;
-        this.search(this.placeId, this.searchTxt)
+        this.search(this.stateId,this.placeId, this.searchTxt)
       },
       //搜索
-      search(id, val) {
-        this.$http.get('index.php?method52=b.hanmo.listparters&region_id=' + id + '&name' + val + '=&min_id=&iDisplayLength=10').then((res) => {
+      search(country_id,id, val) {
+        this.$http.get('index.php?method52=b.hanmo.listparters&country_id='+country_id+'&region_id=' + id + '&name' + val + '=&min_id=&iDisplayLength=10').then((res) => {
           this.arr = res.data.data.aaData;
         }).catch(err => {
           console.log("错误代码", err);

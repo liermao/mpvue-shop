@@ -4,34 +4,34 @@
       <img :src=avatarUrl class="avatarUrl">
       <button open-type="getUserInfo" @getuserinfo="getUserInfo" v-show="loginBtn">登录/注册</button>
       <span v-show="nickNameBtn">{{nickName}}</span>
-      <div class="member" v-show="sellBtn"><img src="http://47.98.180.219:10085/static/images/v.png">普通会员</div>
+      <div class="member" v-show="sellBtn"><img src="http://www.shmiaosuan.com/upload/hanmo/images/v.png">普通会员</div>
     </div>
-    <div class="phone">登录手机号，同步优惠券<button open-type="getPhoneNumber" @getphonenumber="getPhoneNumber" class="phoneBtn">登录</button></div>
-    <div class="list-box box-one">
+    <!--<div class="phone">登录手机号，同步优惠券<button open-type="getPhoneNumber" @getphonenumber="getPhoneNumber" class="phoneBtn">登录</button></div>-->
+    <div class="list-box box-one" @click="tuijian">
       <div class="left">
-        <img src="http://47.98.180.219:10085/static/images/zuanshi.png" alt="">
+        <img src="http://www.shmiaosuan.com/upload/hanmo/images/zuanshi.png" alt="">
         <span>专享会员价</span>
       </div>
-      <div class="right">
+      <div class="right" >
            <span>开通会员</span>
       </div>
     </div>
-    <div class="list-box">
-      <div class="left">
-        <img src="http://47.98.180.219:10085/static/images/tuijian.png" alt="">
+    <div class="list-box" @click="tuijian">
+      <div class="left" >
+        <img src="http://www.shmiaosuan.com/upload/hanmo/images/tuijian.png" alt="">
         <span>推荐有奖</span>
       </div>
       <div class="right">
-        <img src="http://47.98.180.219:10085/static/images/arrow.png" alt="">
+        <img src="http://www.shmiaosuan.com/upload/hanmo/images/arrow.png" alt="">
       </div>
     </div>
     <div class="list-box"  @click="aboutfun">
       <div class="left">
-        <img src="http://47.98.180.219:10085/static/images/about.png" alt="">
+        <img src="http://www.shmiaosuan.com/upload/hanmo/images/about.png" alt="">
         <span>关于我们</span>
       </div>
       <div class="right">
-        <img src="http://47.98.180.219:10085/static/images/arrow.png" alt="">
+        <img src="http://www.shmiaosuan.com/upload/hanmo/images/arrow.png" alt="">
       </div>
     </div>
   </div>
@@ -58,7 +58,13 @@
       aboutfun(){
         wx.navigateTo({url: '/pages/aboutUs/main'})
       },
-
+      tuijian(){
+        wx.showToast({
+          title: '暂未开放',
+          icon: 'none',
+          duration: 2000
+        })
+      },
       getSetting() {
         let _this=this;
         mpvue.getSetting({
@@ -79,7 +85,7 @@
               _this.loginBtn=true;
               _this.nickNameBtn=false;
               _this.sellBtn=false;
-              _this.avatarUrl="http://47.98.180.219:10085/static/images/avatar.png";
+              _this.avatarUrl="http://www.shmiaosuan.com/upload/hanmo/images/avatar.png";
               console.log('用户还未授权过')
             }
           }
@@ -143,7 +149,7 @@
     .me-box{
       width: unit(750,rpx);
       height: unit(340,rpx);
-      background-image: url("http://47.98.180.219:10085/static/images/box-bj.png");
+      background-image: url("http://www.shmiaosuan.com/upload/hanmo/images/box-bj.png");
       position: relative;
       display: flex;
       align-items: center;
@@ -252,7 +258,7 @@
       }
     }
     .box-one{
-      background-image: url("http://47.98.180.219:10085/static/images/huiyuan.png");
+      background-image: url("http://www.shmiaosuan.com/upload/hanmo/images/huiyuan.png");
       background-size: 100% 100%;
       .left{
         span{

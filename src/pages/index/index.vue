@@ -1,9 +1,9 @@
 <template>
   <div>
     <div class="search-box" @click="turnSearch">
-      <img src="http://47.98.180.219:10085/static/images/yizi.png">
+      <img src="http://www.shmiaosuan.com/upload/hanmo/images/yizi.png">
       <div class="search">
-        <img src="http://47.98.180.219:10085/static/images/icon/search.png" alt="">
+        <img src="http://www.shmiaosuan.com/upload/hanmo/images/icon/search.png" alt="">
         <input type="text" placeholder="搜索更多家居好物">
       </div>
       <h2 class="index-title">{{indexTitle}}</h2>
@@ -18,19 +18,19 @@
       </ul>
     </div>
     <div class="content">
-      <div class="content-box" v-for="(item,index) in imgList" :key="index">
-        <img :src=item.img alt="">
+      <div class="content-box" v-for="(item,index) in imgList" :key="index" @click="turnArticle(item.id)">
+        <img :src=item.cover_image alt="">
         <div class="box">
           <h2>{{item.title}}</h2>
-          <h5>{{item.smallTitle}}</h5>
-          <div class=""><span class="iconfont icon-Shopping"></span>5</div>
+          <!--<h5>{{item.smallTitle}}</h5>-->
+          <!--<div class=""><span class="iconfont icon-Shopping"></span>5</div>-->
         </div>
       </div>
     </div>
     <div class="list">
       <div class="title">
-        <img src="http://47.98.180.219:10085/static/images/left.png" class="left">新品上架<img
-        src="http://47.98.180.219:10085/static/images/right.png" alt="" class="right">
+        <img src="http://www.shmiaosuan.com/upload/hanmo/images/left.png" class="left">新品上架<img
+        src="http://www.shmiaosuan.com/upload/hanmo/images/right.png" alt="" class="right">
       </div>
       <ul>
         <li v-for="(item,index) in list" :key="index" @click="detial(item.id)">
@@ -44,8 +44,8 @@
     </div>
     <div class="list">
       <div class="title">
-        <img src="http://47.98.180.219:10085/static/images/left.png" class="left">猜你喜欢<img
-        src="http://47.98.180.219:10085/static/images/right.png" alt="" class="right"></div>
+        <img src="http://www.shmiaosuan.com/upload/hanmo/images/left.png" class="left">猜你喜欢<img
+        src="http://www.shmiaosuan.com/upload/hanmo/images/right.png" alt="" class="right"></div>
       <ul>
         <li v-for="(item,index) in like" :key="index" @click="detial(item.id)">
           <div class="img-box">
@@ -63,56 +63,41 @@
   export default {
     data() {
       return {
-        indexTitle: "文案",
+        indexTitle: "",
         nav: [
           {
             id: 1,
             childId: 3,
-            icon: "http://47.98.180.219:10085/static/images/icon/furniture.png",
+            icon: "http://www.shmiaosuan.com/upload/hanmo/images/icon/furniture.png",
             title: "家具",
             url: "furniture"
           },
           {
             id: 2,
             childId: 4,
-            icon: "http://47.98.180.219:10085/static/images/icon/Luminaire.png",
+            icon: "http://www.shmiaosuan.com/upload/hanmo/images/icon/Luminaire.png",
             title: "灯灯",
             url: "furniture"
           },
           {
             id: 5,
             childId:6,
-            icon: "http://47.98.180.219:10085/static/images/icon/painting.png",
+            icon: "http://www.shmiaosuan.com/upload/hanmo/images/icon/painting.png",
             title: "画廊",
             url: "furniture"
           },
           {
             id: 9,
             childId: 10,
-            icon: "http://47.98.180.219:10085/static/images/icon/bed.png",
+            icon: "http://www.shmiaosuan.com/upload/hanmo/images/icon/bed.png",
             title: "床垫",
             url: "furniture"
           },
-          {id: 5, icon: "http://47.98.180.219:10085/static/images/icon/style.png", title: "其它", url: "allClassify"},
+          {id: 5, icon: "http://www.shmiaosuan.com/upload/hanmo/images/icon/style.png", title: "其它", url: "allClassify"},
         ],
         list: [],
         like: [],
-        imgList: [
-          {
-            id: 1,
-            img: "http://47.98.180.219:10085/static/images/1.png",
-            title: "彩色元素,轻松打造艺术感的家。",
-            smallTitle: "彩色元素合集",
-            number: 5
-          },
-          {
-            id: 2,
-            img: "http://47.98.180.219:10085/static/images/1.png",
-            title: "彩色元素,轻松打造艺术感的家。",
-            smallTitle: "彩色元素合集",
-            number: 5
-          },
-        ]
+        imgList: []
       }
     },
     components: {},
@@ -123,12 +108,44 @@
       turnSearch() {
         mpvue.navigateTo({url: '/pages/search/main'})
       },
+      getCode() {
+        let _this=this;
+        wx.login({
+          success: res => {
+            // ------ 获取凭证 ------
+            let code = res.code;
+            if(code){
+              _this.$http.get('index.php?method52=b.hanmo.access&open_id='+code+'&content=').then((res) => {
+              console.log("code传成功")
+              }).catch(err => {
+                console.log("错误代码", err)
+              });
+            }
+          }
+        })
+      },
       allClassify(url, id, childId) {
         mpvue.navigateTo({url: '/pages/' + url + '/main?id=' + id + '&childId=' + childId})
+      },
+      turnArticle(id){
+        mpvue.navigateTo({url: '/pages/article/main?id=' + id})
       }
     },
     mounted() {
       let _this = this;
+      //首页文字
+
+      _this.$http.get('index.php?method52=b.hanmo.getset&key=profile').then((res) => {
+        _this.indexTitle = res.data.data[0].value;
+      }).catch(err => {
+        console.log("错误代码", err)
+      });
+      //获取首页文章列表
+      _this.$http.get('index.php?method52=b.hanmo.listallarticles').then((res) => {
+        _this.imgList=res.data.data;
+      }).catch(err => {
+        console.log("错误代码", err)
+      });
       //新品上架
       _this.$http.get('index.php?method52=b.hanmo.getnew').then((res) => {
         _this.list = res.data.data;
@@ -141,6 +158,9 @@
       }).catch(err => {
         console.log("错误代码", err)
       })
+    },
+    onLoad(){
+      this.getCode();
     },
     created() {
     },
@@ -185,11 +205,11 @@
 
     .index-title {
       position: absolute;
-      top: unit(234, rpx);
+      top: unit(250, rpx);
       text-align: center;
-      width: 80%;
-      left: 10%;
-      font-size: unit(80, rpx);
+      width: 60%;
+      left: 20%;
+      font-size: unit(56, rpx);
       font-weight: 600;
       color: rgba(255, 255, 255, 1);
     }

@@ -1,35 +1,35 @@
 <template>
   <div class="aboutUs">
-    <img src="http://47.98.180.219:10085/static/images/about-top.png" alt="">
+    <img src="http://www.shmiaosuan.com/upload/hanmo/images/about-top.png" alt="">
     <div>
       <div class="title">
-        <img src="http://47.98.180.219:10085/static/images/left.png" class="left">关于我们<img
-        src="http://47.98.180.219:10085/static/images/right.png" alt="" class="right">
+        <img src="http://www.shmiaosuan.com/upload/hanmo/images/left.png" class="left">关于我们<img
+        src="http://www.shmiaosuan.com/upload/hanmo/images/right.png" alt="" class="right">
       </div>
       <p>
         阿拉工作室是一家集软装全案、家具家私定制、艺术品陈设、智能新科技、美学生活馆等通过对上游供应厂商与下游客户需求整条产业链的整合，工作室针对每一个使用者提供专业的空间规划和设计能力，透过色彩、材质的纹理及质地，雕塑空间的层次，极致匠心，挖掘居家背后深度的人文关怀，推崇精致却不失个性的空间布置，为您打造集舒适、温馨、美好的家！</p>
-      <img src="http://47.98.180.219:10085/static/images/about-1.png" alt="">
+      <img src="http://www.shmiaosuan.com/upload/hanmo/images/about-1.png" alt="">
     </div>
     <div>
       <div class="title">
-        <img src="http://47.98.180.219:10085/static/images/left.png" class="left">我们团队<img
-        src="http://47.98.180.219:10085/static/images/right.png" alt="" class="right">
+        <img src="http://www.shmiaosuan.com/upload/hanmo/images/left.png" class="left">我们团队<img
+        src="http://www.shmiaosuan.com/upload/hanmo/images/right.png" alt="" class="right">
       </div>
       <p>阿拉工作室主创人员均毕业于中国美院，作品遍布江浙沪地标营销中心、样板房、顶级平层私宅和别墅，代表作品有：湘湖壹号、武林壹号、武林外滩、新华园、蓝色钱江、万科翡翠园、绿城晓荷江南、西房拱辰外滩……等。</p>
       <div class="about-user">
         <ul>
           <li>
-            <img src="http://47.98.180.219:10085/static/images/about-top1.png" alt="">
+            <img src="http://www.shmiaosuan.com/upload/hanmo/images/about-top1.png" alt="">
             <h3>周瑾</h3>
             <h5>主理人</h5>
           </li>
           <li>
-            <img src="http://47.98.180.219:10085/static/images/about-top2.png" alt="">
+            <img src="http://www.shmiaosuan.com/upload/hanmo/images/about-top2.png" alt="">
             <h3>李彬</h3>
             <h5>创始合伙人</h5>
           </li>
           <li>
-            <img src="http://47.98.180.219:10085/static/images/about-top3.png" alt="">
+            <img src="http://www.shmiaosuan.com/upload/hanmo/images/about-top3.png" alt="">
             <h3>罗小燕</h3>
             <h5>创始合伙人</h5>
           </li>
@@ -38,8 +38,8 @@
     </div>
     <div class="last">
       <div class="title">
-        <img src="http://47.98.180.219:10085/static/images/left.png" class="left">联系我们<img
-        src="http://47.98.180.219:10085/static/images/right.png" alt="" class="right">
+        <img src="http://www.shmiaosuan.com/upload/hanmo/images/left.png" class="left">联系我们<img
+        src="http://www.shmiaosuan.com/upload/hanmo/images/right.png" alt="" class="right">
       </div>
       <h2>927-243534</h2>
       <h4>浙江省宁波市xxx路xxx号</h4>

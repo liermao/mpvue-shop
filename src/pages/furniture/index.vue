@@ -2,7 +2,7 @@
   <div>
     <div class="search-box">
       <div class="search">
-        <img src="http://47.98.180.219:10085/static/images/icon/search.png">
+        <img src="http://www.shmiaosuan.com/upload/hanmo/images/icon/search.png">
         <input type="text" placeholder="请输入软装名称" v-model="searchTxt">
       </div>
     </div>
@@ -22,7 +22,7 @@
     <div class="screen">
       <div class="screen-box">
         <h3 @click="spaceFun"><span>空间</span><img
-          src="http://47.98.180.219:10085/static/images/icon/down.png"></h3>
+          src="http://www.shmiaosuan.com/upload/hanmo/images/icon/down.png"></h3>
         <div class="space" v-show="spaceShow">
           <ul>
             <li v-for="(item,index) in space" :class="index===spaceIndex ? 'active' : ''" :key="index"
@@ -33,7 +33,7 @@
       </div>
       <div class="screen-box">
         <h3 @click="styleFun"><span>风格</span><img
-          src="http://47.98.180.219:10085/static/images/icon/down.png"></h3>
+          src="http://www.shmiaosuan.com/upload/hanmo/images/icon/down.png"></h3>
         <div class="style" v-show="styleShow">
           <ul>
             <li v-for="(item,index) in style" :class="index===styleIndex ? 'active' : ''" :key="index"
@@ -43,7 +43,7 @@
         </div>
       </div>
       <div class="screen-box">
-        <h3 @click="priceFun"><span>价格</span><img src="http://47.98.180.219:10085/static/images/icon/down.png"></h3>
+        <h3 @click="priceFun"><span>价格</span><img src="http://www.shmiaosuan.com/upload/hanmo/images/icon/down.png"></h3>
         <div class="price" v-show="priceShow">
           <ul>
             <li v-for="(item,index) in price" :class="index===priceIndex ? 'active' : ''" :key="index"
@@ -53,7 +53,7 @@
         </div>
       </div>
       <div class="screen-box">
-        <h3 @click="colorFun"><span>筛选</span><img src="http://47.98.180.219:10085/static/images/icon/down.png"></h3>
+        <h3 @click="colorFun"><span>筛选</span><img src="http://www.shmiaosuan.com/upload/hanmo/images/icon/down.png"></h3>
         <div class="color" v-show="colorShow">
           <h3>颜色</h3>
           <ul>
@@ -76,7 +76,7 @@
       <ul>
         <li v-for="(item,index) in listFun" :key="index" @click="detial(item.id)">
           <div class="img-box">
-            <img :src="'http://www.shmiaosuan.com'+item.imgSrc">
+            <img :src="item.imgSrc">
           </div>
           <div class="name">{{item.name}}</div>
           <div class="money">¥<span>{{item.price}}</span></div>

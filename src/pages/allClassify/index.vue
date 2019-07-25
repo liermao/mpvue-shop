@@ -13,7 +13,7 @@
         <ul>
           <li v-for="(detial,indexd) in item.children" :key="indexd" @click="turnFurniture(detial.parent_id)">
             <div class="img-box">
-              <img :src="'http://www.shmiaosuan.com'+detial.img_url">
+              <img :src="detial.img_url">
             </div>
             <span>{{detial.name}}</span>
           </li>

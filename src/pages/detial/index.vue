@@ -3,7 +3,7 @@
     <swiper class="swiper" indicator-dots="true" autoplay="true" interval="5000" duration="500">
       <block v-for="(item, index) in data.banners" :index="index" :key="key">
         <swiper-item>
-          <image :src="'http://www.shmiaosuan.com'+item.img_url" class="slide-image" mode="aspectFill"/>
+          <image :src="item.img_url" class="slide-image" mode="aspectFill"/>
         </swiper-item>
       </block>
     </swiper>
@@ -11,7 +11,7 @@
       <div class="menber">￥<span>{{data.price}}</span><span v-show="true" class="meber-icon">会员价</span></div>
       <!--<div class="price">价格<span>￥&#45;&#45;&#45;&#45;</span></div>-->
       <h1>{{data.name}}</h1>
-      <div class="share"><img src="http://47.98.180.219:10085/static/images/icon/sharebag.png" alt="">分享有礼</div>
+      <div class="share"><img src="http://www.shmiaosuan.com/upload/hanmo/images/icon/sharebag.png" alt="">分享有礼</div>
     </div>
     <div class="information">
       <h2>商品信息</h2>
@@ -25,25 +25,25 @@
     </div>
     <div class="address">
       <div class="address-icon">
-        <img src="http://47.98.180.219:10085/static/images/icon/address.png">
+        <img src="http://www.shmiaosuan.com/upload/hanmo/images/icon/address.png">
       </div>
       <div class="address-text">
         <h3>宜家家居(漕溪路店)</h3>
         <p>漕溪路126号（距地铁3号线漕溪路站3号口步行960m）</p>
       </div>
       <div class="phone">
-        <img src="http://47.98.180.219:10085/static/images/icon/phone.png">
+        <img src="http://www.shmiaosuan.com/upload/hanmo/images/icon/phone.png">
       </div>
     </div>
     <div class="img-detial">
       <h3>商品详情</h3>
       <div class="img-box">
-        <img :src="'http://www.shmiaosuan.com'+data.imgSrc">
+        <!--<rich-text nodes="{{data.detail}}" bindtap="tap"></rich-text>-->
         <!--<div class="particulars">-->
           <!--<h3>推荐搭配</h3>-->
           <!--<ul>-->
             <!--<li>-->
-              <!--<img src="http://47.98.180.219:10085/static/images/small.png" alt="">-->
+              <!--<img src="http://www.shmiaosuan.com/upload/hanmo/images/small.png" alt="">-->
             <!--</li>-->
           <!--</ul>-->
         <!--</div>-->
@@ -53,22 +53,22 @@
       <div class="safeguard-title">省心服务保障</div>
       <ul class="safeguard-list">
         <li>
-          <img src="http://47.98.180.219:10085/static/images/icon/bz1.png" alt="">
+          <img src="http://www.shmiaosuan.com/upload/hanmo/images/icon/bz1.png" alt="">
           <p class="title1">正品保证</p>
           <p class="title2">厂家正品直供</p>
         </li>
         <li>
-          <img src="http://47.98.180.219:10085/static/images/icon/bz2.png" alt="">
+          <img src="http://www.shmiaosuan.com/upload/hanmo/images/icon/bz2.png" alt="">
           <p class="title1">破损保障</p>
           <p class="title2">破损免费补发</p>
         </li>
         <li>
-          <img src="http://47.98.180.219:10085/static/images/icon/bz3.png" alt="">
+          <img src="http://www.shmiaosuan.com/upload/hanmo/images/icon/bz3.png" alt="">
           <p class="title1">退换无忧</p>
           <p class="title2">赠送运费险</p>
         </li>
         <li>
-          <img src="http://47.98.180.219:10085/static/images/icon/bz4.png" alt="">
+          <img src="http://www.shmiaosuan.com/upload/hanmo/images/icon/bz4.png" alt="">
           <p class="title1">三年质保</p>
           <p class="title2">官方质保 售后无忧</p>
         </li>
@@ -76,15 +76,15 @@
     </div>
     <div class="detial-nav">
       <div @click="backIndex">
-        <img src="http://47.98.180.219:10085/static/images/icon/home.png">
+        <img src="http://www.shmiaosuan.com/upload/hanmo/images/icon/home.png">
         <span>首页</span>
       </div>
       <button open-type="contact" class="kefu">
-        <img src="http://47.98.180.219:10085/static/images/icon/kefu.png">
+        <img src="http://www.shmiaosuan.com/upload/hanmo/images/icon/kefu.png">
         <span>咨询</span>
       </button>
       <button open-type="share">
-        <img src="http://47.98.180.219:10085/static/images/icon/share.png">
+        <img src="http://www.shmiaosuan.com/upload/hanmo/images/icon/share.png">
         <span>分享</span>
       </button>
     </div>

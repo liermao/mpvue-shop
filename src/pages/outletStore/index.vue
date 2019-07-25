@@ -2,13 +2,14 @@
   <div>
     <div class="search-box">
       <div class="search">
-        <img src="http://47.98.180.219:10085/static/images/icon/search.png">
+        <img src="http://www.shmiaosuan.com/upload/hanmo/images/icon/search.png">
         <input type="text" placeholder="请输入工厂店名称" v-model="searchTxt">
       </div>
     </div>
+    <div class="nodata" v-if="list.length === 0"><img src="http://www.shmiaosuan.com/upload/hanmo/images/nodata.png" alt=""></div>
     <ul class="collect">
       <li v-for="(item,index) in list" :key="index" @click="detialCollent(item.id)">
-        <img :src=url+item.imgSrc alt="">
+        <img :src=item.imgSrc alt="">
         <div class="box">
           <h1>{{item.name}}</h1>
         </div>
@@ -22,7 +23,6 @@
     name: "index",
     data() {
       return {
-        url:"https://www.shmiaosuan.com",
         searchTxt: "",
         arr: []
       }

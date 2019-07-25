@@ -12,7 +12,8 @@
     "pages/classifyDetails/main",
     "pages/classifyList/main",
     "pages/search/main",
-    "pages/furniture/main"
+    "pages/furniture/main",
+    "pages/article/main"
   ],
   "window": {
     "backgroundTextStyle": "light",
