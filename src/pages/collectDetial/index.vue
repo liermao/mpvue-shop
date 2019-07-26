@@ -60,12 +60,13 @@
       }
     },
     components: {},
-    onLoad(option){
+    onShow(option){
       let _this=this;
       _this.$http.get('index.php?method52=b.hanmo.'+option.type+'&id='+option.id).then((res) => {
         _this.data=res.data.data;
-        _this.nav=res.data.data.classes;
         _this.list=res.data.data.goods;
+        _this.nav=res.data.data.classes;
+
       }).catch(err => {
         console.log("错误代码", err)
       })

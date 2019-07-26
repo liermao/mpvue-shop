@@ -3,7 +3,7 @@
     <swiper class="swiper" indicator-dots="true" autoplay="true" interval="5000" duration="500">
       <block v-for="(item, index) in data.banners" :index="index" :key="key">
         <swiper-item>
-          <image :src="item.img_url" class="slide-image" mode="aspectFill"/>
+          <image :src="item.img_url" class="slide-image" />
         </swiper-item>
       </block>
     </swiper>
@@ -166,7 +166,12 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      image{
+        width: unit(750,rpx);
+        height: unit(600,rpx);
+      }
     }
+
   }
 
   .title {
