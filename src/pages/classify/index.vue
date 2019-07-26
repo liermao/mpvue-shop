@@ -212,7 +212,6 @@
           name: "不限"
         });
         _this.price = res.data.data.writers.data;
-        console.log(_this.price,"price");
         _this.price.unshift({
           id: "",
           name: "不限"

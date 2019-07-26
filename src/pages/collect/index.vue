@@ -138,7 +138,6 @@
         console.log("错误代码", err);
       });
       _this.$http.get('index.php?method52=b.hanmo.getallregions').then((res) => {
-        console.log(res.data.data);
         _this.state = res.data.data;
         _this.state.unshift({
           id: 0,

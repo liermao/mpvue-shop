@@ -8,7 +8,7 @@
         <h1>{{list.name}} | {{list.title}}</h1>
         <p><span>{{list.city}}</span><span>{{list.address}}</span><span>{{list.door}}</span></p>
         <div class="box" v-for="(item,index) in list.parts" :key="index">
-          <img :src="item.imgSrc" alt="">
+          <img :src="item.imgSrc" mode="widthFix">
           <div class="title">
             <h3>{{item.name}}</h3>
             <span @click="turnList(item.id)" v-if="item.goods_ids">商品清单 ></span>
@@ -32,13 +32,7 @@
           houseType:"2室2厅2卫1厨",
           WholeHouseSrc:"http://www.shmiaosuan.com/upload/hanmo/images/zhutu.png",
           WholeHouseName:"全屋场景图",
-          houseList:[
-            {id:1,name:"客餐厅",imgSrc:"http://www.shmiaosuan.com/upload/hanmo/images/other.png"},
-            {id:2,name:"客餐厅",imgSrc:"http://www.shmiaosuan.com/upload/hanmo/images/other.png"},
-            {id:3,name:"客餐厅",imgSrc:"http://www.shmiaosuan.com/upload/hanmo/images/other.png"},
-            {id:4,name:"客餐厅",imgSrc:"http://www.shmiaosuan.com/upload/hanmo/images/other.png"},
-            {id:5,name:"客餐厅",imgSrc:"http://www.shmiaosuan.com/upload/hanmo/images/other.png"},
-          ]
+          houseList:[]
         },
       }
     },
@@ -59,7 +53,6 @@
     mounted() {
       let _this=this;
       _this.$http.get('index.php?method52=b.hanmo.designcase&id='+_this.getQuery().id).then((res) => {
-        console.log(res.data.data);
         _this.list=res.data.data;
       }).catch(err => {
         console.log("错误代码", err)

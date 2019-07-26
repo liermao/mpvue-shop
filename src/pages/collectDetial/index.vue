@@ -31,7 +31,7 @@
         <ul>
           <li v-for="(item1,index1) in list" :key="index1" @click="turnDetial(item1.id)" v-if="item1.class_id == activeID">
             <div class="img-box">
-              <img :src="item1.imgSrc" alt="">
+              <img :src="item1.imgSrc" mode="widthFix">
             </div>
             <div class="name">{{item1.name}}</div>
             <div class="money">¥<span>{{item1.price}}</span></div>
@@ -63,7 +63,6 @@
     onLoad(option){
       let _this=this;
       _this.$http.get('index.php?method52=b.hanmo.'+option.type+'&id='+option.id).then((res) => {
-        console.log(res.data.data);
         _this.data=res.data.data;
         _this.nav=res.data.data.classes;
         _this.list=res.data.data.goods;
@@ -237,7 +236,7 @@
         background: #fff;
         .img-box {
           width: unit(264, rpx);
-          height: unit(320, rpx);
+          height: unit(264, rpx);
           margin: unit(40, rpx) auto unit(16, rpx);
           display: flex;
           justify-content: center; /* 水平居中 */
@@ -251,6 +250,7 @@
         .name {
           font-size: @theme-font-size-1;
           font-weight: 400;
+          width: unit(290,rpx);
           color: rgba(44, 44, 44, 1);
           margin-left: unit(24, rpx);
           margin-bottom: unit(8, rpx);

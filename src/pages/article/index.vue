@@ -20,7 +20,8 @@
   export default {
     data() {
       return {
-        data: ""
+        data: "",
+        content:""
       }
     },
     components: {},
@@ -42,6 +43,7 @@
       // 商品详情
       _this.$http.get('index.php?method52=b.hanmo.queryarticle&id=' + _this.getQuery().id).then((res) => {
         _this.data = res.data.data;
+        _this.content=res.data.data.content.replace(/\<img/g, '<img style="max-width:100%;height:auto;" ');
       }).catch(err => {
         console.log("错误代码", err)
       })

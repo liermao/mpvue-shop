@@ -11,7 +11,7 @@
       <div class="menber">￥<span>{{data.price}}</span><span v-show="true" class="meber-icon">会员价</span></div>
       <!--<div class="price">价格<span>￥&#45;&#45;&#45;&#45;</span></div>-->
       <h1>{{data.name}}</h1>
-      <div class="share"><img src="http://www.shmiaosuan.com/upload/hanmo/images/icon/sharebag.png" alt="">分享有礼</div>
+      <!--<div class="share"><img src="http://www.shmiaosuan.com/upload/hanmo/images/icon/sharebag.png" alt="">分享有礼</div>-->
     </div>
     <div class="information">
       <h2>商品信息</h2>
@@ -98,6 +98,7 @@
         data:"",
         title: "",
         imgSrc:"",
+        content:""
       }
     },
     props: {},
@@ -142,10 +143,10 @@
       let _this = this;
       // 商品详情
       _this.$http.get('index.php?method52=b.hanmo.goods&id='+_this.getQuery().id).then((res) => {
-        console.log(res.data.data);
         _this.data=res.data.data;
         _this.title=res.data.data.name;
         _this.imgSrc=res.data.data.imgSrc;
+        _this.content=res.data.data.detail.replace(/\<img/g, '<img style="max-width:100%;height:auto;" ');
       }).catch(err => {
         console.log("错误代码", err)
       })
@@ -317,11 +318,7 @@
     }
     .img-box {
       position: relative;
-      img {
-        display: block;
-        width: unit(690, rpx);
-        height: unit(690, rpx);
-      }
+
       .particulars {
         position: absolute;
         width: unit(188, rpx);

@@ -54,7 +54,6 @@
     mounted() {
       let _this=this;
       _this.$http.get('index.php?method52=b.hanmo.getcasegoods&id='+_this.getQuery().id).then((res) => {
-        console.log(res.data.data);
         _this.tabs=res.data.data.classes;
         _this.list=res.data.data.goods;
         _this.activeID=res.data.data.classes[0].id;

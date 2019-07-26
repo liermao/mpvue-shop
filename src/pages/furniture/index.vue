@@ -262,6 +262,7 @@
           _this.$http.get('index.php?method52=b.hanmo.listgoods&style='+styleTxt+'&space='+spaceTxt+'&price='+priceTxt+'&color='+colorTxt+'&material='+materialTxt+'&class_id='+_this.$root.$mp.query.id+'&min_id=9&iDisplayLength=10').then((res)=>{
            console.log(res);
             _this.list=res.data.data.aaData;
+
         }).catch(err=>{
           console.log("错误代码",err)
         })
@@ -283,6 +284,7 @@
           name: "不限",
           value: "",
         });
+
         _this.material = res.data.data.material;
         if(res.data.data.material){
           _this.material.unshift({
@@ -291,7 +293,6 @@
             value: "",
           });
         }
-
         _this.style = res.data.data.style;
         if(res.data.data.style){
           _this.style.unshift({
@@ -313,7 +314,7 @@
           _this.color.unshift({
             id: "",
             name: "不限",
-            value: "",
+            value: "rgba(0,0,0,0.3)",
           });
         }
         this.colorShow = false;
@@ -325,7 +326,6 @@
       });
       _this.$http.get('index.php?method52=b.hanmo.listgoods&class_id=' + _this.$root.$mp.query.childId).then((res) => {
         _this.list = res.data.data.aaData;
-        console.log(_this.list)
       }).catch(err => {
         console.log("错误代码", err)
       })
@@ -456,7 +456,7 @@
         background: #fff;
         .img-box {
           width: unit(264, rpx);
-          height: unit(320, rpx);
+          height: unit(264, rpx);
           margin: unit(40, rpx) auto unit(16, rpx);
           display: flex;
           justify-content: center; /* 水平居中 */
@@ -470,6 +470,7 @@
         .name {
           font-size: @theme-font-size-1;
           font-weight: 400;
+          width: unit(290,rpx);
           color: rgba(44, 44, 44, 1);
           margin-left: unit(24, rpx);
           margin-bottom: unit(8, rpx);
@@ -480,7 +481,6 @@
           margin-left: unit(24, rpx);
           color: rgba(235, 195, 78, 1);
         }
-
       }
     }
   }
