@@ -37,9 +37,14 @@
         }).catch(err => {
           console.log("错误代码", err)
         })
-      }
+      },
+      detial(id) {
+        mpvue.navigateTo({url: '/pages/detial/main?id=' + id})
+      },
     },
-    mounted() {},
+    mounted() {
+
+    },
     created() {
     },
   }
@@ -106,7 +111,7 @@
         background: #fff;
         .img-box {
           width: unit(264, rpx);
-          height: unit(320, rpx);
+          height: unit(264, rpx);
           margin: unit(40, rpx) auto unit(16, rpx);
           display: flex;
           justify-content: center; /* 水平居中 */
@@ -120,6 +125,7 @@
         .name {
           font-size: @theme-font-size-1;
           font-weight: 400;
+          width: unit(290,rpx);
           color: rgba(44, 44, 44, 1);
           margin-left: unit(24, rpx);
           margin-bottom: unit(8, rpx);
