@@ -43,7 +43,8 @@
         </div>
       </div>
       <div class="screen-box">
-        <h3 @click="priceFun"><span>价格</span><img src="http://www.shmiaosuan.com/upload/hanmo/images/icon/down.png"></h3>
+        <h3 @click="priceFun"><span>价格</span><img src="http://www.shmiaosuan.com/upload/hanmo/images/icon/down.png">
+        </h3>
         <div class="price" v-show="priceShow">
           <ul>
             <li v-for="(item,index) in price" :class="index===priceIndex ? 'active' : ''" :key="index"
@@ -53,7 +54,8 @@
         </div>
       </div>
       <div class="screen-box">
-        <h3 @click="colorFun"><span>筛选</span><img src="http://www.shmiaosuan.com/upload/hanmo/images/icon/down.png"></h3>
+        <h3 @click="colorFun"><span>筛选</span><img src="http://www.shmiaosuan.com/upload/hanmo/images/icon/down.png">
+        </h3>
         <div class="color" v-show="colorShow">
           <h3>颜色</h3>
           <ul>
@@ -147,7 +149,7 @@
         _this.type = type;
         _this.navId = `nav_${index}`;
         //这儿不知道传什么值合适
-        _this.$http.get('index.php?method52=b.hanmo.gettypesbyid&id=' +type).then((res) => {
+        _this.$http.get('index.php?method52=b.hanmo.gettypesbyid&id=' + type).then((res) => {
           _this.space = res.data.data.space;
           _this.material = res.data.data.material;
           _this.style = res.data.data.style;
@@ -258,13 +260,13 @@
         return temp;
       },
       search(spaceTxt, styleTxt, priceTxt, colorTxt, materialTxt) {
-        let _this=this;
-          _this.$http.get('index.php?method52=b.hanmo.listgoods&style='+styleTxt+'&space='+spaceTxt+'&price='+priceTxt+'&color='+colorTxt+'&material='+materialTxt+'&class_id='+_this.$root.$mp.query.id+'&min_id=9&iDisplayLength=10').then((res)=>{
-           console.log(res);
-            _this.list=res.data.data.aaData;
+        let _this = this;
+        _this.$http.get('index.php?method52=b.hanmo.listgoods&style=' + styleTxt + '&space=' + spaceTxt + '&price=' + priceTxt + '&color=' + colorTxt + '&material=' + materialTxt + '&class_id=' + _this.$root.$mp.query.id + '&min_id=9&iDisplayLength=10').then((res) => {
+          console.log(res);
+          _this.list = res.data.data.aaData;
 
-        }).catch(err=>{
-          console.log("错误代码",err)
+        }).catch(err => {
+          console.log("错误代码", err)
         })
       }
     },
@@ -273,7 +275,7 @@
       //获取本地数据
       let arr = mpvue.getStorageSync('data');
       for (let i = 0; i < arr.length; i++) {
-        if (_this.$root.$mp.query.id== arr[i].id) {
+        if (_this.$root.$mp.query.id == arr[i].id) {
           _this.navList = arr[i].children;
         }
       }
@@ -286,7 +288,7 @@
         });
 
         _this.material = res.data.data.material;
-        if(res.data.data.material){
+        if (res.data.data.material) {
           _this.material.unshift({
             id: "",
             name: "不限",
@@ -294,7 +296,7 @@
           });
         }
         _this.style = res.data.data.style;
-        if(res.data.data.style){
+        if (res.data.data.style) {
           _this.style.unshift({
             id: "",
             name: "不限",
@@ -302,7 +304,7 @@
           });
         }
         _this.price = res.data.data.price;
-        if(res.data.data.price){
+        if (res.data.data.price) {
           _this.price.unshift({
             id: "",
             name: "不限",
@@ -310,7 +312,7 @@
           });
         }
         _this.color = res.data.data.color;
-        if(res.data.data.color){
+        if (res.data.data.color) {
           _this.color.unshift({
             id: "",
             name: "不限",
@@ -355,6 +357,7 @@
       border-bottom: 2px solid #EAC34E;
     }
   }
+
   .screen {
     width: unit(750, rpx);
     height: unit(85, rpx);
@@ -437,6 +440,7 @@
       }
     }
   }
+
   .list {
     width: unit(750, rpx);
     margin: unit(16, rpx) auto 0;
@@ -470,7 +474,7 @@
         .name {
           font-size: @theme-font-size-1;
           font-weight: 400;
-          width: unit(290,rpx);
+          width: unit(290, rpx);
           color: rgba(44, 44, 44, 1);
           margin-left: unit(24, rpx);
           margin-bottom: unit(8, rpx);

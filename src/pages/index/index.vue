@@ -108,6 +108,7 @@
       turnSearch() {
         mpvue.navigateTo({url: '/pages/search/main'})
       },
+      /*获取code*/
       getCode() {
         let _this=this;
         wx.login({
@@ -115,12 +116,29 @@
             // ------ 获取凭证 ------
             let code = res.code;
             if(code){
-              _this.$http.get('index.php?method52=b.hanmo.access&open_id='+code+'&content=').then((res) => {
-              console.log("code传成功")
-              }).catch(err => {
-                console.log("错误代码", err)
-              });
+              mpvue.setStorageSync('code', code);
+              _this.$http.post('index.php?method52=b.hanmo.access', {
+                js_code:mpvue.getStorageSync('code'),
+                platform:mpvue.getStorageSync('platform'),
+                system:mpvue.getStorageSync('system'),
+                version:mpvue.getStorageSync('version'),
+                brand:mpvue.getStorageSync('brand'),
+                model:mpvue.getStorageSync('model'),
+              })
             }
+          }
+        })
+      },
+      /*获取系统信息*/
+      getSystemInfo(){
+        wx.getSystemInfo({
+          success (res) {
+            mpvue.setStorageSync('model', res.model);
+            mpvue.setStorageSync('language', res.language);
+            mpvue.setStorageSync('version', res.version);
+            mpvue.setStorageSync('platform', res.platform);
+            mpvue.setStorageSync('system', res.system);
+            mpvue.setStorageSync('brand', res.brand);
           }
         })
       },
@@ -160,9 +178,8 @@
       })
     },
     onLoad(){
+      this.getSystemInfo();
       this.getCode();
-    },
-    created() {
     },
   }
 </script>

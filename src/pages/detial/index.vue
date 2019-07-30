@@ -3,7 +3,7 @@
     <swiper class="swiper" indicator-dots="true" autoplay="true" interval="5000" duration="500">
       <block v-for="(item, index) in data.banners" :index="index" :key="key">
         <swiper-item>
-          <image :src="item.img_url" class="slide-image" />
+          <image :src="item.img_url" class="slide-image"/>
         </swiper-item>
       </block>
     </swiper>

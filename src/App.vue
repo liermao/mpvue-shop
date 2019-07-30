@@ -11,7 +11,6 @@
        */
 
       let _this = this;
-
       let url = 'index.php?method52=b.hanmo.getallclasses';
       let logs;
       if (mpvuePlatform === 'my') {
