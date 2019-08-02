@@ -6,7 +6,7 @@
       <span v-show="nickNameBtn">{{nickName}}</span>
       <div class="member" v-show="sellBtn"><img src="http://www.shmiaosuan.com/upload/hanmo/images/v.png">普通会员</div>
     </div>
-    <div class="phone">登录手机号，同步优惠券
+    <div class="phone" v-if="phone">登录手机号，同步优惠券
       <button open-type="getPhoneNumber" @getphonenumber="getPhoneNumber" class="phoneBtn">登录</button>
     </div>
     <div class="list-box box-one" @click="tuijian">
@@ -47,7 +47,8 @@
         sellBtn: false,
         avatarUrl: "",
         nickName: "",
-        nickNameBtn: false
+        nickNameBtn: false,
+        phone:true
       }
     },
     components: {},
@@ -84,8 +85,6 @@
                   _this.nickName = res.userInfo.nickName;
                   wx.checkSession({
                     success() {
-                      console.log(res.encryptedData);
-                      console.log(res.iv);
                       _this.$http.post('index.php?method52=b.hanmo.binduserinfo', {
                         encryptedData: res.encryptedData,
                         iv: res.iv
@@ -97,7 +96,6 @@
                     },
                     fail() {
                       let _this = this;
-                      console.log("失效了");
                       wx.login({
                         success: resLogin => {
                           let code = resLogin.code;
@@ -201,8 +199,6 @@
         }
       },
       getPhoneNumber(e) {
-        console.log('click事件首先触发');
-        console.log(e);
         if (wx.canIUse('button.open-type.getPhoneNumber')) {
           this.bindGetPhoneNumber(e);
         } else {
@@ -210,10 +206,21 @@
         }
       },
       bindGetPhoneNumber(e) {
+        let _this=this;
         if (e.mp.detail.encryptedData) {
-          console.log('用户按了允许授权按钮');
-          console.log(e.mp.detail.encryptedData);
-          console.log(e.mp.detail.iv);
+          _this.$http.post('index.php?method52=b.hanmo.bindmobile&encryptedData', {
+            encryptedData:e.mp.detail.encryptedData,
+            iv: e.mp.detail.iv
+          }).then((data) => {
+            console.log(data.data.data);
+            if(data.data.data){
+                _this.phone=false;
+            }
+          }).catch(err => {
+            console.log("错误代码", err)
+          });
+
+
         } else {
           //用户按了拒绝按钮
           console.log('用户按了拒绝按钮')
