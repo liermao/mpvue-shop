@@ -69,6 +69,7 @@
             arrByZM.push(_this.arr[i]);
           }
         }
+
         return arrByZM;
       }
     },

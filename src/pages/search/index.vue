@@ -8,6 +8,7 @@
       <div class="search-text" @click="search(searchText)">搜索</div>
     </div>
     <div class="list">
+      <div class="nodata" v-if="list.length === 0"><img src="http://www.shmiaosuan.com/upload/hanmo/images/nodata.png" alt=""></div>
       <ul>
         <li v-for="(item,index) in list" :key="index" @click="detial(item.id)">
           <div class="img-box">
@@ -43,7 +44,7 @@
       },
     },
     mounted() {
-
+      this.searchText="";
     },
     created() {
     },

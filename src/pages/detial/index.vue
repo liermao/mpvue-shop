@@ -31,7 +31,7 @@
         <h3>宜家家居(漕溪路店)</h3>
         <p>漕溪路126号（距地铁3号线漕溪路站3号口步行960m）</p>
       </div>
-      <div class="phone">
+      <div class="phone" @click="phone">
         <img src="http://www.shmiaosuan.com/upload/hanmo/images/icon/phone.png">
       </div>
     </div>
@@ -107,6 +107,21 @@
         const url = '/pages/index/main';
         wx.switchTab({url})
       },
+
+      phone(){
+        wx.makePhoneCall({
+
+          phoneNumber: '18606619507',
+
+          success: function () {
+            console.log("拨打电话成功！")
+          },
+          fail: function () {
+            console.log("拨打电话失败！")
+          }
+        })
+      },
+
       getQuery() {
         /* 获取当前路由栈数组 */
         const pages = getCurrentPages();
@@ -128,9 +143,11 @@
       return {
         title: _this.title,
         imageUrl: _this.imgSrc,
+        path: '/pages/detial/main?id='+_this.getQuery().id+'&open_id='+mpvue.getStorageSync('openID'),
         success: function (res) {
           // 转发成功
           console.log("转发成功:" + JSON.stringify(res));
+
         },
         fail: function (res) {
           // 转发失败
@@ -149,7 +166,31 @@
         _this.content=res.data.data.detail.replace(/\<img/g, '<img style="max-width:100%;height:auto;" ');
       }).catch(err => {
         console.log("错误代码", err)
-      })
+      });
+      //
+      if(_this.getQuery().openID){
+        wx.login({
+          success: res => {
+            // ------ 获取凭证 ------
+            let code = res.code;
+            if(code){
+              mpvue.setStorageSync('code', code);
+              _this.$http.post('index.php?method52=b.hanmo.access', {
+                js_code:mpvue.getStorageSync('code'),
+                platform:mpvue.getStorageSync('platform'),
+                system:mpvue.getStorageSync('system'),
+                version:mpvue.getStorageSync('version'),
+                brand:mpvue.getStorageSync('brand'),
+                model:mpvue.getStorageSync('model'),
+                share_id:mpvue.getStorageSync('openID'),
+                product_id:_this.getQuery().id
+              }).then((res) => {
+                mpvue.setStorageSync('openID', res.data.data);
+              })
+            }
+          }
+        })
+      }
     }
   }
 </script>

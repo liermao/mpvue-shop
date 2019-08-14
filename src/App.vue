@@ -13,7 +13,7 @@
       let _this = this;
       let url = 'index.php?method52=b.hanmo.getallclasses';
       let logs;
-      wx.cloud.init()
+      wx.cloud.init();
       if (mpvuePlatform === 'my') {
         logs = mpvue.getStorageSync({key: 'logs'}).data || [];
         logs.unshift(Date.now());
@@ -31,14 +31,24 @@
       }).catch(err => {
         console.log("错误代码", err)
       })
+
     },
     log() {
       console.log(`log at:${Date.now()}`)
     },
-    method: {
-    }
-
-
+    mounted(){
+      let _this=this;
+      wx.getSystemInfo({
+        success (res) {
+          mpvue.setStorageSync('model', res.model);
+          mpvue.setStorageSync('language', res.language);
+          mpvue.setStorageSync('version', res.version);
+          mpvue.setStorageSync('platform', res.platform);
+          mpvue.setStorageSync('system', res.system);
+          mpvue.setStorageSync('brand', res.brand);
+        }
+      })
+    },
   }
 </script>
 

@@ -81,7 +81,7 @@
           },
           {
             id: 5,
-            childId:6,
+            childId: 6,
             icon: "http://www.shmiaosuan.com/upload/hanmo/images/icon/painting.png",
             title: "画廊",
             url: "furniture"
@@ -93,7 +93,12 @@
             title: "床垫",
             url: "furniture"
           },
-          {id: 5, icon: "http://www.shmiaosuan.com/upload/hanmo/images/icon/style.png", title: "其它", url: "allClassify"},
+          {
+            id: 5,
+            icon: "http://www.shmiaosuan.com/upload/hanmo/images/icon/style.png",
+            title: "其它",
+            url: "allClassify"
+          },
         ],
         list: [],
         like: [],
@@ -108,44 +113,19 @@
       turnSearch() {
         mpvue.navigateTo({url: '/pages/search/main'})
       },
+      getQuery() {
+        /* 获取当前路由栈数组 */
+        const pages = getCurrentPages();
+        const currentPage = pages[pages.length - 1];
+        const options = currentPage.options;
+        return options;
+      },
       /*获取code*/
-      getCode() {
-        let _this=this;
-        wx.login({
-          success: res => {
-            // ------ 获取凭证 ------
-            let code = res.code;
-            if(code){
-              mpvue.setStorageSync('code', code);
-              _this.$http.post('index.php?method52=b.hanmo.access', {
-                js_code:mpvue.getStorageSync('code'),
-                platform:mpvue.getStorageSync('platform'),
-                system:mpvue.getStorageSync('system'),
-                version:mpvue.getStorageSync('version'),
-                brand:mpvue.getStorageSync('brand'),
-                model:mpvue.getStorageSync('model'),
-              })
-            }
-          }
-        })
-      },
-      /*获取系统信息*/
-      getSystemInfo(){
-        wx.getSystemInfo({
-          success (res) {
-            mpvue.setStorageSync('model', res.model);
-            mpvue.setStorageSync('language', res.language);
-            mpvue.setStorageSync('version', res.version);
-            mpvue.setStorageSync('platform', res.platform);
-            mpvue.setStorageSync('system', res.system);
-            mpvue.setStorageSync('brand', res.brand);
-          }
-        })
-      },
+
       allClassify(url, id, childId) {
         mpvue.navigateTo({url: '/pages/' + url + '/main?id=' + id + '&childId=' + childId})
       },
-      turnArticle(id){
+      turnArticle(id) {
         mpvue.navigateTo({url: '/pages/article/main?id=' + id})
       }
     },
@@ -160,7 +140,7 @@
       });
       //获取首页文章列表
       _this.$http.get('index.php?method52=b.hanmo.listallarticles').then((res) => {
-        _this.imgList=res.data.data;
+        _this.imgList = res.data.data;
       }).catch(err => {
         console.log("错误代码", err)
       });
@@ -177,9 +157,73 @@
         console.log("错误代码", err)
       })
     },
-    onLoad(){
-      this.getSystemInfo();
-      this.getCode();
+    onShareAppMessage: function (e) {
+      let _this = this;
+      if (e.from === 'button') {
+        // 来自页面内转发按钮
+        console.log(e.target)
+      }
+      if (e.from === 'menu') {
+        console.log(e.target)
+      }
+      return {
+        title: '墨颜软装',
+        path: '/pages/index/main&open_id=' + mpvue.getStorageSync('openID'),
+        success: function (res) {
+          // 转发成功
+          console.log("转发成功:" + JSON.stringify(res));
+
+        },
+        fail: function (res) {
+          // 转发失败
+          console.log("转发失败:" + JSON.stringify(res));
+        }
+      }
+    },
+    onLoad() {
+      let _this = this;
+      if (this.getQuery().openID) {
+        wx.login({
+          success: res => {
+            // ------ 获取凭证 ------
+            let code = res.code;
+            if (code) {
+              mpvue.setStorageSync('code', code);
+              this.$http.post('index.php?method52=b.hanmo.access', {
+                js_code: mpvue.getStorageSync('code'),
+                platform: mpvue.getStorageSync('platform'),
+                system: mpvue.getStorageSync('system'),
+                version: mpvue.getStorageSync('version'),
+                brand: mpvue.getStorageSync('brand'),
+                model: mpvue.getStorageSync('model'),
+                product_id: this.getQuery().id
+              }).then((res) => {
+                mpvue.setStorageSync('openID', res.data.data);
+              })
+            }
+          }
+        })
+      } else {
+        wx.login({
+          success: res => {
+            // ------ 获取凭证 ------
+            let code = res.code;
+            if (code) {
+              mpvue.setStorageSync('code', code);
+              _this.$http.post('index.php?method52=b.hanmo.access', {
+                js_code: mpvue.getStorageSync('code'),
+                platform: mpvue.getStorageSync('platform'),
+                system: mpvue.getStorageSync('system'),
+                version: mpvue.getStorageSync('version'),
+                brand: mpvue.getStorageSync('brand'),
+                model: mpvue.getStorageSync('model'),
+              }).then((res) => {
+                mpvue.setStorageSync('openID', res.data.data);
+              })
+            }
+          }
+        })
+      }
     },
   }
 </script>
@@ -371,7 +415,7 @@
         .name {
           font-size: @theme-font-size-1;
           font-weight: 400;
-          width: unit(290,rpx);
+          width: unit(290, rpx);
           color: rgba(44, 44, 44, 1);
           margin-left: unit(24, rpx);
           margin-bottom: unit(8, rpx);

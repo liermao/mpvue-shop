@@ -9,7 +9,7 @@
     <div class="phone" v-if="phone">登录手机号，同步优惠券
       <button open-type="getPhoneNumber" @getphonenumber="getPhoneNumber" class="phoneBtn">登录</button>
     </div>
-    <div class="list-box box-one" @click="telp">
+    <div class="list-box box-one" @click="tuijian">
       <div class="left">
         <img src="http://www.shmiaosuan.com/upload/hanmo/images/zuanshi.png" alt="">
         <span>专享会员价</span>

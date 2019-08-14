@@ -75,6 +75,7 @@
       </div>
     </div>
     <div class="list">
+      <div class="nodata" v-if="listFun.length === 0"><img src="http://www.shmiaosuan.com/upload/hanmo/images/nodata.png" alt=""></div>
       <ul>
         <li v-for="(item,index) in listFun" :key="index" @click="detial(item.id)">
           <div class="img-box">
@@ -337,7 +338,6 @@
 
 <style scoped lang="less">
   @import "../../../static/bass/css/bass";
-
   .nav {
     padding-top: unit(20, rpx);
     height: unit(85, rpx);
@@ -357,7 +357,6 @@
       border-bottom: 2px solid #EAC34E;
     }
   }
-
   .screen {
     width: unit(750, rpx);
     height: unit(85, rpx);

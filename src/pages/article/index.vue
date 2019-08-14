@@ -2,7 +2,9 @@
   <div class="p-article">
     <h3 class="title">{{data.title}}</h3>
     <h6 class="date">{{data.date_modify}}</h6>
-    <div class="content"></div>
+    <div class="content">
+
+    </div>
     <div class="list-title">商品列表</div>
     <ul class="list">
       <li v-for="(item,index) in data.goods" :key="index" >
