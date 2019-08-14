@@ -13,7 +13,8 @@
     "pages/classifyList/main",
     "pages/search/main",
     "pages/furniture/main",
-    "pages/article/main"
+    "pages/article/main",
+    "pages/telp/main"
   ],
   "window": {
     "backgroundTextStyle": "light",

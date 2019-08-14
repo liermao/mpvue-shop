@@ -13,6 +13,7 @@
       let _this = this;
       let url = 'index.php?method52=b.hanmo.getallclasses';
       let logs;
+      wx.cloud.init()
       if (mpvuePlatform === 'my') {
         logs = mpvue.getStorageSync({key: 'logs'}).data || [];
         logs.unshift(Date.now());
