@@ -1,10 +1,10 @@
 <template>
   <div class="collectDetial">
     <div class="topimg">
-      <img src="http://www.shmiaosuan.com/upload/hanmo/images/col1.png">
+      <img :src="data.imgSrc">
     </div>
     <div class="top-detial">
-      <div class="img-box"><img :src="data.imgSrc"></div>
+      <div class="img-box"><img :src="data.logo"></div>
       <h2>{{data.name}}</h2>
       <p>{{data.desc}}</p>
     </div>
@@ -60,17 +60,6 @@
       }
     },
     components: {},
-    onShow(option){
-      let _this=this;
-      _this.$http.get('index.php?method52=b.hanmo.'+option.type+'&id='+option.id).then((res) => {
-        _this.data=res.data.data;
-        _this.list=res.data.data.goods;
-        _this.nav=res.data.data.classes;
-
-      }).catch(err => {
-        console.log("错误代码", err)
-      })
-    },
     methods: {
       toContent(index,id) {
         this.currentIndex = index;
