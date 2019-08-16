@@ -161,16 +161,17 @@
       let _this = this;
       if (e.from === 'button') {
         // 来自页面内转发按钮
-        console.log(e.target)
+        console.log(e)
       }
       if (e.from === 'menu') {
-        console.log(e.target)
+        console.log(e)
       }
       return {
         title: '墨颜软装',
-        path: '/pages/index/main&open_id=' + mpvue.getStorageSync('openID'),
+        path: '/pages/index/main?open_id=' + mpvue.getStorageSync('openID'),
         success: function (res) {
           // 转发成功
+          console.log(res)
           console.log("转发成功:" + JSON.stringify(res));
 
         },
@@ -182,7 +183,7 @@
     },
     onLoad() {
       let _this = this;
-      if (this.getQuery().openID) {
+      if (this.getQuery().open_id) {
         wx.login({
           success: res => {
             // ------ 获取凭证 ------
@@ -196,7 +197,7 @@
                 version: mpvue.getStorageSync('version'),
                 brand: mpvue.getStorageSync('brand'),
                 model: mpvue.getStorageSync('model'),
-                product_id: this.getQuery().id
+                share_id:this.getQuery().open_id
               }).then((res) => {
                 mpvue.setStorageSync('openID', res.data.data);
               })

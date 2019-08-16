@@ -142,7 +142,6 @@
       }
       return {
         title: _this.title,
-        imageUrl: _this.imgSrc,
         path: '/pages/detial/main?id='+_this.getQuery().id+'&open_id='+mpvue.getStorageSync('openID'),
         success: function (res) {
           // 转发成功
@@ -168,7 +167,7 @@
         console.log("错误代码", err)
       });
       //
-      if(_this.getQuery().openID){
+      if(_this.getQuery().open_id){
         wx.login({
           success: res => {
             // ------ 获取凭证 ------
@@ -182,7 +181,7 @@
                 version:mpvue.getStorageSync('version'),
                 brand:mpvue.getStorageSync('brand'),
                 model:mpvue.getStorageSync('model'),
-                share_id:mpvue.getStorageSync('openID'),
+                share_id:_this.getQuery().open_id,
                 product_id:_this.getQuery().id
               }).then((res) => {
                 mpvue.setStorageSync('openID', res.data.data);
