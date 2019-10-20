@@ -96,6 +96,7 @@
         navList: [],
         furnitureId: "",
         searchTxt: "",
+        iDisplayLength:10,
         currentIndex: 0,
         type: 2,
         list: [],
@@ -150,7 +151,7 @@
         _this.type = type;
         _this.navId = `nav_${index}`;
         //这儿不知道传什么值合适
-        _this.$http.get('index.php?method52=b.hanmo.gettypesbyid&id=' + type).then((res) => {
+        _this.$http.get('index.php?method52=b.hanmo.gettypesbyid&id=' + type+"&iDisplayLength="+_this.iDisplayLength).then((res) => {
           _this.space = res.data.data.space;
           _this.material = res.data.data.material;
           _this.style = res.data.data.style;
@@ -160,7 +161,7 @@
           console.log("错误代码", err)
         });
 
-        _this.$http.get('index.php?method52=b.hanmo.listgoods&class_id=' + type).then((res) => {
+        _this.$http.get('index.php?method52=b.hanmo.listgoods&class_id=' + type+"&iDisplayLength="+_this.iDisplayLength).then((res) => {
           _this.list = res.data.data.aaData;
         }).catch(err => {
           console.log("错误代码", err)
@@ -262,9 +263,14 @@
       },
       search(spaceTxt, styleTxt, priceTxt, colorTxt, materialTxt) {
         let _this = this;
-        _this.$http.get('index.php?method52=b.hanmo.listgoods&style=' + styleTxt + '&space=' + spaceTxt + '&price=' + priceTxt + '&color=' + colorTxt + '&material=' + materialTxt + '&class_id=' + _this.$root.$mp.query.id + '&min_id=9&iDisplayLength=10').then((res) => {
+        _this.$http.get('index.php?method52=b.hanmo.listgoods&style=' + styleTxt + '&space=' + spaceTxt + '&price=' + priceTxt + '&color=' + colorTxt + '&material=' + materialTxt + '&class_id=' + _this.type + '&iDisplayLength='+_this.iDisplayLength).then((res) => {
           console.log(res);
           _this.list = res.data.data.aaData;
+          if(this.iDisplayLength>parseInt(res.data.data.iTotalRecords)){
+            this.iDisplayLength=parseInt(res.data.data.iTotalRecords);
+          }
+          wx.hideLoading();
+          wx.stopPullDownRefresh();
 
         }).catch(err => {
           console.log("错误代码", err)
@@ -327,11 +333,22 @@
       }).catch(err => {
         console.log("错误代码", err)
       });
-      _this.$http.get('index.php?method52=b.hanmo.listgoods&class_id=' + _this.$root.$mp.query.childId).then((res) => {
+      _this.type=_this.$root.$mp.query.childId
+      _this.$http.get('index.php?method52=b.hanmo.listgoods&class_id=' + _this.type+"&iDisplayLength="+_this.iDisplayLength).then((res) => {
         _this.list = res.data.data.aaData;
       }).catch(err => {
         console.log("错误代码", err)
       })
+    },
+    onPullDownRefresh: function () {
+      this.search(this.spaceTxt, this.styleTxt, this.priceTxt, this.colorTxt, this.materialTxt);
+    },
+    onReachBottom: function () {
+      wx.showLoading({
+        title: '玩命加载中',
+      });
+      this.iDisplayLength = this.iDisplayLength + 10;
+      this.search(this.spaceTxt, this.styleTxt, this.priceTxt, this.colorTxt, this.materialTxt);
     }
   }
 </script>
@@ -367,6 +384,7 @@
       width: unit(187.5, rpx);
       height: unit(85, rpx);
       display: flex;
+      z-index: 10;
       text-align: center;
       align-items: center;
       position: relative;

@@ -121,41 +121,48 @@
         return options;
       },
       /*获取code*/
-
       allClassify(url, id, childId) {
         mpvue.navigateTo({url: '/pages/' + url + '/main?id=' + id + '&childId=' + childId})
       },
       turnArticle(id) {
         mpvue.navigateTo({url: '/pages/article/main?id=' + id})
+      },
+      /*获取数据*/
+      getData(){
+        let _this = this;
+        //首页文字
+
+        _this.$http.get('index.php?method52=b.hanmo.getset&key=profile').then((res) => {
+          _this.indexTitle = res.data.data[0].value;
+          wx.stopPullDownRefresh();
+        }).catch(err => {
+          console.log("错误代码", err)
+        });
+        //获取首页文章列表
+        _this.$http.get('index.php?method52=b.hanmo.listallarticles').then((res) => {
+          _this.imgList = res.data.data;
+          wx.stopPullDownRefresh();
+        }).catch(err => {
+          console.log("错误代码", err)
+        });
+        //新品上架
+        _this.$http.get('index.php?method52=b.hanmo.getnew').then((res) => {
+          _this.list = res.data.data;
+          wx.stopPullDownRefresh();
+        }).catch(err => {
+          console.log("错误代码", err)
+        });
+        //猜你喜欢
+        _this.$http.get('index.php?method52=b.hanmo.getcommend').then((res) => {
+          _this.like = res.data.data;
+          wx.stopPullDownRefresh();
+        }).catch(err => {
+          console.log("错误代码", err)
+        })
       }
     },
     mounted() {
-      let _this = this;
-      //首页文字
-
-      _this.$http.get('index.php?method52=b.hanmo.getset&key=profile').then((res) => {
-        _this.indexTitle = res.data.data[0].value;
-      }).catch(err => {
-        console.log("错误代码", err)
-      });
-      //获取首页文章列表
-      _this.$http.get('index.php?method52=b.hanmo.listallarticles').then((res) => {
-        _this.imgList = res.data.data;
-      }).catch(err => {
-        console.log("错误代码", err)
-      });
-      //新品上架
-      _this.$http.get('index.php?method52=b.hanmo.getnew').then((res) => {
-        _this.list = res.data.data;
-      }).catch(err => {
-        console.log("错误代码", err)
-      });
-      //猜你喜欢
-      _this.$http.get('index.php?method52=b.hanmo.getcommend').then((res) => {
-        _this.like = res.data.data;
-      }).catch(err => {
-        console.log("错误代码", err)
-      })
+      this.getData();
     },
     onShareAppMessage: function (e) {
       let _this = this;
@@ -225,6 +232,9 @@
           }
         })
       }
+    },
+    onPullDownRefresh: function() {
+      this.getData();
     },
   }
 </script>

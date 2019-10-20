@@ -30,7 +30,8 @@
         </div>
       </div>
     </div>
-    <div class="nodata" v-if="list.length === 0"><img src="http://www.shmiaosuan.com/upload/hanmo/images/nodata.png" alt=""></div>
+    <div class="nodata" v-if="list.length === 0"><img src="http://www.shmiaosuan.com/upload/hanmo/images/nodata.png"
+                                                      alt=""></div>
     <ul class="collect">
       <li v-for="(item,index) in list" :key="index" @click="detialCollent(item.id)">
         <img :src="item.imgSrc">
@@ -48,11 +49,12 @@
   export default {
     data() {
       return {
+        iDisplayLength: 10,
         searchTxt: "",
         state: [],
         stateShow: false,
         stateIndex: 0,
-        stateId:"",
+        stateId: "",
         place: [],
         placeShow: false,
         placeId: 0,
@@ -81,18 +83,18 @@
         this.placeShow = false;
         this.stateShow === true ? this.stateShow = false : this.stateShow = true;
       },
-      stateSelect(index,id, childern) {
+      stateSelect(index, id, childern) {
         this.stateIndex = index;
         this.stateShow = false;
         this.placeIndex = "";
-        this.stateId=id;
+        this.stateId = id;
         if (this.stateIndex > 0) {
           this.place = childern;
-          this.search(this.stateId,this.placeId, this.searchTxt)
+          this.search(this.stateId, this.placeId, this.searchTxt)
         } else {
           this.placeId = "";
-          this.place=[];
-          this.search(this.stateId,this.placeId, this.searchTxt)
+          this.place = [];
+          this.search(this.stateId, this.placeId, this.searchTxt)
         }
       },
       placeFun() {
@@ -111,12 +113,17 @@
         this.placeIndex = index;
         this.placeId = id;
         this.placeShow = false;
-        this.search(this.stateId,this.placeId, this.searchTxt)
+        this.search(this.stateId, this.placeId, this.searchTxt)
       },
       //搜索
-      search(country_id,id, val) {
-        this.$http.get('index.php?method52=b.hanmo.listparters&country_id='+country_id+'&region_id=' + id + '&name' + val + '=&min_id=&iDisplayLength=10').then((res) => {
+      search(country_id, id, val) {
+        this.$http.get('index.php?method52=b.hanmo.listparters&country_id=' + country_id + '&region_id=' + id + '&name' + val + '=&min_id=&iDisplayLength='+this.iDisplayLength).then((res) => {
           this.arr = res.data.data.aaData;
+          if(this.iDisplayLength>parseInt(res.data.data.iTotalRecords)){
+            this.iDisplayLength=parseInt(res.data.data.iTotalRecords);
+          }
+          wx.hideLoading();
+          wx.stopPullDownRefresh();
         }).catch(err => {
           console.log("错误代码", err);
         });
@@ -133,11 +140,12 @@
       _this.placeIndex = "";
       _this.arr = [];
       // 合作
-      _this.$http.get('index.php?method52=b.hanmo.listparters').then((res) => {
+      _this.$http.get('index.php?method52=b.hanmo.listparters&iDisplayLength=' + _this.iDisplayLength).then((res) => {
         _this.arr = res.data.data.aaData;
       }).catch(err => {
         console.log("错误代码", err);
       });
+
       _this.$http.get('index.php?method52=b.hanmo.getallregions').then((res) => {
         _this.state = res.data.data;
         _this.state.unshift({
@@ -148,7 +156,16 @@
         console.log("错误代码", err);
       })
     },
-
+    onPullDownRefresh: function () {
+      this.search(this.stateId, this.placeId, this.searchTxt);
+    },
+    onReachBottom: function () {
+      wx.showLoading({
+        title: '玩命加载中',
+      });
+      this.iDisplayLength = this.iDisplayLength + 10;
+      this.search(this.stateId, this.placeId, this.searchTxt);
+    }
   }
 </script>
 

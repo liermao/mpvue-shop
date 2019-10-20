@@ -70,7 +70,7 @@
     data() {
       return {
         list: [],
-
+        iDisplayLength:10,
         space: [],
         spaceShow: false,
         spaceID: "",
@@ -162,12 +162,18 @@
       },
       /*搜索案例*/
       search(type_id,region_id, writer_id,  price) {
-        this.$http.get('index.php?method52=b.hanmo.listcases&type_id=' + type_id + '&writer_id=' + writer_id + '&region_id=' + region_id + '&price=' + price + '&min_id=&iDisplayLength=10').then((res) => {
+        this.$http.get('index.php?method52=b.hanmo.listcases&type_id=' + type_id + '&writer_id=' + writer_id + '&region_id=' + region_id + '&price=' + price + '&min_id=&iDisplayLength='+this.iDisplayLength).then((res) => {
+
           this.list = res.data.data.aaData;
           this.colorShow = false;
           this.spaceShow = false;
           this.styleShow = false;
           this.priceShow = false;
+          if(this.iDisplayLength>parseInt(res.data.data.iTotalRecords)){
+            this.iDisplayLength=parseInt(res.data.data.iTotalRecords);
+          }
+          wx.hideLoading();
+          wx.stopPullDownRefresh();
         }).catch(err => {
           console.log("错误代码", err);
         });
@@ -194,13 +200,13 @@
       this.colorTxt = "";
       this.colorIndex = 0;
       let _this = this;
+
       _this.$http.get('index.php?method52=b.hanmo.listcases').then((res) => {
         _this.list = res.data.data.aaData;
       }).catch(err => {
         console.log("错误代码", err)
       });
       _this.$http.get('index.php?method52=b.hanmo.getcasetypes').then((res) => {
-
         _this.space = res.data.data.types.data;
         _this.space.unshift({
           id: "",
@@ -232,6 +238,18 @@
         console.log("错误代码", err)
       })
     },
+    onPullDownRefresh: function() {
+      this.search(this.spaceID, this.styleID, this.priceID, this.colorTxt);
+    },
+
+    onReachBottom: function () {
+      // 显示加载图标
+      wx.showLoading({
+        title: '玩命加载中',
+      });
+      this.iDisplayLength = this.iDisplayLength + 10;
+      this.search(this.spaceID, this.styleID, this.priceID, this.colorTxt);
+    }
   }
 </script>
 

@@ -3,7 +3,7 @@
     <div class="me-box">
       <img :src=avatarUrl class="avatarUrl">
       <button open-type="getUserInfo" @getuserinfo="getUserInfo" v-show="loginBtn">登录/注册</button>
-      <span v-show="nickNameBtn">{{nickName}}</span>
+      <span v-show="nickNameBtn" class="nickName">{{nickName}}</span>
       <div class="member" v-show="sellBtn"><img src="http://www.shmiaosuan.com/upload/hanmo/images/v.png">普通会员</div>
     </div>
     <div class="phone" v-if="phone">登录手机号，同步优惠券
@@ -268,6 +268,12 @@
       color: #fff;
       outline: none;
       font-size: unit(50, rpx);
+    }
+    .nickName{
+      max-width: unit(380, rpx);
+      overflow:hidden;
+      text-overflow:ellipsis;
+      white-space: nowrap;
     }
     .member {
       width: unit(126, rpx);

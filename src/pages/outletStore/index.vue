@@ -24,7 +24,8 @@
     data() {
       return {
         searchTxt: "",
-        arr: []
+        arr: [],
+        iDisplayLength:10,
       }
     },
     props: {},
@@ -43,7 +44,7 @@
     mounted(){
       let _this = this;
       // 工厂店
-      _this.$http.get('index.php?method52=b.hanmo.listfactories&name=&min_id=&iDisplayLength=10').then((res) => {
+      _this.$http.get('index.php?method52=b.hanmo.listfactories&name=&min_id=&iDisplayLength='+_this.iDisplayLength).then((res) => {
         _this.arr=res.data.data.aaData;
       }).catch(err => {
         console.log("错误代码", err)
@@ -55,6 +56,33 @@
         mpvue.navigateTo({url: '/pages/collectDetial/main?type=factory&id=' + id})
       }
     },
+    onPullDownRefresh: function() {
+      let _this = this;
+      _this.$http.get('index.php?method52=b.hanmo.listfactories&name=&min_id=&iDisplayLength='+_this.iDisplayLength).then((res) => {
+        _this.arr=res.data.data.aaData;
+        wx.stopPullDownRefresh();
+
+      }).catch(err => {
+        console.log("错误代码", err)
+      })
+    },
+    onReachBottom: function () {
+      let _this = this;
+      // 显示加载图标
+      wx.showLoading({
+        title: '玩命加载中',
+      });
+      this.iDisplayLength = this.iDisplayLength + 10;
+      _this.$http.get('index.php?method52=b.hanmo.listfactories&name=&min_id=&iDisplayLength='+_this.iDisplayLength).then((res) => {
+        _this.arr=res.data.data.aaData;
+        if(this.iDisplayLength>parseInt(res.data.data.iTotalRecords)){
+          this.iDisplayLength=parseInt(res.data.data.iTotalRecords);
+        }
+        wx.hideLoading();
+      }).catch(err => {
+        console.log("错误代码", err)
+      })
+    }
   }
 </script>
 
