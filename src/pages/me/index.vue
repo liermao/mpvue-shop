@@ -274,6 +274,7 @@
       overflow:hidden;
       text-overflow:ellipsis;
       white-space: nowrap;
+      font-size:unit(30,rpx)
     }
     .member {
       width: unit(126, rpx);

@@ -8,10 +8,11 @@
       </block>
     </swiper>
     <div class="title">
-      <div class="menber">￥<span>{{data.price}}</span><span v-show="true" class="meber-icon">会员价</span></div>
-      <!--<div class="price">价格<span>￥&#45;&#45;&#45;&#45;</span></div>-->
+
+      <div class="menber" v-if="data.is_pay==='1'&&data.price">￥<span>{{data.price}}</span><span v-show="true" class="meber-icon">会员价</span></div>
+      <div class="menber" v-if="data.is_pay==='0'&&(data.price||data.max_price)">￥<span>{{data.price}}~{{data.max_price>0?data.max_price:''}}</span><span v-show="true" class="meber-icon">会员价</span></div>
+      <div class="menber" v-if="data.price===null&&data.max_price===null"><span>询价</span></div>
       <h1>{{data.name}}</h1>
-      <!--<div class="share"><img src="http://www.shmiaosuan.com/upload/hanmo/images/icon/sharebag.png" alt="">分享有礼</div>-->
     </div>
     <div class="information">
       <h2>商品信息</h2>

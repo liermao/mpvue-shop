@@ -75,14 +75,19 @@
       </div>
     </div>
     <div class="list">
-      <div class="nodata" v-if="listFun.length === 0"><img src="http://www.shmiaosuan.com/upload/hanmo/images/nodata.png" alt=""></div>
+      <div class="nodata" v-if="listFun.length === 0"><img
+        src="http://www.shmiaosuan.com/upload/hanmo/images/nodata.png" alt=""></div>
       <ul>
         <li v-for="(item,index) in listFun" :key="index" @click="detial(item.id)">
           <div class="img-box">
             <img :src="item.imgSrc">
           </div>
           <div class="name">{{item.name}}</div>
-          <div class="money">¥<span>{{item.price}}</span></div>
+          <div class="money" v-if="item.is_pay==='1'&&item.price">¥<span>{{item.price}}</span></div>
+          <div class="money" v-if="item.is_pay==='0'&&(item.price||item.max_price)">¥<span>{{item.price}}~{{item.max_price>0?item.max_price:''}}</span>
+          </div>
+          <div class="money" v-if="item.price===null&&item.max_price===null">¥<span>询价</span></div>
+
         </li>
       </ul>
     </div>
@@ -96,7 +101,7 @@
         navList: [],
         furnitureId: "",
         searchTxt: "",
-        iDisplayLength:10,
+        iDisplayLength: 10,
         currentIndex: 0,
         type: 2,
         list: [],
@@ -151,7 +156,7 @@
         _this.type = type;
         _this.navId = `nav_${index}`;
         //这儿不知道传什么值合适
-        _this.$http.get('index.php?method52=b.hanmo.gettypesbyid&id=' + type+"&iDisplayLength="+_this.iDisplayLength).then((res) => {
+        _this.$http.get('index.php?method52=b.hanmo.gettypesbyid&id=' + type + "&iDisplayLength=" + _this.iDisplayLength).then((res) => {
           _this.space = res.data.data.space;
           _this.material = res.data.data.material;
           _this.style = res.data.data.style;
@@ -161,7 +166,7 @@
           console.log("错误代码", err)
         });
 
-        _this.$http.get('index.php?method52=b.hanmo.listgoods&class_id=' + type+"&iDisplayLength="+_this.iDisplayLength).then((res) => {
+        _this.$http.get('index.php?method52=b.hanmo.listgoods&class_id=' + type + "&iDisplayLength=" + _this.iDisplayLength).then((res) => {
           _this.list = res.data.data.aaData;
         }).catch(err => {
           console.log("错误代码", err)
@@ -263,11 +268,11 @@
       },
       search(spaceTxt, styleTxt, priceTxt, colorTxt, materialTxt) {
         let _this = this;
-        _this.$http.get('index.php?method52=b.hanmo.listgoods&style=' + styleTxt + '&space=' + spaceTxt + '&price=' + priceTxt + '&color=' + colorTxt + '&material=' + materialTxt + '&class_id=' + _this.type + '&iDisplayLength='+_this.iDisplayLength).then((res) => {
+        _this.$http.get('index.php?method52=b.hanmo.listgoods&style=' + styleTxt + '&space=' + spaceTxt + '&price=' + priceTxt + '&color=' + colorTxt + '&material=' + materialTxt + '&class_id=' + _this.type + '&iDisplayLength=' + _this.iDisplayLength).then((res) => {
           console.log(res);
           _this.list = res.data.data.aaData;
-          if(this.iDisplayLength>parseInt(res.data.data.iTotalRecords)){
-            this.iDisplayLength=parseInt(res.data.data.iTotalRecords);
+          if (this.iDisplayLength > parseInt(res.data.data.iTotalRecords)) {
+            this.iDisplayLength = parseInt(res.data.data.iTotalRecords);
           }
           wx.hideLoading();
           wx.stopPullDownRefresh();
@@ -333,8 +338,8 @@
       }).catch(err => {
         console.log("错误代码", err)
       });
-      _this.type=_this.$root.$mp.query.childId
-      _this.$http.get('index.php?method52=b.hanmo.listgoods&class_id=' + _this.type+"&iDisplayLength="+_this.iDisplayLength).then((res) => {
+      _this.type = _this.$root.$mp.query.childId
+      _this.$http.get('index.php?method52=b.hanmo.listgoods&class_id=' + _this.type + "&iDisplayLength=" + _this.iDisplayLength).then((res) => {
         _this.list = res.data.data.aaData;
       }).catch(err => {
         console.log("错误代码", err)
@@ -355,6 +360,7 @@
 
 <style scoped lang="less">
   @import "../../../static/bass/css/bass";
+
   .nav {
     padding-top: unit(20, rpx);
     height: unit(85, rpx);
@@ -374,6 +380,7 @@
       border-bottom: 2px solid #EAC34E;
     }
   }
+
   .screen {
     width: unit(750, rpx);
     height: unit(85, rpx);

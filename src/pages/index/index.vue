@@ -38,7 +38,10 @@
             <img :src=item.imgSrc alt="">
           </div>
           <div class="name">{{item.name}}</div>
-          <div class="money">¥<span>{{item.price}}</span></div>
+          <div class="money" v-if="item.is_pay==='1'&&item.price">¥<span>{{item.price}}</span></div>
+          <div class="money" v-if="item.is_pay==='0'&&(item.price||item.max_price)">¥<span>{{item.price}}~{{item.max_price>0?item.max_price:''}}</span>
+          </div>
+          <div class="money" v-if="item.price===null&&item.max_price===null">¥<span>询价</span></div>
         </li>
       </ul>
     </div>
@@ -52,7 +55,10 @@
             <img :src=item.imgSrc alt="">
           </div>
           <div class="name">{{item.name}}</div>
-          <div class="money">¥<span>{{item.price}}</span></div>
+          <div class="money" v-if="item.is_pay==='1'&&item.price">¥<span>{{item.price}}</span></div>
+          <div class="money" v-if="item.is_pay==='0'&&(item.price||item.max_price)">¥<span>{{item.price}}~{{item.max_price>0?item.max_price:''}}</span>
+          </div>
+          <div class="money" v-if="item.price===null&&item.max_price===null">¥<span>询价</span></div>
         </li>
       </ul>
     </div>

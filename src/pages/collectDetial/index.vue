@@ -34,7 +34,10 @@
               <img :src="item1.imgSrc" mode="widthFix">
             </div>
             <div class="name">{{item1.name}}</div>
-            <div class="money">¥<span>{{item1.price}}</span></div>
+            <div class="money" v-if="item1.is_pay==='1'&&item1.price">¥<span>{{item1.price}}</span></div>
+            <div class="money" v-if="item1.is_pay==='0'&&(item1.price||item1.max_price)">¥<span>{{item1.price}}~{{item1.max_price?item1.max_price:''}}</span>
+            </div>
+            <div class="money" v-if="item1.price===null&&item1.max_price===null">¥<span>询价</span></div>
           </li>
         </ul>
       </div>
